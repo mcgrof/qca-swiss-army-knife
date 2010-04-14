@@ -8,6 +8,13 @@
 #include <linux/types.h>
 #include "initvals.h"
 
+#define INI_CHECK(_array, _cols) \
+		do { \
+		chksum = ath9k_hw_check_initval((const u32 *) &_array,\
+						ARRAY_SIZE(_array), _cols); \
+		printf("0x%016llx        "#_array"\n", chksum); \
+		} while (0)
+
 #if 0
 static u32 ath9k_hw_print_initval(const u32 *array, u32 rows, u32 columns)
 {
@@ -48,13 +55,6 @@ static u64 ath9k_hw_check_initval(const u32 *array, u32 rows, u32 columns)
 
 int main(void)
 {
-#define INI_CHECK(_array, _cols) \
-		do { \
-		chksum = ath9k_hw_check_initval((const u32 *) &_array,\
-						ARRAY_SIZE(_array), _cols); \
-		printf("0x%016llx        "#_array"\n", chksum); \
-		} while (0)
-
 	u64 chksum;
 
 	INI_CHECK(ar5416Modes, 6);
