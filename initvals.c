@@ -53,7 +53,7 @@ static u64 ath9k_hw_check_initval(const u32 *array, u32 rows, u32 columns)
 	return chksum;
 }
 
-int main(void)
+static ar5008_hw_check_initvals(void)
 {
 	u64 chksum;
 
@@ -68,6 +68,12 @@ int main(void)
 	INI_CHECK(ar5416Bank6TPC, 3);
 	INI_CHECK(ar5416Bank7, 2);
 	INI_CHECK(ar5416Addac, 2);
+}
+
+static ar9001_hw_check_initvals(void)
+{
+	u64 chksum;
+
 	INI_CHECK(ar5416Modes_9100, 6);
 	INI_CHECK(ar5416Common_9100, 2);
 	INI_CHECK(ar5416Bank0_9100, 2);
@@ -91,6 +97,12 @@ int main(void)
 	INI_CHECK(ar5416Bank7_9160, 2);
 	INI_CHECK(ar5416Addac_9160, 2);
 	INI_CHECK(ar5416Addac_91601_1, 2);
+}
+
+static ar9002_hw_check_initvals(void)
+{
+	u64 chksum;
+
 	INI_CHECK(ar9280Modes_9280, 6);
 	INI_CHECK(ar9280Common_9280, 2);
 	INI_CHECK(ar9280Modes_9280_2, 6);
@@ -137,6 +149,14 @@ int main(void)
 	INI_CHECK(ar9271Modes_9271_ANI_reg, 6);
 	INI_CHECK(ar9271Modes_normal_power_tx_gain_9271, 6);
 	INI_CHECK(ar9271Modes_high_power_tx_gain_9271, 6);
+}
+
+int main(void)
+{
+
+	ar5008_hw_check_initvals();
+	ar9001_hw_check_initvals();
+	ar9002_hw_check_initvals();
 
 	return 0;
 }
