@@ -10,6 +10,7 @@
 #include "ar5008_initvals.h"
 #include "ar9001_initvals.h"
 #include "ar9002_initvals.h"
+#include "ar9003_initvals.h"
 
 #define INI_CHECK(_array, _cols) \
 		do { \
@@ -154,12 +155,39 @@ static ar9002_hw_check_initvals(void)
 	INI_CHECK(ar9271Modes_high_power_tx_gain_9271, 6);
 }
 
+static ar9003_hw_check_initvals(void)
+{
+	u64 chksum;
+
+	INI_CHECK(ar9300_2p0_radio_postamble, 5);
+	INI_CHECK(ar9300Modes_lowest_ob_db_tx_gain_table_2p0, 5);
+	INI_CHECK(ar9300Modes_fast_clock_2p0, 3);
+	INI_CHECK(ar9300_2p0_radio_core, 2);
+	INI_CHECK(ar9300Common_rx_gain_table_merlin_2p0, 2);
+	INI_CHECK(ar9300_2p0_mac_postamble, 5);
+	INI_CHECK(ar9300_2p0_soc_postamble, 5);
+	INI_CHECK(ar9200_merlin_2p0_radio_core, 2);
+	INI_CHECK(ar9300_2p0_baseband_postamble, 5);
+	INI_CHECK(ar9300_2p0_baseband_core, 2);
+	INI_CHECK(ar9300Modes_high_power_tx_gain_table_2p0, 5);
+	INI_CHECK(ar9300Modes_high_ob_db_tx_gain_table_2p0, 5);
+	INI_CHECK(ar9300Common_rx_gain_table_2p0, 2);
+	INI_CHECK(ar9300Modes_low_ob_db_tx_gain_table_2p0, 5);
+	INI_CHECK(ar9300_2p0_mac_core, 2);
+	INI_CHECK(ar9300Common_wo_xlna_rx_gain_table_2p0, 2);
+	INI_CHECK(ar9300_2p0_soc_preamble, 2);
+	INI_CHECK(ar9300PciePhy_pll_on_clkreq_disable_L1_2p0, 2);
+	INI_CHECK(ar9300PciePhy_clkreq_enable_L1_2p0, 2);
+	INI_CHECK(ar9300PciePhy_clkreq_disable_L1_2p0, 2);
+}
+
 int main(void)
 {
 
 	ar5008_hw_check_initvals();
 	ar9001_hw_check_initvals();
 	ar9002_hw_check_initvals();
+	ar9003_hw_check_initvals();
 
 	return 0;
 }
