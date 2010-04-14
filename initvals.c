@@ -6,7 +6,10 @@
 
 #include <stdio.h>
 #include <linux/types.h>
-#include "initvals.h"
+
+#include "ar5008_initvals.h"
+#include "ar9001_initvals.h"
+#include "ar9002_initvals.h"
 
 #define INI_CHECK(_array, _cols) \
 		do { \

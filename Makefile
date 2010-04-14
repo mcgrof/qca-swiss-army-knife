@@ -1,4 +1,4 @@
-initvals: initvals.h initvals.c
+initvals: ar5008_initvals.h ar9001_initvals.h ar9002_initvals.h initvals.c
 	gcc -o $@ $@.c
 
 all: initvals
