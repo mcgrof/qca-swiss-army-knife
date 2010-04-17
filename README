@@ -7,6 +7,7 @@ to debug / help with our driver development.
 Tools and their respective documentation:
 
   * initvals: http://wireless.kernel.org/en/users/Drivers/ath9k_hw/initvals-tool
+  * scripts: To be determined
 
 License
 =======
