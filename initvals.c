@@ -454,8 +454,15 @@ print_initvals_family(char *family)
 		ar9001_hw_print_initvals();
 	else if (strncmp(family, "ar9002", 6) == 0)
 		ar9002_hw_print_initvals();
-	else if (strncmp(family, "ar9003", 6) == 0)
+	else if (strncmp(family, "ar9003", 6) == 0) {
+		printf("#ifndef INITVALS_9003_H\n");
+		printf("#define INITVALS_9003_H\n");
+		printf("\n");
+		printf("/* AR9003 2.0 */\n");
+		printf("\n");
 		ar9003_hw_print_initvals();
+		printf("#endif /* INITVALS_9003_H */\n");
+	}
 }
 #else
 print_initvals_family(char *family)
