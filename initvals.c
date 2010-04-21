@@ -469,8 +469,15 @@ print_initvals_family(char *family)
 {
 	print_license();
 
-	if (strncmp(family, "ar9003", 6) == 0)
+	if (strncmp(family, "ar9003", 6) == 0) {
+		printf("#ifndef INITVALS_9003_H\n");
+		printf("#define INITVALS_9003_H\n");
+		printf("\n");
+		printf("/* AR9003 2.0 */\n");
+		printf("\n");
 		ar9003_hw_print_initvals();
+		printf("#endif /* INITVALS_9003_H */\n");
+	}
 }
 #endif /* ATHEROS */
 
