@@ -181,8 +181,34 @@ static ar9003_hw_check_initvals(void)
 	INI_CHECK(ar9300PciePhy_clkreq_disable_L1_2p0, 2);
 }
 
-int main(void)
+void usage()
 {
+	printf("Usage: initvals [-f ar5008 | ar9001 | ar9002 | ar9003 ]\n");
+}
+
+check_initvals_family(char *family)
+{
+	if (strncmp(family, "ar5008", 6) == 0)
+		ar5008_hw_check_initvals();
+	else if (strncmp(family, "ar9001", 6) == 0)
+		ar9001_hw_check_initvals();
+	else if (strncmp(family, "ar9002", 6) == 0)
+		ar9002_hw_check_initvals();
+	else if (strncmp(family, "ar9003", 6) == 0)
+		ar9003_hw_check_initvals();
+}
+
+int main(int argc, void *argv[])
+{
+
+	if (argc > 1) {
+		if (argc != 3) {
+			usage();
+			return -1;
+		}
+		check_initvals_family(argv[2]);
+		return 0;
+	}
 
 	ar5008_hw_check_initvals();
 	ar9001_hw_check_initvals();
