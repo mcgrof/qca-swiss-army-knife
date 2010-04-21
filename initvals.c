@@ -122,7 +122,7 @@ static void ath9k_hw_print_initval(const u32 *array, u32 rows, u32 columns)
 		}
 		printf("},\n");
 	}
-	printf("}\n\n");
+	printf("};\n\n");
 }
 
 static u64 ath9k_hw_check_initval(const u32 *array, u32 rows, u32 columns)
