@@ -7,10 +7,44 @@
 #include <stdio.h>
 #include <linux/types.h>
 
+/*
+ * compile with -DATHEROS if you want to use the upstream Atheros initvals
+ * and have them handy.
+ */
+#ifndef ATHEROS
+
 #include "ar5008_initvals.h"
 #include "ar9001_initvals.h"
 #include "ar9002_initvals.h"
 #include "ar9003_initvals.h"
+
+#else
+
+/* This is what these are called on the Atheros HAL */
+#define ar9300_osprey_2p0_radio_postamble			ar9300_2p0_radio_postamble
+#define ar9300Modes_lowest_ob_db_tx_gain_table_osprey_2p0	ar9300Modes_lowest_ob_db_tx_gain_table_2p0
+#define ar9300Modes_fast_clock_osprey_2p0			ar9300Modes_fast_clock_2p0
+#define ar9300_osprey_2p0_radio_core				ar9300_2p0_radio_core
+#define ar9300Common_rx_gain_table_merlin_2p0			ar9300Common_rx_gain_table_merlin_2p0
+#define ar9300_osprey_2p0_mac_postamble				ar9300_2p0_mac_postamble
+#define ar9300_osprey_2p0_soc_postamble				ar9300_2p0_soc_postamble
+#define ar9200_merlin_2p0_radio_core				ar9200_merlin_2p0_radio_core
+#define ar9300_osprey_2p0_baseband_postamble			ar9300_2p0_baseband_postamble
+#define ar9300_osprey_2p0_baseband_core				ar9300_2p0_baseband_core
+#define ar9300Modes_high_power_tx_gain_table_osprey_2p0		ar9300Modes_high_power_tx_gain_table_2p0
+#define ar9300Modes_high_ob_db_tx_gain_table_osprey_2p0		ar9300Modes_high_ob_db_tx_gain_table_2p0
+#define ar9300Common_rx_gain_table_osprey_2p0			ar9300Common_rx_gain_table_2p0
+#define ar9300Modes_low_ob_db_tx_gain_table_osprey_2p0		ar9300Modes_low_ob_db_tx_gain_table_2p0
+#define ar9300_osprey_2p0_mac_core				ar9300_2p0_mac_core
+#define ar9300Common_wo_xlna_rx_gain_table_osprey_2p0		ar9300Common_wo_xlna_rx_gain_table_2p0
+#define ar9300_osprey_2p0_soc_preamble				ar9300_2p0_soc_preamble
+#define ar9300PciePhy_pll_on_clkreq_disable_L1_osprey_2p0	ar9300PciePhy_pll_on_clkreq_disable_L1_2p0
+#define ar9300PciePhy_clkreq_enable_L1_osprey_2p0		ar9300PciePhy_clkreq_enable_L1_2p0
+#define ar9300PciePhy_clkreq_disable_L1_osprey_2p0		ar9300PciePhy_clkreq_disable_L1_2p0
+
+#include "ar9300_osprey20.ini"
+
+#endif /* ATHEROS */
 
 #define INI_CHECK(_array, _cols) \
 		do { \
@@ -57,7 +91,8 @@ static u64 ath9k_hw_check_initval(const u32 *array, u32 rows, u32 columns)
 	return chksum;
 }
 
-static ar5008_hw_check_initvals(void)
+#ifndef ATHEROS
+static void ar5008_hw_check_initvals(void)
 {
 	u64 chksum;
 
@@ -73,8 +108,14 @@ static ar5008_hw_check_initvals(void)
 	INI_CHECK(ar5416Bank7, 2);
 	INI_CHECK(ar5416Addac, 2);
 }
+#else
+static void ar5008_hw_check_initvals(void)
+{
+}
+#endif /* ATHEROS */
 
-static ar9001_hw_check_initvals(void)
+#ifndef ATHEROS
+static void ar9001_hw_check_initvals(void)
 {
 	u64 chksum;
 
@@ -102,8 +143,14 @@ static ar9001_hw_check_initvals(void)
 	INI_CHECK(ar5416Addac_9160, 2);
 	INI_CHECK(ar5416Addac_91601_1, 2);
 }
+#else
+static void ar9001_hw_check_initvals(void)
+{
+}
+#endif /* ATHEROS */
 
-static ar9002_hw_check_initvals(void)
+#ifndef ATHEROS
+static void ar9002_hw_check_initvals(void)
 {
 	u64 chksum;
 
@@ -154,8 +201,13 @@ static ar9002_hw_check_initvals(void)
 	INI_CHECK(ar9271Modes_normal_power_tx_gain_9271, 6);
 	INI_CHECK(ar9271Modes_high_power_tx_gain_9271, 6);
 }
+#else
+static void ar9002_hw_check_initvals(void)
+{
+}
+#endif /* ATHEROS */
 
-static ar9003_hw_check_initvals(void)
+static void ar9003_hw_check_initvals(void)
 {
 	u64 chksum;
 
@@ -181,11 +233,19 @@ static ar9003_hw_check_initvals(void)
 	INI_CHECK(ar9300PciePhy_clkreq_disable_L1_2p0, 2);
 }
 
-void usage()
+#ifndef ATHEROS
+static void usage()
 {
 	printf("Usage: initvals [-f ar5008 | ar9001 | ar9002 | ar9003 ]\n");
 }
+#else
+static void usage()
+{
+	printf("Usage: initvals [-f ar9003 ]\n");
+}
+#endif
 
+#ifndef ATHEROS
 check_initvals_family(char *family)
 {
 	if (strncmp(family, "ar5008", 6) == 0)
@@ -197,6 +257,13 @@ check_initvals_family(char *family)
 	else if (strncmp(family, "ar9003", 6) == 0)
 		ar9003_hw_check_initvals();
 }
+#else
+check_initvals_family(char *family)
+{
+	if (strncmp(family, "ar9003", 6) == 0)
+		ar9003_hw_check_initvals();
+}
+#endif /* ATHEROS */
 
 int main(int argc, void *argv[])
 {
