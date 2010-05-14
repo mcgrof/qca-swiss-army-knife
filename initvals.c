@@ -17,6 +17,7 @@
 #include "ar9001_initvals.h"
 #include "ar9002_initvals.h"
 #include "ar9003_initvals.h"
+#include "ar9003_2p2_initvals.h"
 
 #else
 
