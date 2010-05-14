@@ -21,6 +21,8 @@
 #else
 
 /* This is what these are called on the Atheros HAL */
+
+/* AR9003 2.0 */
 #define ar9300_osprey_2p0_radio_postamble			ar9300_2p0_radio_postamble
 #define ar9300Modes_lowest_ob_db_tx_gain_table_osprey_2p0	ar9300Modes_lowest_ob_db_tx_gain_table_2p0
 #define ar9300Modes_fast_clock_osprey_2p0			ar9300Modes_fast_clock_2p0
@@ -43,6 +45,30 @@
 #define ar9300PciePhy_clkreq_disable_L1_osprey_2p0		ar9300PciePhy_clkreq_disable_L1_2p0
 
 #include "ar9300_osprey20.ini"
+
+/* AR9003 2.2 */
+#define ar9300_osprey_2p2_radio_postamble			ar9300_2p2_radio_postamble
+#define ar9300Modes_lowest_ob_db_tx_gain_table_osprey_2p2	ar9300Modes_lowest_ob_db_tx_gain_table_2p2
+#define ar9300Modes_fast_clock_osprey_2p2			ar9300Modes_fast_clock_2p2
+#define ar9300_osprey_2p2_radio_core				ar9300_2p2_radio_core
+#define ar9300Common_rx_gain_table_merlin_2p2			ar9300Common_rx_gain_table_merlin_2p2
+#define ar9300_osprey_2p2_mac_postamble				ar9300_2p2_mac_postamble
+#define ar9300_osprey_2p2_soc_postamble				ar9300_2p2_soc_postamble
+#define ar9200_merlin_2p2_radio_core				ar9200_merlin_2p2_radio_core
+#define ar9300_osprey_2p2_baseband_postamble			ar9300_2p2_baseband_postamble
+#define ar9300_osprey_2p2_baseband_core				ar9300_2p2_baseband_core
+#define ar9300Modes_high_power_tx_gain_table_osprey_2p2		ar9300Modes_high_power_tx_gain_table_2p2
+#define ar9300Modes_high_ob_db_tx_gain_table_osprey_2p2		ar9300Modes_high_ob_db_tx_gain_table_2p2
+#define ar9300Common_rx_gain_table_osprey_2p2			ar9300Common_rx_gain_table_2p2
+#define ar9300Modes_low_ob_db_tx_gain_table_osprey_2p2		ar9300Modes_low_ob_db_tx_gain_table_2p2
+#define ar9300_osprey_2p2_mac_core				ar9300_2p2_mac_core
+#define ar9300Common_wo_xlna_rx_gain_table_osprey_2p2		ar9300Common_wo_xlna_rx_gain_table_2p2
+#define ar9300_osprey_2p2_soc_preamble				ar9300_2p2_soc_preamble
+#define ar9300PciePhy_pll_on_clkreq_disable_L1_osprey_2p2	ar9300PciePhy_pll_on_clkreq_disable_L1_2p2
+#define ar9300PciePhy_clkreq_enable_L1_osprey_2p2		ar9300PciePhy_clkreq_enable_L1_2p2
+#define ar9300PciePhy_clkreq_disable_L1_osprey_2p2		ar9300PciePhy_clkreq_disable_L1_2p2
+
+#include "ar9300_osprey22.ini"
 
 #endif /* ATHEROS */
 
@@ -263,7 +289,7 @@ static void ar9002_hw_check_initvals(void)
 }
 #endif /* ATHEROS */
 
-static void ar9003_hw_check_initvals(void)
+static void ar9003_2p0_hw_check_initvals(void)
 {
 	u64 chksum;
 
@@ -287,6 +313,32 @@ static void ar9003_hw_check_initvals(void)
 	INI_CHECK(ar9300PciePhy_pll_on_clkreq_disable_L1_2p0, 2);
 	INI_CHECK(ar9300PciePhy_clkreq_enable_L1_2p0, 2);
 	INI_CHECK(ar9300PciePhy_clkreq_disable_L1_2p0, 2);
+}
+
+static void ar9003_2p2_hw_check_initvals(void)
+{
+	u64 chksum;
+
+	INI_CHECK(ar9300_2p2_radio_postamble, 5);
+	INI_CHECK(ar9300Modes_lowest_ob_db_tx_gain_table_2p2, 5);
+	INI_CHECK(ar9300Modes_fast_clock_2p2, 3);
+	INI_CHECK(ar9300_2p2_radio_core, 2);
+	INI_CHECK(ar9300Common_rx_gain_table_merlin_2p2, 2);
+	INI_CHECK(ar9300_2p2_mac_postamble, 5);
+	INI_CHECK(ar9300_2p2_soc_postamble, 5);
+	INI_CHECK(ar9200_merlin_2p2_radio_core, 2);
+	INI_CHECK(ar9300_2p2_baseband_postamble, 5);
+	INI_CHECK(ar9300_2p2_baseband_core, 2);
+	INI_CHECK(ar9300Modes_high_power_tx_gain_table_2p2, 5);
+	INI_CHECK(ar9300Modes_high_ob_db_tx_gain_table_2p2, 5);
+	INI_CHECK(ar9300Common_rx_gain_table_2p2, 2);
+	INI_CHECK(ar9300Modes_low_ob_db_tx_gain_table_2p2, 5);
+	INI_CHECK(ar9300_2p2_mac_core, 2);
+	INI_CHECK(ar9300Common_wo_xlna_rx_gain_table_2p2, 2);
+	INI_CHECK(ar9300_2p2_soc_preamble, 2);
+	INI_CHECK(ar9300PciePhy_pll_on_clkreq_disable_L1_2p2, 2);
+	INI_CHECK(ar9300PciePhy_clkreq_enable_L1_2p2, 2);
+	INI_CHECK(ar9300PciePhy_clkreq_disable_L1_2p2, 2);
 }
 
 #ifndef ATHEROS
@@ -405,7 +457,7 @@ static void ar9002_hw_print_initvals(void)
 }
 #endif /* ATHEROS */
 
-static void ar9003_hw_print_initvals(void)
+static void ar9003_2p0_hw_print_initvals(void)
 {
 	u64 chksum;
 
@@ -431,15 +483,41 @@ static void ar9003_hw_print_initvals(void)
 	INI_PRINT(ar9300PciePhy_clkreq_disable_L1_2p0, 2);
 }
 
+static void ar9003_2p2_hw_print_initvals(void)
+{
+	u64 chksum;
+
+	INI_PRINT(ar9300_2p2_radio_postamble, 5);
+	INI_PRINT(ar9300Modes_lowest_ob_db_tx_gain_table_2p2, 5);
+	INI_PRINT(ar9300Modes_fast_clock_2p2, 3);
+	INI_PRINT(ar9300_2p2_radio_core, 2);
+	INI_PRINT(ar9300Common_rx_gain_table_merlin_2p2, 2);
+	INI_PRINT(ar9300_2p2_mac_postamble, 5);
+	INI_PRINT(ar9300_2p2_soc_postamble, 5);
+	INI_PRINT(ar9200_merlin_2p2_radio_core, 2);
+	INI_PRINT(ar9300_2p2_baseband_postamble, 5);
+	INI_PRINT(ar9300_2p2_baseband_core, 2);
+	INI_PRINT(ar9300Modes_high_power_tx_gain_table_2p2, 5);
+	INI_PRINT(ar9300Modes_high_ob_db_tx_gain_table_2p2, 5);
+	INI_PRINT(ar9300Common_rx_gain_table_2p2, 2);
+	INI_PRINT(ar9300Modes_low_ob_db_tx_gain_table_2p2, 5);
+	INI_PRINT(ar9300_2p2_mac_core, 2);
+	INI_PRINT(ar9300Common_wo_xlna_rx_gain_table_2p2, 2);
+	INI_PRINT(ar9300_2p2_soc_preamble, 2);
+	INI_PRINT(ar9300PciePhy_pll_on_clkreq_disable_L1_2p2, 2);
+	INI_PRINT(ar9300PciePhy_clkreq_enable_L1_2p2, 2);
+	INI_PRINT(ar9300PciePhy_clkreq_disable_L1_2p2, 2);
+}
+
 #ifndef ATHEROS
 static void usage()
 {
-	printf("Usage: initvals [-w ] [-f ar5008 | ar9001 | ar9002 | ar9003 ]\n");
+	printf("Usage: initvals [-w ] [-f ar5008 | ar9001 | ar9002 | ar9003-2p0 | ar9003-2p2 ]\n");
 }
 #else
 static void usage()
 {
-	printf("Usage: initvals [-w ] [-f ar9003 ]\n");
+	printf("Usage: initvals [-w ] [-f ar9003-2p0 | ar9003-2p2 ]\n");
 }
 #endif
 
@@ -454,14 +532,22 @@ print_initvals_family(char *family)
 		ar9001_hw_print_initvals();
 	else if (strncmp(family, "ar9002", 6) == 0)
 		ar9002_hw_print_initvals();
-	else if (strncmp(family, "ar9003", 6) == 0) {
+	else if (strncmp(family, "ar9003-2p0", 10) == 0) {
 		printf("#ifndef INITVALS_9003_H\n");
 		printf("#define INITVALS_9003_H\n");
 		printf("\n");
 		printf("/* AR9003 2.0 */\n");
 		printf("\n");
-		ar9003_hw_print_initvals();
+		ar9003_2p0_hw_print_initvals();
 		printf("#endif /* INITVALS_9003_H */\n");
+	} else if (strncmp(family, "ar9003-2p2", 10) == 0) {
+		printf("#ifndef INITVALS_9003_2P2_H\n");
+		printf("#define INITVALS_9003_2P2_H\n");
+		printf("\n");
+		printf("/* AR9003 2.2 */\n");
+		printf("\n");
+		ar9003_2p2_hw_print_initvals();
+		printf("#endif /* INITVALS_9003_2P2_H */\n");
 	}
 }
 #else
@@ -469,14 +555,22 @@ print_initvals_family(char *family)
 {
 	print_license();
 
-	if (strncmp(family, "ar9003", 6) == 0) {
+	if (strncmp(family, "ar9003-2p0", 10) == 0) {
 		printf("#ifndef INITVALS_9003_H\n");
 		printf("#define INITVALS_9003_H\n");
 		printf("\n");
 		printf("/* AR9003 2.0 */\n");
 		printf("\n");
-		ar9003_hw_print_initvals();
+		ar9003_2p0_hw_print_initvals();
 		printf("#endif /* INITVALS_9003_H */\n");
+	} else if (strncmp(family, "ar9003-2p2", 10) == 0) {
+		printf("#ifndef INITVALS_9003_2P2_H\n");
+		printf("#define INITVALS_9003_2P2_H\n");
+		printf("\n");
+		printf("/* AR9003 2.2 */\n");
+		printf("\n");
+		ar9003_2p2_hw_print_initvals();
+		printf("#endif /* INITVALS_9003_2P2_H */\n");
 	}
 }
 #endif /* ATHEROS */
@@ -490,14 +584,18 @@ check_initvals_family(char *family)
 		ar9001_hw_check_initvals();
 	else if (strncmp(family, "ar9002", 6) == 0)
 		ar9002_hw_check_initvals();
-	else if (strncmp(family, "ar9003", 6) == 0)
-		ar9003_hw_check_initvals();
+	else if (strncmp(family, "ar9003-2p0", 10) == 0)
+		ar9003_2p0_hw_check_initvals();
+	else if (strncmp(family, "ar9003-2p2", 10) == 0)
+		ar9003_2p2_hw_check_initvals();
 }
 #else
 check_initvals_family(char *family)
 {
-	if (strncmp(family, "ar9003", 6) == 0)
-		ar9003_hw_check_initvals();
+	if (strncmp(family, "ar9003-2p0", 10) == 0)
+		ar9003_2p0_hw_check_initvals();
+	else if (strncmp(family, "ar9003-2p2", 10) == 0)
+		ar9003_2p2_hw_check_initvals();
 }
 #endif /* ATHEROS */
 
@@ -512,7 +610,8 @@ int main(int argc, void *argv[])
 			ar5008_hw_print_initvals();
 			ar9001_hw_print_initvals();
 			ar9002_hw_print_initvals();
-			ar9003_hw_print_initvals();
+			ar9003_2p0_hw_print_initvals();
+			ar9003_2p2_hw_print_initvals();
 
 			return 0;
 		}
@@ -538,7 +637,8 @@ int main(int argc, void *argv[])
 	ar5008_hw_check_initvals();
 	ar9001_hw_check_initvals();
 	ar9002_hw_check_initvals();
-	ar9003_hw_check_initvals();
+	ar9003_2p0_hw_check_initvals();
+	ar9003_2p2_hw_check_initvals();
 
 	return 0;
 }
