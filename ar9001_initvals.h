@@ -1316,7 +1316,7 @@ static const u32 ar5416Addac_9160[][2] = {
 	{0x000098cc, 0x00000000},
 };
 
-static const u32 ar5416Addac_91601_1[][2] = {
+static const u32 ar5416Addac_9160_1_1[][2] = {
 	/* Addr      allmodes  */
 	{0x0000989c, 0x00000000},
 	{0x0000989c, 0x00000000},

@@ -301,7 +301,7 @@ static void ar9001_hw_check_initvals(void)
 	INI_CHECK(ar5416Bank6TPC_9160, 3);
 	INI_CHECK(ar5416Bank7_9160, 2);
 	INI_CHECK(ar5416Addac_9160, 2);
-	INI_CHECK(ar5416Addac_91601_1, 2);
+	INI_CHECK(ar5416Addac_9160_1_1, 2);
 }
 #else
 static void ar9001_hw_check_initvals(void)
@@ -463,7 +463,7 @@ static void ar9001_hw_print_initvals(void)
 	INI_PRINT(ar5416Bank6TPC_9160, 3);
 	INI_PRINT(ar5416Bank7_9160, 2);
 	INI_PRINT(ar5416Addac_9160, 2);
-	INI_PRINT(ar5416Addac_91601_1, 2);
+	INI_PRINT(ar5416Addac_9160_1_1, 2);
 }
 #else
 static void ar9001_hw_print_initvals(void)
