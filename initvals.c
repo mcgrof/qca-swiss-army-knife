@@ -24,6 +24,8 @@ typedef uint64_t u64;
 
 #else
 
+#include "ar5416.ini"
+
 #define ar5416Modes						ar5416Modes_9100
 #define ar5416Common						ar5416Common_9100
 #define ar5416Bank0						ar5416Bank0_9100
@@ -37,6 +39,18 @@ typedef uint64_t u64;
 #define ar5416Addac						ar5416Addac_9100
 
 #include "ar5416_howl.ini"
+
+#undef ar5416Modes
+#undef ar5416Common
+#undef ar5416Bank0
+#undef ar5416BB_RfGain
+#undef ar5416Bank1
+#undef ar5416Bank2
+#undef ar5416Bank3
+#undef ar5416Bank6
+#undef ar5416Bank6TPC
+#undef ar5416Bank7
+#undef ar5416Addac
 
 #define ar5416Modes_sowl					ar5416Modes_9160
 #define ar5416Common_sowl					ar5416Common_9160
@@ -280,7 +294,6 @@ static u64 ath9k_hw_check_initval(const u32 *array, u32 rows, u32 columns)
 	return chksum;
 }
 
-#ifndef ATHEROS
 static void ar5008_hw_check_initvals(void)
 {
 	u64 chksum;
@@ -297,11 +310,6 @@ static void ar5008_hw_check_initvals(void)
 	INI_CHECK(ar5416Bank7, 2);
 	INI_CHECK(ar5416Addac, 2);
 }
-#else
-static void ar5008_hw_check_initvals(void)
-{
-}
-#endif /* ATHEROS */
 
 static void ar9001_hw_check_initvals(void)
 {
@@ -436,7 +444,6 @@ static void ar9003_2p2_hw_check_initvals(void)
 	INI_CHECK(ar9300PciePhy_clkreq_disable_L1_2p2, 2);
 }
 
-#ifndef ATHEROS
 static void ar5008_hw_print_initvals(void)
 {
 	u64 chksum;
@@ -453,11 +460,6 @@ static void ar5008_hw_print_initvals(void)
 	INI_PRINT(ar5416Bank7, 2);
 	INI_PRINT(ar5416Addac, 2);
 }
-#else
-static void ar5008_hw_print_initvals(void)
-{
-}
-#endif /* ATHEROS */
 
 static void ar9001_hw_print_initvals(void)
 {
@@ -594,12 +596,7 @@ static void ar9003_2p2_hw_print_initvals(void)
 
 static void usage()
 {
-	printf("Usage: initvals [-w] [-f "
-#ifndef ATHEROS
-		"ar5008 | "
-#endif
-		"ar9001 | ar9002 | ar9003-2p0 | ar9003-2p2"
-	"]\n");
+	printf("Usage: initvals [-w] [-f ar5008 | ar9001 | ar9002 | ar9003-2p0 | ar9003-2p2]\n");
 }
 
 print_initvals_family(char *family)
