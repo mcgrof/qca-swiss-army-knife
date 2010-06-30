@@ -232,6 +232,21 @@ static void print_license(void)
 	printf("\n");
 }
 
+static u32 ath9k_patch_initval(u32 idx, u32 val)
+{
+	switch(idx) {
+	/* CRC error fix submitted upstream, but not in Atheros initvals yet */
+	case 0x00008264:
+		val &= ~(1 << 29);
+		break;
+
+	default:
+		break;
+	}
+
+	return val;
+}
+
 static void ath9k_hw_print_initval(const u32 *array, u32 rows, u32 columns)
 {
 	u32 chksum, col, row;
@@ -261,9 +276,16 @@ static void ath9k_hw_print_initval(const u32 *array, u32 rows, u32 columns)
 
 	for (row = 0; row < rows; row++) {
 		for (col = 0; col < columns; col++) {
+			u32 idx;
+			u32 val;
 			if (!col)
 				printf("\t{");
-			printf("0x%08x", array[row * columns + col]);
+			val = array[row * columns + col];
+			if (col > 0) {
+				idx = array[row * columns];
+				val = ath9k_patch_initval(idx, val);
+			}
+			printf("0x%08x", val);
 			if (col + 1 < columns)
 				printf(", ");
 		}
