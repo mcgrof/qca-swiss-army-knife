@@ -24,6 +24,35 @@ typedef uint64_t u64;
 
 #else
 
+#define ar5416Modes						ar5416Modes_9100
+#define ar5416Common						ar5416Common_9100
+#define ar5416Bank0						ar5416Bank0_9100
+#define ar5416BB_RfGain						ar5416BB_RfGain_9100
+#define ar5416Bank1						ar5416Bank1_9100
+#define ar5416Bank2						ar5416Bank2_9100
+#define ar5416Bank3						ar5416Bank3_9100
+#define ar5416Bank6						ar5416Bank6_9100
+#define ar5416Bank6TPC						ar5416Bank6TPC_9100
+#define ar5416Bank7						ar5416Bank7_9100
+#define ar5416Addac						ar5416Addac_9100
+
+#include "ar5416_howl.ini"
+
+#define ar5416Modes_sowl					ar5416Modes_9160
+#define ar5416Common_sowl					ar5416Common_9160
+#define ar5416Bank0_sowl					ar5416Bank0_9160
+#define ar5416BB_RfGain_sowl					ar5416BB_RfGain_9160
+#define ar5416Bank1_sowl					ar5416Bank1_9160
+#define ar5416Bank2_sowl					ar5416Bank2_9160
+#define ar5416Bank3_sowl					ar5416Bank3_9160
+#define ar5416Bank6_sowl					ar5416Bank6_9160
+#define ar5416Bank6TPC_sowl					ar5416Bank6TPC_9160
+#define ar5416Bank7_sowl					ar5416Bank7_9160
+#define ar5416Addac_sowl					ar5416Addac_9160
+#define ar5416Addac_sowl1_1					ar5416Addac_9160_1_1
+
+#include "ar5416_sowl.ini"
+
 #define ar9280Modes_merlin					ar9280Modes_9280
 #define ar9280Common_merlin					ar9280Common_9280
 
@@ -274,7 +303,6 @@ static void ar5008_hw_check_initvals(void)
 }
 #endif /* ATHEROS */
 
-#ifndef ATHEROS
 static void ar9001_hw_check_initvals(void)
 {
 	u64 chksum;
@@ -303,11 +331,6 @@ static void ar9001_hw_check_initvals(void)
 	INI_CHECK(ar5416Addac_9160, 2);
 	INI_CHECK(ar5416Addac_9160_1_1, 2);
 }
-#else
-static void ar9001_hw_check_initvals(void)
-{
-}
-#endif /* ATHEROS */
 
 static void ar9002_hw_check_initvals(void)
 {
@@ -436,7 +459,6 @@ static void ar5008_hw_print_initvals(void)
 }
 #endif /* ATHEROS */
 
-#ifndef ATHEROS
 static void ar9001_hw_print_initvals(void)
 {
 	u64 chksum;
@@ -465,11 +487,6 @@ static void ar9001_hw_print_initvals(void)
 	INI_PRINT(ar5416Addac_9160, 2);
 	INI_PRINT(ar5416Addac_9160_1_1, 2);
 }
-#else
-static void ar9001_hw_print_initvals(void)
-{
-}
-#endif /* ATHEROS */
 
 static void ar9002_hw_print_initvals(void)
 {
@@ -579,9 +596,9 @@ static void usage()
 {
 	printf("Usage: initvals [-w] [-f "
 #ifndef ATHEROS
-		"ar5008 | ar9001 | "
+		"ar5008 | "
 #endif
-		"ar9002 | ar9003-2p0 | ar9003-2p2"
+		"ar9001 | ar9002 | ar9003-2p0 | ar9003-2p2"
 	"]\n");
 }
 
