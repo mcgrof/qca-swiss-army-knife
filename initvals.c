@@ -5,7 +5,10 @@
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
 
 #include <stdio.h>
-#include <linux/types.h>
+#include <stdint.h>
+
+typedef uint32_t u32;
+typedef uint64_t u64;
 
 /*
  * compile with -DATHEROS if you want to use the upstream Atheros initvals
