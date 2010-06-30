@@ -272,8 +272,8 @@ static void ar9002_hw_check_initvals(void)
 	INI_CHECK(ar9287PciePhy_clkreq_off_L1_9287_1_0, 2);
 	INI_CHECK(ar9287Modes_9287_1_1, 6);
 	INI_CHECK(ar9287Common_9287_1_1, 2);
-	INI_CHECK(ar9287Common_normal_cck_fir_coeff_92871_1, 2);
-	INI_CHECK(ar9287Common_japan_2484_cck_fir_coeff_92871_1, 2);
+	INI_CHECK(ar9287Common_normal_cck_fir_coeff_9287_1_1, 2);
+	INI_CHECK(ar9287Common_japan_2484_cck_fir_coeff_9287_1_1, 2);
 	INI_CHECK(ar9287Modes_tx_gain_9287_1_1, 6);
 	INI_CHECK(ar9287Modes_rx_gain_9287_1_1, 6);
 	INI_CHECK(ar9287PciePhy_clkreq_always_on_L1_9287_1_1, 2);
