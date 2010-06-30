@@ -24,6 +24,80 @@ typedef uint64_t u64;
 
 #else
 
+#define ar9280Modes_merlin					ar9280Modes_9280
+#define ar9280Common_merlin					ar9280Common_9280
+
+#include "ar9280.ini"
+
+#define ar9280Modes_merlin2					ar9280Modes_9280_2
+#define ar9280Common_merlin2					ar9280Common_9280_2
+#define ar9280Modes_fast_clock_merlin2				ar9280Modes_fast_clock_9280_2
+#define ar9280Modes_backoff_23db_rxgain_merlin2			ar9280Modes_backoff_23db_rxgain_9280_2
+#define ar9280Modes_original_rxgain_merlin2			ar9280Modes_original_rxgain_9280_2
+#define ar9280Modes_backoff_13db_rxgain_merlin2			ar9280Modes_backoff_13db_rxgain_9280_2
+#define ar9280Modes_high_power_tx_gain_merlin2			ar9280Modes_high_power_tx_gain_9280_2
+#define ar9280Modes_original_tx_gain_merlin2			ar9280Modes_original_tx_gain_9280_2
+#define ar9280Modes_mixed_power_tx_gain_merlin2			ar9280Modes_mixed_power_tx_gain_9280_2
+#define ar9280PciePhy_clkreq_off_L1_merlin			ar9280PciePhy_clkreq_off_L1_9280
+#define ar9280PciePhy_clkreq_always_on_L1_merlin		ar9280PciePhy_clkreq_always_on_L1_9280
+#define ar9280PciePhy_AWOW_merlin				ar9280PciePhy_AWOW_9280
+
+#include "ar9280_merlin2.ini"
+
+#define ar9285Modes_kite					ar9285Modes_9285
+#define ar9285Common_kite					ar9285Common_9285
+#define ar9285PciePhy_clkreq_always_on_L1_kite			ar9285PciePhy_clkreq_always_on_L1_9285
+#define ar9285PciePhy_clkreq_off_L1_kite			ar9285PciePhy_clkreq_off_L1_9285
+
+#include "ar9285.ini"
+
+#define ar9285Modes_kite1_2					ar9285Modes_9285_1_2
+#define ar9285Common_kite1_2					ar9285Common_9285_1_2
+#define ar9285Modes_high_power_tx_gain_kite1_2			ar9285Modes_high_power_tx_gain_9285_1_2
+#define ar9285Modes_original_tx_gain_kite1_2			ar9285Modes_original_tx_gain_9285_1_2
+#define ar9285PciePhy_clkreq_always_on_L1_kite1_2		ar9285PciePhy_clkreq_always_on_L1_9285_1_2
+#define ar9285PciePhy_clkreq_off_L1_kite1_2			ar9285PciePhy_clkreq_off_L1_9285_1_2
+#define ar9285PciePhy_AWOW_kite1_2				ar9285PciePhy_AWOW_9285_1_2
+
+#define ar9285Modes_Elijah2_0_normal_power			ar9285Modes_XE2_0_normal_power
+#define ar9285Modes_Elijah2_0_high_power			ar9285Modes_XE2_0_high_power
+
+#include "ar9285_v1_2.ini"
+
+#define ar9287Modes_kiwi1_0					ar9287Modes_9287_1_0
+#define ar9287Common_kiwi1_0					ar9287Common_9287_1_0
+#define ar9287Modes_tx_gain_kiwi1_0				ar9287Modes_tx_gain_9287_1_0
+#define ar9287Modes_rx_gain_kiwi1_0				ar9287Modes_rx_gain_9287_1_0
+#define ar9287PciePhy_clkreq_always_on_L1_kiwi1_0		ar9287PciePhy_clkreq_always_on_L1_9287_1_0
+#define ar9287PciePhy_clkreq_off_L1_kiwi1_0			ar9287PciePhy_clkreq_off_L1_9287_1_0
+#define ar9287PciePhy_AWOW_kiwi1_0				ar9287PciePhy_AWOW_9287_1_0
+
+#include "ar9287.ini"
+
+#define ar9287Modes_kiwi1_1					ar9287Modes_9287_1_1
+#define ar9287Common_kiwi1_1					ar9287Common_9287_1_1
+#define ar9287Common_normal_cck_fir_coeff_kiwi1_1		ar9287Common_normal_cck_fir_coeff_9287_1_1
+#define ar9287Common_japan_2484_cck_fir_coeff_kiwi1_1		ar9287Common_japan_2484_cck_fir_coeff_9287_1_1
+#define ar9287Modes_tx_gain_kiwi1_1				ar9287Modes_tx_gain_9287_1_1
+#define ar9287Modes_rx_gain_kiwi1_1				ar9287Modes_rx_gain_9287_1_1
+#define ar9287PciePhy_clkreq_always_on_L1_kiwi1_1		ar9287PciePhy_clkreq_always_on_L1_9287_1_1
+#define ar9287PciePhy_clkreq_off_L1_kiwi1_1			ar9287PciePhy_clkreq_off_L1_9287_1_1
+#define ar9287PciePhy_AWOW_kiwi1_1				ar9287PciePhy_AWOW_9287_1_1
+
+#include "ar9287_1_1.ini"
+
+#define ar9271Modes_K2						ar9271Modes_9271
+#define ar9271Common_K2						ar9271Common_9271
+#define ar9271Common_normal_cck_fir_coeff_K2			ar9271Common_normal_cck_fir_coeff_9271
+#define ar9271Common_japan_2484_cck_fir_coeff_K2		ar9271Common_japan_2484_cck_fir_coeff_9271
+#define ar9271Modes_K2_1_0_only					ar9271Modes_9271_1_0_only
+#define ar9271Modes_K2_ANI_reg					ar9271Modes_9271_ANI_reg
+#define ar9271Modes_normal_power_tx_gain_K2			ar9271Modes_normal_power_tx_gain_9271
+#define ar9271Modes_high_power_tx_gain_K2			ar9271Modes_high_power_tx_gain_9271
+
+#include "ar9271.ini"
+
+
 /* This is what these are called on the Atheros HAL */
 
 /* AR9003 2.0 */
@@ -235,7 +309,6 @@ static void ar9001_hw_check_initvals(void)
 }
 #endif /* ATHEROS */
 
-#ifndef ATHEROS
 static void ar9002_hw_check_initvals(void)
 {
 	u64 chksum;
@@ -287,11 +360,6 @@ static void ar9002_hw_check_initvals(void)
 	INI_CHECK(ar9271Modes_normal_power_tx_gain_9271, 6);
 	INI_CHECK(ar9271Modes_high_power_tx_gain_9271, 6);
 }
-#else
-static void ar9002_hw_check_initvals(void)
-{
-}
-#endif /* ATHEROS */
 
 static void ar9003_2p0_hw_check_initvals(void)
 {
@@ -403,7 +471,6 @@ static void ar9001_hw_print_initvals(void)
 }
 #endif /* ATHEROS */
 
-#ifndef ATHEROS
 static void ar9002_hw_print_initvals(void)
 {
 	u64 chksum;
@@ -440,8 +507,8 @@ static void ar9002_hw_print_initvals(void)
 	INI_PRINT(ar9287PciePhy_clkreq_off_L1_9287_1_0, 2);
 	INI_PRINT(ar9287Modes_9287_1_1, 6);
 	INI_PRINT(ar9287Common_9287_1_1, 2);
-	INI_PRINT(ar9287Common_normal_cck_fir_coeff_92871_1, 2);
-	INI_PRINT(ar9287Common_japan_2484_cck_fir_coeff_92871_1, 2);
+	INI_PRINT(ar9287Common_normal_cck_fir_coeff_9287_1_1, 2);
+	INI_PRINT(ar9287Common_japan_2484_cck_fir_coeff_9287_1_1, 2);
 	INI_PRINT(ar9287Modes_tx_gain_9287_1_1, 6);
 	INI_PRINT(ar9287Modes_rx_gain_9287_1_1, 6);
 	INI_PRINT(ar9287PciePhy_clkreq_always_on_L1_9287_1_1, 2);
@@ -455,11 +522,6 @@ static void ar9002_hw_print_initvals(void)
 	INI_PRINT(ar9271Modes_normal_power_tx_gain_9271, 6);
 	INI_PRINT(ar9271Modes_high_power_tx_gain_9271, 6);
 }
-#else
-static void ar9002_hw_print_initvals(void)
-{
-}
-#endif /* ATHEROS */
 
 static void ar9003_2p0_hw_print_initvals(void)
 {
@@ -513,19 +575,16 @@ static void ar9003_2p2_hw_print_initvals(void)
 	INI_PRINT(ar9300PciePhy_clkreq_disable_L1_2p2, 2);
 }
 
+static void usage()
+{
+	printf("Usage: initvals [-w] [-f "
 #ifndef ATHEROS
-static void usage()
-{
-	printf("Usage: initvals [-w ] [-f ar5008 | ar9001 | ar9002 | ar9003-2p0 | ar9003-2p2 ]\n");
-}
-#else
-static void usage()
-{
-	printf("Usage: initvals [-w ] [-f ar9003-2p0 | ar9003-2p2 ]\n");
-}
+		"ar5008 | ar9001 | "
 #endif
+		"ar9002 | ar9003-2p0 | ar9003-2p2"
+	"]\n");
+}
 
-#ifndef ATHEROS
 print_initvals_family(char *family)
 {
 	print_license();
@@ -554,32 +613,7 @@ print_initvals_family(char *family)
 		printf("#endif /* INITVALS_9003_2P2_H */\n");
 	}
 }
-#else
-print_initvals_family(char *family)
-{
-	print_license();
 
-	if (strncmp(family, "ar9003-2p0", 10) == 0) {
-		printf("#ifndef INITVALS_9003_H\n");
-		printf("#define INITVALS_9003_H\n");
-		printf("\n");
-		printf("/* AR9003 2.0 */\n");
-		printf("\n");
-		ar9003_2p0_hw_print_initvals();
-		printf("#endif /* INITVALS_9003_H */\n");
-	} else if (strncmp(family, "ar9003-2p2", 10) == 0) {
-		printf("#ifndef INITVALS_9003_2P2_H\n");
-		printf("#define INITVALS_9003_2P2_H\n");
-		printf("\n");
-		printf("/* AR9003 2.2 */\n");
-		printf("\n");
-		ar9003_2p2_hw_print_initvals();
-		printf("#endif /* INITVALS_9003_2P2_H */\n");
-	}
-}
-#endif /* ATHEROS */
-
-#ifndef ATHEROS
 check_initvals_family(char *family)
 {
 	if (strncmp(family, "ar5008", 6) == 0)
@@ -593,15 +627,6 @@ check_initvals_family(char *family)
 	else if (strncmp(family, "ar9003-2p2", 10) == 0)
 		ar9003_2p2_hw_check_initvals();
 }
-#else
-check_initvals_family(char *family)
-{
-	if (strncmp(family, "ar9003-2p0", 10) == 0)
-		ar9003_2p0_hw_check_initvals();
-	else if (strncmp(family, "ar9003-2p2", 10) == 0)
-		ar9003_2p2_hw_check_initvals();
-}
-#endif /* ATHEROS */
 
 int main(int argc, void *argv[])
 {
