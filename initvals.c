@@ -67,8 +67,6 @@ typedef uint64_t u64;
 
 #include "ar5416_sowl.ini"
 
-#define ar9280Modes_merlin					ar9280Modes_9280
-#define ar9280Common_merlin					ar9280Common_9280
 
 #include "ar9280.ini"
 
@@ -87,8 +85,6 @@ typedef uint64_t u64;
 
 #include "ar9280_merlin2.ini"
 
-#define ar9285Modes_kite					ar9285Modes_9285
-#define ar9285Common_kite					ar9285Common_9285
 #define ar9285PciePhy_clkreq_always_on_L1_kite			ar9285PciePhy_clkreq_always_on_L1_9285
 #define ar9285PciePhy_clkreq_off_L1_kite			ar9285PciePhy_clkreq_off_L1_9285
 
@@ -107,12 +103,6 @@ typedef uint64_t u64;
 
 #include "ar9285_v1_2.ini"
 
-#define ar9287Modes_kiwi1_0					ar9287Modes_9287_1_0
-#define ar9287Common_kiwi1_0					ar9287Common_9287_1_0
-#define ar9287Modes_tx_gain_kiwi1_0				ar9287Modes_tx_gain_9287_1_0
-#define ar9287Modes_rx_gain_kiwi1_0				ar9287Modes_rx_gain_9287_1_0
-#define ar9287PciePhy_clkreq_always_on_L1_kiwi1_0		ar9287PciePhy_clkreq_always_on_L1_9287_1_0
-#define ar9287PciePhy_clkreq_off_L1_kiwi1_0			ar9287PciePhy_clkreq_off_L1_9287_1_0
 #define ar9287PciePhy_AWOW_kiwi1_0				ar9287PciePhy_AWOW_9287_1_0
 
 #include "ar9287.ini"
@@ -366,8 +356,6 @@ static void ar9002_hw_check_initvals(void)
 {
 	u64 chksum;
 
-	INI_CHECK(ar9280Modes_9280, 6);
-	INI_CHECK(ar9280Common_9280, 2);
 	INI_CHECK(ar9280Modes_9280_2, 6);
 	INI_CHECK(ar9280Common_9280_2, 2);
 	INI_CHECK(ar9280Modes_fast_clock_9280_2, 3);
@@ -378,8 +366,6 @@ static void ar9002_hw_check_initvals(void)
 	INI_CHECK(ar9280Modes_original_tx_gain_9280_2, 6);
 	INI_CHECK(ar9280PciePhy_clkreq_off_L1_9280, 2);
 	INI_CHECK(ar9280PciePhy_clkreq_always_on_L1_9280, 2);
-	INI_CHECK(ar9285Modes_9285, 6);
-	INI_CHECK(ar9285Common_9285, 2);
 	INI_CHECK(ar9285PciePhy_clkreq_always_on_L1_9285, 2);
 	INI_CHECK(ar9285PciePhy_clkreq_off_L1_9285, 2);
 	INI_CHECK(ar9285Modes_9285_1_2, 6);
@@ -390,12 +376,6 @@ static void ar9002_hw_check_initvals(void)
 	INI_CHECK(ar9285Modes_XE2_0_high_power, 6);
 	INI_CHECK(ar9285PciePhy_clkreq_always_on_L1_9285_1_2, 2);
 	INI_CHECK(ar9285PciePhy_clkreq_off_L1_9285_1_2, 2);
-	INI_CHECK(ar9287Modes_9287_1_0, 6);
-	INI_CHECK(ar9287Common_9287_1_0, 2);
-	INI_CHECK(ar9287Modes_tx_gain_9287_1_0, 6);
-	INI_CHECK(ar9287Modes_rx_gain_9287_1_0, 6);
-	INI_CHECK(ar9287PciePhy_clkreq_always_on_L1_9287_1_0, 2);
-	INI_CHECK(ar9287PciePhy_clkreq_off_L1_9287_1_0, 2);
 	INI_CHECK(ar9287Modes_9287_1_1, 6);
 	INI_CHECK(ar9287Common_9287_1_1, 2);
 	INI_CHECK(ar9287Common_normal_cck_fir_coeff_9287_1_1, 2);
@@ -516,8 +496,6 @@ static void ar9002_hw_print_initvals(void)
 {
 	u64 chksum;
 
-	INI_PRINT(ar9280Modes_9280, 6);
-	INI_PRINT(ar9280Common_9280, 2);
 	INI_PRINT(ar9280Modes_9280_2, 6);
 	INI_PRINT(ar9280Common_9280_2, 2);
 	INI_PRINT(ar9280Modes_fast_clock_9280_2, 3);
@@ -528,8 +506,6 @@ static void ar9002_hw_print_initvals(void)
 	INI_PRINT(ar9280Modes_original_tx_gain_9280_2, 6);
 	INI_PRINT(ar9280PciePhy_clkreq_off_L1_9280, 2);
 	INI_PRINT(ar9280PciePhy_clkreq_always_on_L1_9280, 2);
-	INI_PRINT(ar9285Modes_9285, 6);
-	INI_PRINT(ar9285Common_9285, 2);
 	INI_PRINT(ar9285PciePhy_clkreq_always_on_L1_9285, 2);
 	INI_PRINT(ar9285PciePhy_clkreq_off_L1_9285, 2);
 	INI_PRINT(ar9285Modes_9285_1_2, 6);
@@ -540,12 +516,6 @@ static void ar9002_hw_print_initvals(void)
 	INI_PRINT(ar9285Modes_XE2_0_high_power, 6);
 	INI_PRINT(ar9285PciePhy_clkreq_always_on_L1_9285_1_2, 2);
 	INI_PRINT(ar9285PciePhy_clkreq_off_L1_9285_1_2, 2);
-	INI_PRINT(ar9287Modes_9287_1_0, 6);
-	INI_PRINT(ar9287Common_9287_1_0, 2);
-	INI_PRINT(ar9287Modes_tx_gain_9287_1_0, 6);
-	INI_PRINT(ar9287Modes_rx_gain_9287_1_0, 6);
-	INI_PRINT(ar9287PciePhy_clkreq_always_on_L1_9287_1_0, 2);
-	INI_PRINT(ar9287PciePhy_clkreq_off_L1_9287_1_0, 2);
 	INI_PRINT(ar9287Modes_9287_1_1, 6);
 	INI_PRINT(ar9287Common_9287_1_1, 2);
 	INI_PRINT(ar9287Common_normal_cck_fir_coeff_9287_1_1, 2);
