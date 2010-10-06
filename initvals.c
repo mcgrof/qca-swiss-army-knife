@@ -299,7 +299,14 @@ static u64 ath9k_hw_check_initval(const u32 *array, u32 rows, u32 columns)
 
 	for (row = 0; row < rows; row++) {
 		for (col = 0; col < columns; col++) {
-			chksum ^= (array[row * columns + col]) << (8 * col);
+			/*
+			 * To ensure that swaps of values on the same column yield
+			 * different checksums we use the row and column position to
+			 * mix the checksum.
+			 */
+			u32 uniq_row_col_pos = (row + 11) * (col + 17);
+			u32 uniq_val_pos = array[row * columns + col] + (97 * uniq_row_col_pos);
+			chksum ^= (uniq_val_pos << (8 * col));
 		}
 	}
 
