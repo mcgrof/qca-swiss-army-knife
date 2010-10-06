@@ -8,7 +8,7 @@
 #include <stdint.h>
 
 typedef uint32_t u32;
-typedef uint64_t u64;
+typedef long long unsigned int u64;
 
 /*
  * compile with -DATHEROS if you want to use the upstream Atheros initvals
