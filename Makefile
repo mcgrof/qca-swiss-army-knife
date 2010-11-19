@@ -9,7 +9,6 @@ ATHEROS_DEPS += \
 	ar9287.ini		\
 	ar9287_1_1.ini		\
 	ar9271.ini		\
-	ar9300_osprey20.ini	\
 	ar9300_osprey22.ini
 endif
 
