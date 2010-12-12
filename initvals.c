@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 typedef uint32_t u32;
 typedef long long unsigned int u64;
@@ -158,24 +159,17 @@ typedef long long unsigned int u64;
 
 #endif /* ATHEROS */
 
-#define INI_CHECK(_array) \
-		do { \
+#define INI_PRINT(_array) do { \
+	if (check) { \
 		chksum = ath9k_hw_check_initval((const u32 *) &_array,\
 						ARRAY_SIZE(_array), ARRAY_SIZE((_array)[0])); \
 		printf("0x%016llx        "#_array"\n", chksum); \
-		} while (0)
-
-
-		//printf("/* "#_array" checksum: 0x%016llx */\n", chksum); \
-
-#define INI_PRINT(_array) \
-		do { \
-		chksum = ath9k_hw_check_initval((const u32 *) &_array,\
-						ARRAY_SIZE(_array), ARRAY_SIZE((_array)[0])); \
+	} else { \
 		printf("static const u32 "#_array"[][%ld] = {\n", ARRAY_SIZE((_array)[0])); \
 		ath9k_hw_print_initval((const u32 *) _array, \
 				       ARRAY_SIZE(_array), ARRAY_SIZE((_array)[0])); \
-		} while (0)
+	} \
+    } while (0)
 
 static void print_license(void)
 {
@@ -288,121 +282,7 @@ static u64 ath9k_hw_check_initval(const u32 *array, u32 rows, u32 columns)
 	return chksum;
 }
 
-static void ar5008_hw_check_initvals(void)
-{
-	u64 chksum;
-
-	INI_CHECK(ar5416Modes);
-	INI_CHECK(ar5416Common);
-	INI_CHECK(ar5416Bank0);
-	INI_CHECK(ar5416BB_RfGain);
-	INI_CHECK(ar5416Bank1);
-	INI_CHECK(ar5416Bank2);
-	INI_CHECK(ar5416Bank3);
-	INI_CHECK(ar5416Bank6);
-	INI_CHECK(ar5416Bank6TPC);
-	INI_CHECK(ar5416Bank7);
-	INI_CHECK(ar5416Addac);
-}
-
-static void ar9001_hw_check_initvals(void)
-{
-	u64 chksum;
-
-	INI_CHECK(ar5416Modes_9100);
-	INI_CHECK(ar5416Common_9100);
-	INI_CHECK(ar5416Bank0_9100);
-	INI_CHECK(ar5416BB_RfGain_9100);
-	INI_CHECK(ar5416Bank1_9100);
-	INI_CHECK(ar5416Bank2_9100);
-	INI_CHECK(ar5416Bank3_9100);
-	INI_CHECK(ar5416Bank6_9100);
-	INI_CHECK(ar5416Bank6TPC_9100);
-	INI_CHECK(ar5416Bank7_9100);
-	INI_CHECK(ar5416Addac_9100);
-	INI_CHECK(ar5416Modes_9160);
-	INI_CHECK(ar5416Common_9160);
-	INI_CHECK(ar5416Bank0_9160);
-	INI_CHECK(ar5416BB_RfGain_9160);
-	INI_CHECK(ar5416Bank1_9160);
-	INI_CHECK(ar5416Bank2_9160);
-	INI_CHECK(ar5416Bank3_9160);
-	INI_CHECK(ar5416Bank6_9160);
-	INI_CHECK(ar5416Bank6TPC_9160);
-	INI_CHECK(ar5416Bank7_9160);
-	INI_CHECK(ar5416Addac_9160);
-	INI_CHECK(ar5416Addac_9160_1_1);
-}
-
-static void ar9002_hw_check_initvals(void)
-{
-	u64 chksum;
-
-	INI_CHECK(ar9280Modes_9280_2);
-	INI_CHECK(ar9280Common_9280_2);
-	INI_CHECK(ar9280Modes_fast_clock_9280_2);
-	INI_CHECK(ar9280Modes_backoff_23db_rxgain_9280_2);
-	INI_CHECK(ar9280Modes_original_rxgain_9280_2);
-	INI_CHECK(ar9280Modes_backoff_13db_rxgain_9280_2);
-	INI_CHECK(ar9280Modes_high_power_tx_gain_9280_2);
-	INI_CHECK(ar9280Modes_original_tx_gain_9280_2);
-	INI_CHECK(ar9280PciePhy_clkreq_off_L1_9280);
-	INI_CHECK(ar9280PciePhy_clkreq_always_on_L1_9280);
-	INI_CHECK(ar9285PciePhy_clkreq_always_on_L1_9285);
-	INI_CHECK(ar9285PciePhy_clkreq_off_L1_9285);
-	INI_CHECK(ar9285Modes_9285_1_2);
-	INI_CHECK(ar9285Common_9285_1_2);
-	INI_CHECK(ar9285Modes_high_power_tx_gain_9285_1_2);
-	INI_CHECK(ar9285Modes_original_tx_gain_9285_1_2);
-	INI_CHECK(ar9285Modes_XE2_0_normal_power);
-	INI_CHECK(ar9285Modes_XE2_0_high_power);
-	INI_CHECK(ar9285PciePhy_clkreq_always_on_L1_9285_1_2);
-	INI_CHECK(ar9285PciePhy_clkreq_off_L1_9285_1_2);
-	INI_CHECK(ar9287Modes_9287_1_1);
-	INI_CHECK(ar9287Common_9287_1_1);
-	INI_CHECK(ar9287Common_normal_cck_fir_coeff_9287_1_1);
-	INI_CHECK(ar9287Common_japan_2484_cck_fir_coeff_9287_1_1);
-	INI_CHECK(ar9287Modes_tx_gain_9287_1_1);
-	INI_CHECK(ar9287Modes_rx_gain_9287_1_1);
-	INI_CHECK(ar9287PciePhy_clkreq_always_on_L1_9287_1_1);
-	INI_CHECK(ar9287PciePhy_clkreq_off_L1_9287_1_1);
-	INI_CHECK(ar9271Modes_9271);
-	INI_CHECK(ar9271Common_9271);
-	INI_CHECK(ar9271Common_normal_cck_fir_coeff_9271);
-	INI_CHECK(ar9271Common_japan_2484_cck_fir_coeff_9271);
-	INI_CHECK(ar9271Modes_9271_1_0_only);
-	INI_CHECK(ar9271Modes_9271_ANI_reg);
-	INI_CHECK(ar9271Modes_normal_power_tx_gain_9271);
-	INI_CHECK(ar9271Modes_high_power_tx_gain_9271);
-}
-
-static void ar9003_2p2_hw_check_initvals(void)
-{
-	u64 chksum;
-
-	INI_CHECK(ar9300_2p2_radio_postamble);
-	INI_CHECK(ar9300Modes_lowest_ob_db_tx_gain_table_2p2);
-	INI_CHECK(ar9300Modes_fast_clock_2p2);
-	INI_CHECK(ar9300_2p2_radio_core);
-	INI_CHECK(ar9300Common_rx_gain_table_merlin_2p2);
-	INI_CHECK(ar9300_2p2_mac_postamble);
-	INI_CHECK(ar9300_2p2_soc_postamble);
-	INI_CHECK(ar9200_merlin_2p2_radio_core);
-	INI_CHECK(ar9300_2p2_baseband_postamble);
-	INI_CHECK(ar9300_2p2_baseband_core);
-	INI_CHECK(ar9300Modes_high_power_tx_gain_table_2p2);
-	INI_CHECK(ar9300Modes_high_ob_db_tx_gain_table_2p2);
-	INI_CHECK(ar9300Common_rx_gain_table_2p2);
-	INI_CHECK(ar9300Modes_low_ob_db_tx_gain_table_2p2);
-	INI_CHECK(ar9300_2p2_mac_core);
-	INI_CHECK(ar9300Common_wo_xlna_rx_gain_table_2p2);
-	INI_CHECK(ar9300_2p2_soc_preamble);
-	INI_CHECK(ar9300PciePhy_pll_on_clkreq_disable_L1_2p2);
-	INI_CHECK(ar9300PciePhy_clkreq_enable_L1_2p2);
-	INI_CHECK(ar9300PciePhy_clkreq_disable_L1_2p2);
-}
-
-static void ar5008_hw_print_initvals(void)
+static void ar5008_hw_print_initvals(bool check)
 {
 	u64 chksum;
 
@@ -419,7 +299,7 @@ static void ar5008_hw_print_initvals(void)
 	INI_PRINT(ar5416Addac);
 }
 
-static void ar9001_hw_print_initvals(void)
+static void ar9001_hw_print_initvals(bool check)
 {
 	u64 chksum;
 
@@ -448,7 +328,7 @@ static void ar9001_hw_print_initvals(void)
 	INI_PRINT(ar5416Addac_9160_1_1);
 }
 
-static void ar9002_hw_print_initvals(void)
+static void ar9002_hw_print_initvals(bool check)
 {
 	u64 chksum;
 
@@ -490,7 +370,7 @@ static void ar9002_hw_print_initvals(void)
 	INI_PRINT(ar9271Modes_high_power_tx_gain_9271);
 }
 
-static void ar9003_2p2_hw_print_initvals(void)
+static void ar9003_2p2_hw_print_initvals(bool check)
 {
 	u64 chksum;
 
@@ -521,37 +401,29 @@ static void usage()
 	printf("Usage: initvals [-w] [-f ar5008 | ar9001 | ar9002 | ar9003-2p2]\n");
 }
 
-print_initvals_family(char *family)
+print_initvals_family(char *family, bool check)
 {
-	print_license();
+	if (!check)
+		print_license();
 
 	if (strncmp(family, "ar5008", 6) == 0)
-		ar5008_hw_print_initvals();
+		ar5008_hw_print_initvals(check);
 	else if (strncmp(family, "ar9001", 6) == 0)
-		ar9001_hw_print_initvals();
+		ar9001_hw_print_initvals(check);
 	else if (strncmp(family, "ar9002", 6) == 0)
-		ar9002_hw_print_initvals();
+		ar9002_hw_print_initvals(check);
 	else if (strncmp(family, "ar9003-2p2", 10) == 0) {
-		printf("#ifndef INITVALS_9003_2P2_H\n");
-		printf("#define INITVALS_9003_2P2_H\n");
-		printf("\n");
-		printf("/* AR9003 2.2 */\n");
-		printf("\n");
-		ar9003_2p2_hw_print_initvals();
-		printf("#endif /* INITVALS_9003_2P2_H */\n");
+		if (!check) {
+			printf("#ifndef INITVALS_9003_2P2_H\n");
+			printf("#define INITVALS_9003_2P2_H\n");
+			printf("\n");
+			printf("/* AR9003 2.2 */\n");
+			printf("\n");
+		}
+		ar9003_2p2_hw_print_initvals(check);
+		if (!check)
+			printf("#endif /* INITVALS_9003_2P2_H */\n");
 	}
-}
-
-check_initvals_family(char *family)
-{
-	if (strncmp(family, "ar5008", 6) == 0)
-		ar5008_hw_check_initvals();
-	else if (strncmp(family, "ar9001", 6) == 0)
-		ar9001_hw_check_initvals();
-	else if (strncmp(family, "ar9002", 6) == 0)
-		ar9002_hw_check_initvals();
-	else if (strncmp(family, "ar9003-2p2", 10) == 0)
-		ar9003_2p2_hw_check_initvals();
 }
 
 int main(int argc, void *argv[])
@@ -562,10 +434,10 @@ int main(int argc, void *argv[])
 			if (strncmp(argv[1], "-w", 2) != 0)
 				return -1;
 
-			ar5008_hw_print_initvals();
-			ar9001_hw_print_initvals();
-			ar9002_hw_print_initvals();
-			ar9003_2p2_hw_print_initvals();
+			ar5008_hw_print_initvals(false);
+			ar9001_hw_print_initvals(false);
+			ar9002_hw_print_initvals(false);
+			ar9003_2p2_hw_print_initvals(false);
 
 			return 0;
 		}
@@ -576,22 +448,22 @@ int main(int argc, void *argv[])
 		}
 
 		if (argc == 3) {
-			check_initvals_family(argv[2]);
+			print_initvals_family(argv[2], true);
 			return 0;
 		}
 
 		if (strncmp(argv[1], "-w", 2) != 0)
 			return -1;
 
-		print_initvals_family(argv[3]);
+		print_initvals_family(argv[3], false);
 
 		return 0;
 	}
 
-	ar5008_hw_check_initvals();
-	ar9001_hw_check_initvals();
-	ar9002_hw_check_initvals();
-	ar9003_2p2_hw_check_initvals();
+	ar5008_hw_print_initvals(true);
+	ar9001_hw_print_initvals(true);
+	ar9002_hw_print_initvals(true);
+	ar9003_2p2_hw_print_initvals(true);
 
 	return 0;
 }
