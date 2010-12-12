@@ -21,6 +21,7 @@ typedef long long unsigned int u64;
 #include "ar9001_initvals.h"
 #include "ar9002_initvals.h"
 #include "ar9003_2p2_initvals.h"
+#include "ar9485_initvals.h"
 
 #else
 
@@ -156,6 +157,29 @@ typedef long long unsigned int u64;
 #define ar9300PciePhy_clkreq_disable_L1_osprey_2p2		ar9300PciePhy_clkreq_disable_L1_2p2
 
 #include "ar9300_osprey22.ini"
+
+#define ar9485Common_poseidon1_0				ar9485Common_1_0
+#define ar9485_poseidon1_0_mac_postamble			ar9485_1_0_mac_postamble
+#define ar9485_poseidon1_0_pcie_phy_pll_on_clkreq_disable_L1	ar9485_1_0_pcie_phy_pll_on_clkreq_disable_L1
+#define ar9485Common_wo_xlna_rx_gain_poseidon1_0		ar9485Common_wo_xlna_rx_gain_1_0
+#define ar9485Modes_high_power_tx_gain_poseidon1_0		ar9485Modes_high_power_tx_gain_1_0
+#define ar9485_poseidon1_0					ar9485_1_0
+#define ar9485_poseidon1_0_radio_core				ar9485_1_0_radio_core
+#define ar9485Modes_lowest_ob_db_tx_gain_poseidon1_0		ar9485Modes_lowest_ob_db_tx_gain_1_0
+#define ar9485_poseidon1_0_baseband_core			ar9485_1_0_baseband_core
+#define ar9485Modes_high_ob_db_tx_gain_poseidon1_0		ar9485Modes_high_ob_db_tx_gain_1_0
+#define ar9485Common_rx_gain_poseidon1_0			ar9485Common_rx_gain_1_0
+#define ar9485_poseidon1_0_pcie_phy_clkreq_enable_L1		ar9485_1_0_pcie_phy_clkreq_enable_L1
+#define ar9485_fast_clock_poseidon1_0_baseband_postamble	ar9485_fast_clock_1_0_baseband_postamble
+#define ar9485_poseidon1_0_soc_preamble				ar9485_1_0_soc_preamble
+#define ar9485_poseidon1_0_baseband_postamble			ar9485_1_0_baseband_postamble
+#define ar9485_poseidon1_0_pcie_phy_pll_on_clkreq_enable_L1	ar9485_1_0_pcie_phy_pll_on_clkreq_enable_L1
+#define ar9485Modes_low_ob_db_tx_gain_poseidon1_0		ar9485Modes_low_ob_db_tx_gain_1_0
+#define ar9485_poseidon1_0_pcie_phy_clkreq_disable_L1		ar9485_1_0_pcie_phy_clkreq_disable_L1
+#define ar9485_poseidon1_0_radio_postamble			ar9485_1_0_radio_postamble
+#define ar9485_poseidon1_0_mac_core				ar9485_1_0_mac_core
+
+#include "ar9485.ini"
 
 #endif /* ATHEROS */
 
@@ -396,9 +420,35 @@ static void ar9003_2p2_hw_print_initvals(bool check)
 	INI_PRINT(ar9300PciePhy_clkreq_disable_L1_2p2);
 }
 
+static void ar9485_hw_print_initvals(bool check)
+{
+	u64 chksum;
+
+	INI_PRINT(ar9485Common_1_0);
+	INI_PRINT(ar9485_1_0_mac_postamble);
+	INI_PRINT(ar9485_1_0_pcie_phy_pll_on_clkreq_disable_L1);
+	INI_PRINT(ar9485Common_wo_xlna_rx_gain_1_0);
+	INI_PRINT(ar9485Modes_high_power_tx_gain_1_0);
+	INI_PRINT(ar9485_1_0);
+	INI_PRINT(ar9485_1_0_radio_core);
+	INI_PRINT(ar9485Modes_lowest_ob_db_tx_gain_1_0);
+	INI_PRINT(ar9485_1_0_baseband_core);
+	INI_PRINT(ar9485Modes_high_ob_db_tx_gain_1_0);
+	INI_PRINT(ar9485Common_rx_gain_1_0);
+	INI_PRINT(ar9485_1_0_pcie_phy_pll_on_clkreq_enable_L1);
+	INI_PRINT(ar9485_1_0_pcie_phy_clkreq_enable_L1);
+	INI_PRINT(ar9485_1_0_soc_preamble);
+	INI_PRINT(ar9485_fast_clock_1_0_baseband_postamble);
+	INI_PRINT(ar9485_1_0_baseband_postamble);
+	INI_PRINT(ar9485Modes_low_ob_db_tx_gain_1_0);
+	INI_PRINT(ar9485_1_0_pcie_phy_clkreq_disable_L1);
+	INI_PRINT(ar9485_1_0_radio_postamble);
+	INI_PRINT(ar9485_1_0_mac_core);
+}
+
 static void usage()
 {
-	printf("Usage: initvals [-w] [-f ar5008 | ar9001 | ar9002 | ar9003-2p2]\n");
+	printf("Usage: initvals [-w] [-f ar5008 | ar9001 | ar9002 | ar9003-2p2 | ar9485]\n");
 }
 
 print_initvals_family(char *family, bool check)
@@ -423,6 +473,17 @@ print_initvals_family(char *family, bool check)
 		ar9003_2p2_hw_print_initvals(check);
 		if (!check)
 			printf("#endif /* INITVALS_9003_2P2_H */\n");
+	} else if (strncmp(family, "ar9485", 6) == 0) {
+		if (!check) {
+			printf("#ifndef INITVALS_9485_H\n");
+			printf("#define INITVALS_9485_H\n");
+			printf("\n");
+			printf("/* AR9003 2.2 */\n");
+			printf("\n");
+		}
+		ar9485_hw_print_initvals(check);
+		if (!check)
+			printf("#endif /* INITVALS_9485_H */\n");
 	}
 }
 
@@ -438,6 +499,7 @@ int main(int argc, void *argv[])
 			ar9001_hw_print_initvals(false);
 			ar9002_hw_print_initvals(false);
 			ar9003_2p2_hw_print_initvals(false);
+			ar9485_hw_print_initvals(false);
 
 			return 0;
 		}
@@ -464,6 +526,7 @@ int main(int argc, void *argv[])
 	ar9001_hw_print_initvals(true);
 	ar9002_hw_print_initvals(true);
 	ar9003_2p2_hw_print_initvals(true);
+	ar9485_hw_print_initvals(true);
 
 	return 0;
 }
