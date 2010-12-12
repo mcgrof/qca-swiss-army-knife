@@ -158,23 +158,23 @@ typedef long long unsigned int u64;
 
 #endif /* ATHEROS */
 
-#define INI_CHECK(_array, _cols) \
+#define INI_CHECK(_array) \
 		do { \
 		chksum = ath9k_hw_check_initval((const u32 *) &_array,\
-						ARRAY_SIZE(_array), _cols); \
+						ARRAY_SIZE(_array), ARRAY_SIZE((_array)[0])); \
 		printf("0x%016llx        "#_array"\n", chksum); \
 		} while (0)
 
 
 		//printf("/* "#_array" checksum: 0x%016llx */\n", chksum); \
 
-#define INI_PRINT(_array, _cols) \
+#define INI_PRINT(_array) \
 		do { \
 		chksum = ath9k_hw_check_initval((const u32 *) &_array,\
-						ARRAY_SIZE(_array), _cols); \
-		printf("static const u32 "#_array"[][%d] = {\n", _cols); \
+						ARRAY_SIZE(_array), ARRAY_SIZE((_array)[0])); \
+		printf("static const u32 "#_array"[][%ld] = {\n", ARRAY_SIZE((_array)[0])); \
 		ath9k_hw_print_initval((const u32 *) _array, \
-				       ARRAY_SIZE(_array), _cols); \
+				       ARRAY_SIZE(_array), ARRAY_SIZE((_array)[0])); \
 		} while (0)
 
 static void print_license(void)
@@ -292,228 +292,228 @@ static void ar5008_hw_check_initvals(void)
 {
 	u64 chksum;
 
-	INI_CHECK(ar5416Modes, 6);
-	INI_CHECK(ar5416Common, 2);
-	INI_CHECK(ar5416Bank0, 2);
-	INI_CHECK(ar5416BB_RfGain, 3);
-	INI_CHECK(ar5416Bank1, 2);
-	INI_CHECK(ar5416Bank2, 2);
-	INI_CHECK(ar5416Bank3, 3);
-	INI_CHECK(ar5416Bank6, 3);
-	INI_CHECK(ar5416Bank6TPC, 3);
-	INI_CHECK(ar5416Bank7, 2);
-	INI_CHECK(ar5416Addac, 2);
+	INI_CHECK(ar5416Modes);
+	INI_CHECK(ar5416Common);
+	INI_CHECK(ar5416Bank0);
+	INI_CHECK(ar5416BB_RfGain);
+	INI_CHECK(ar5416Bank1);
+	INI_CHECK(ar5416Bank2);
+	INI_CHECK(ar5416Bank3);
+	INI_CHECK(ar5416Bank6);
+	INI_CHECK(ar5416Bank6TPC);
+	INI_CHECK(ar5416Bank7);
+	INI_CHECK(ar5416Addac);
 }
 
 static void ar9001_hw_check_initvals(void)
 {
 	u64 chksum;
 
-	INI_CHECK(ar5416Modes_9100, 6);
-	INI_CHECK(ar5416Common_9100, 2);
-	INI_CHECK(ar5416Bank0_9100, 2);
-	INI_CHECK(ar5416BB_RfGain_9100, 3);
-	INI_CHECK(ar5416Bank1_9100, 2);
-	INI_CHECK(ar5416Bank2_9100, 2);
-	INI_CHECK(ar5416Bank3_9100, 3);
-	INI_CHECK(ar5416Bank6_9100, 3);
-	INI_CHECK(ar5416Bank6TPC_9100, 3);
-	INI_CHECK(ar5416Bank7_9100, 2);
-	INI_CHECK(ar5416Addac_9100, 2);
-	INI_CHECK(ar5416Modes_9160, 6);
-	INI_CHECK(ar5416Common_9160, 2);
-	INI_CHECK(ar5416Bank0_9160, 2);
-	INI_CHECK(ar5416BB_RfGain_9160, 3);
-	INI_CHECK(ar5416Bank1_9160, 2);
-	INI_CHECK(ar5416Bank2_9160, 2);
-	INI_CHECK(ar5416Bank3_9160, 3);
-	INI_CHECK(ar5416Bank6_9160, 3);
-	INI_CHECK(ar5416Bank6TPC_9160, 3);
-	INI_CHECK(ar5416Bank7_9160, 2);
-	INI_CHECK(ar5416Addac_9160, 2);
-	INI_CHECK(ar5416Addac_9160_1_1, 2);
+	INI_CHECK(ar5416Modes_9100);
+	INI_CHECK(ar5416Common_9100);
+	INI_CHECK(ar5416Bank0_9100);
+	INI_CHECK(ar5416BB_RfGain_9100);
+	INI_CHECK(ar5416Bank1_9100);
+	INI_CHECK(ar5416Bank2_9100);
+	INI_CHECK(ar5416Bank3_9100);
+	INI_CHECK(ar5416Bank6_9100);
+	INI_CHECK(ar5416Bank6TPC_9100);
+	INI_CHECK(ar5416Bank7_9100);
+	INI_CHECK(ar5416Addac_9100);
+	INI_CHECK(ar5416Modes_9160);
+	INI_CHECK(ar5416Common_9160);
+	INI_CHECK(ar5416Bank0_9160);
+	INI_CHECK(ar5416BB_RfGain_9160);
+	INI_CHECK(ar5416Bank1_9160);
+	INI_CHECK(ar5416Bank2_9160);
+	INI_CHECK(ar5416Bank3_9160);
+	INI_CHECK(ar5416Bank6_9160);
+	INI_CHECK(ar5416Bank6TPC_9160);
+	INI_CHECK(ar5416Bank7_9160);
+	INI_CHECK(ar5416Addac_9160);
+	INI_CHECK(ar5416Addac_9160_1_1);
 }
 
 static void ar9002_hw_check_initvals(void)
 {
 	u64 chksum;
 
-	INI_CHECK(ar9280Modes_9280_2, 6);
-	INI_CHECK(ar9280Common_9280_2, 2);
-	INI_CHECK(ar9280Modes_fast_clock_9280_2, 3);
-	INI_CHECK(ar9280Modes_backoff_23db_rxgain_9280_2, 6);
-	INI_CHECK(ar9280Modes_original_rxgain_9280_2, 6);
-	INI_CHECK(ar9280Modes_backoff_13db_rxgain_9280_2, 6);
-	INI_CHECK(ar9280Modes_high_power_tx_gain_9280_2, 6);
-	INI_CHECK(ar9280Modes_original_tx_gain_9280_2, 6);
-	INI_CHECK(ar9280PciePhy_clkreq_off_L1_9280, 2);
-	INI_CHECK(ar9280PciePhy_clkreq_always_on_L1_9280, 2);
-	INI_CHECK(ar9285PciePhy_clkreq_always_on_L1_9285, 2);
-	INI_CHECK(ar9285PciePhy_clkreq_off_L1_9285, 2);
-	INI_CHECK(ar9285Modes_9285_1_2, 6);
-	INI_CHECK(ar9285Common_9285_1_2, 2);
-	INI_CHECK(ar9285Modes_high_power_tx_gain_9285_1_2, 6);
-	INI_CHECK(ar9285Modes_original_tx_gain_9285_1_2, 6);
-	INI_CHECK(ar9285Modes_XE2_0_normal_power, 6);
-	INI_CHECK(ar9285Modes_XE2_0_high_power, 6);
-	INI_CHECK(ar9285PciePhy_clkreq_always_on_L1_9285_1_2, 2);
-	INI_CHECK(ar9285PciePhy_clkreq_off_L1_9285_1_2, 2);
-	INI_CHECK(ar9287Modes_9287_1_1, 6);
-	INI_CHECK(ar9287Common_9287_1_1, 2);
-	INI_CHECK(ar9287Common_normal_cck_fir_coeff_9287_1_1, 2);
-	INI_CHECK(ar9287Common_japan_2484_cck_fir_coeff_9287_1_1, 2);
-	INI_CHECK(ar9287Modes_tx_gain_9287_1_1, 6);
-	INI_CHECK(ar9287Modes_rx_gain_9287_1_1, 6);
-	INI_CHECK(ar9287PciePhy_clkreq_always_on_L1_9287_1_1, 2);
-	INI_CHECK(ar9287PciePhy_clkreq_off_L1_9287_1_1, 2);
-	INI_CHECK(ar9271Modes_9271, 6);
-	INI_CHECK(ar9271Common_9271, 2);
-	INI_CHECK(ar9271Common_normal_cck_fir_coeff_9271, 2);
-	INI_CHECK(ar9271Common_japan_2484_cck_fir_coeff_9271, 2);
-	INI_CHECK(ar9271Modes_9271_1_0_only, 6);
-	INI_CHECK(ar9271Modes_9271_ANI_reg, 6);
-	INI_CHECK(ar9271Modes_normal_power_tx_gain_9271, 6);
-	INI_CHECK(ar9271Modes_high_power_tx_gain_9271, 6);
+	INI_CHECK(ar9280Modes_9280_2);
+	INI_CHECK(ar9280Common_9280_2);
+	INI_CHECK(ar9280Modes_fast_clock_9280_2);
+	INI_CHECK(ar9280Modes_backoff_23db_rxgain_9280_2);
+	INI_CHECK(ar9280Modes_original_rxgain_9280_2);
+	INI_CHECK(ar9280Modes_backoff_13db_rxgain_9280_2);
+	INI_CHECK(ar9280Modes_high_power_tx_gain_9280_2);
+	INI_CHECK(ar9280Modes_original_tx_gain_9280_2);
+	INI_CHECK(ar9280PciePhy_clkreq_off_L1_9280);
+	INI_CHECK(ar9280PciePhy_clkreq_always_on_L1_9280);
+	INI_CHECK(ar9285PciePhy_clkreq_always_on_L1_9285);
+	INI_CHECK(ar9285PciePhy_clkreq_off_L1_9285);
+	INI_CHECK(ar9285Modes_9285_1_2);
+	INI_CHECK(ar9285Common_9285_1_2);
+	INI_CHECK(ar9285Modes_high_power_tx_gain_9285_1_2);
+	INI_CHECK(ar9285Modes_original_tx_gain_9285_1_2);
+	INI_CHECK(ar9285Modes_XE2_0_normal_power);
+	INI_CHECK(ar9285Modes_XE2_0_high_power);
+	INI_CHECK(ar9285PciePhy_clkreq_always_on_L1_9285_1_2);
+	INI_CHECK(ar9285PciePhy_clkreq_off_L1_9285_1_2);
+	INI_CHECK(ar9287Modes_9287_1_1);
+	INI_CHECK(ar9287Common_9287_1_1);
+	INI_CHECK(ar9287Common_normal_cck_fir_coeff_9287_1_1);
+	INI_CHECK(ar9287Common_japan_2484_cck_fir_coeff_9287_1_1);
+	INI_CHECK(ar9287Modes_tx_gain_9287_1_1);
+	INI_CHECK(ar9287Modes_rx_gain_9287_1_1);
+	INI_CHECK(ar9287PciePhy_clkreq_always_on_L1_9287_1_1);
+	INI_CHECK(ar9287PciePhy_clkreq_off_L1_9287_1_1);
+	INI_CHECK(ar9271Modes_9271);
+	INI_CHECK(ar9271Common_9271);
+	INI_CHECK(ar9271Common_normal_cck_fir_coeff_9271);
+	INI_CHECK(ar9271Common_japan_2484_cck_fir_coeff_9271);
+	INI_CHECK(ar9271Modes_9271_1_0_only);
+	INI_CHECK(ar9271Modes_9271_ANI_reg);
+	INI_CHECK(ar9271Modes_normal_power_tx_gain_9271);
+	INI_CHECK(ar9271Modes_high_power_tx_gain_9271);
 }
 
 static void ar9003_2p2_hw_check_initvals(void)
 {
 	u64 chksum;
 
-	INI_CHECK(ar9300_2p2_radio_postamble, 5);
-	INI_CHECK(ar9300Modes_lowest_ob_db_tx_gain_table_2p2, 5);
-	INI_CHECK(ar9300Modes_fast_clock_2p2, 3);
-	INI_CHECK(ar9300_2p2_radio_core, 2);
-	INI_CHECK(ar9300Common_rx_gain_table_merlin_2p2, 2);
-	INI_CHECK(ar9300_2p2_mac_postamble, 5);
-	INI_CHECK(ar9300_2p2_soc_postamble, 5);
-	INI_CHECK(ar9200_merlin_2p2_radio_core, 2);
-	INI_CHECK(ar9300_2p2_baseband_postamble, 5);
-	INI_CHECK(ar9300_2p2_baseband_core, 2);
-	INI_CHECK(ar9300Modes_high_power_tx_gain_table_2p2, 5);
-	INI_CHECK(ar9300Modes_high_ob_db_tx_gain_table_2p2, 5);
-	INI_CHECK(ar9300Common_rx_gain_table_2p2, 2);
-	INI_CHECK(ar9300Modes_low_ob_db_tx_gain_table_2p2, 5);
-	INI_CHECK(ar9300_2p2_mac_core, 2);
-	INI_CHECK(ar9300Common_wo_xlna_rx_gain_table_2p2, 2);
-	INI_CHECK(ar9300_2p2_soc_preamble, 2);
-	INI_CHECK(ar9300PciePhy_pll_on_clkreq_disable_L1_2p2, 2);
-	INI_CHECK(ar9300PciePhy_clkreq_enable_L1_2p2, 2);
-	INI_CHECK(ar9300PciePhy_clkreq_disable_L1_2p2, 2);
+	INI_CHECK(ar9300_2p2_radio_postamble);
+	INI_CHECK(ar9300Modes_lowest_ob_db_tx_gain_table_2p2);
+	INI_CHECK(ar9300Modes_fast_clock_2p2);
+	INI_CHECK(ar9300_2p2_radio_core);
+	INI_CHECK(ar9300Common_rx_gain_table_merlin_2p2);
+	INI_CHECK(ar9300_2p2_mac_postamble);
+	INI_CHECK(ar9300_2p2_soc_postamble);
+	INI_CHECK(ar9200_merlin_2p2_radio_core);
+	INI_CHECK(ar9300_2p2_baseband_postamble);
+	INI_CHECK(ar9300_2p2_baseband_core);
+	INI_CHECK(ar9300Modes_high_power_tx_gain_table_2p2);
+	INI_CHECK(ar9300Modes_high_ob_db_tx_gain_table_2p2);
+	INI_CHECK(ar9300Common_rx_gain_table_2p2);
+	INI_CHECK(ar9300Modes_low_ob_db_tx_gain_table_2p2);
+	INI_CHECK(ar9300_2p2_mac_core);
+	INI_CHECK(ar9300Common_wo_xlna_rx_gain_table_2p2);
+	INI_CHECK(ar9300_2p2_soc_preamble);
+	INI_CHECK(ar9300PciePhy_pll_on_clkreq_disable_L1_2p2);
+	INI_CHECK(ar9300PciePhy_clkreq_enable_L1_2p2);
+	INI_CHECK(ar9300PciePhy_clkreq_disable_L1_2p2);
 }
 
 static void ar5008_hw_print_initvals(void)
 {
 	u64 chksum;
 
-	INI_PRINT(ar5416Modes, 6);
-	INI_PRINT(ar5416Common, 2);
-	INI_PRINT(ar5416Bank0, 2);
-	INI_PRINT(ar5416BB_RfGain, 3);
-	INI_PRINT(ar5416Bank1, 2);
-	INI_PRINT(ar5416Bank2, 2);
-	INI_PRINT(ar5416Bank3, 3);
-	INI_PRINT(ar5416Bank6, 3);
-	INI_PRINT(ar5416Bank6TPC, 3);
-	INI_PRINT(ar5416Bank7, 2);
-	INI_PRINT(ar5416Addac, 2);
+	INI_PRINT(ar5416Modes);
+	INI_PRINT(ar5416Common);
+	INI_PRINT(ar5416Bank0);
+	INI_PRINT(ar5416BB_RfGain);
+	INI_PRINT(ar5416Bank1);
+	INI_PRINT(ar5416Bank2);
+	INI_PRINT(ar5416Bank3);
+	INI_PRINT(ar5416Bank6);
+	INI_PRINT(ar5416Bank6TPC);
+	INI_PRINT(ar5416Bank7);
+	INI_PRINT(ar5416Addac);
 }
 
 static void ar9001_hw_print_initvals(void)
 {
 	u64 chksum;
 
-	INI_PRINT(ar5416Modes_9100, 6);
-	INI_PRINT(ar5416Common_9100, 2);
-	INI_PRINT(ar5416Bank0_9100, 2);
-	INI_PRINT(ar5416BB_RfGain_9100, 3);
-	INI_PRINT(ar5416Bank1_9100, 2);
-	INI_PRINT(ar5416Bank2_9100, 2);
-	INI_PRINT(ar5416Bank3_9100, 3);
-	INI_PRINT(ar5416Bank6_9100, 3);
-	INI_PRINT(ar5416Bank6TPC_9100, 3);
-	INI_PRINT(ar5416Bank7_9100, 2);
-	INI_PRINT(ar5416Addac_9100, 2);
-	INI_PRINT(ar5416Modes_9160, 6);
-	INI_PRINT(ar5416Common_9160, 2);
-	INI_PRINT(ar5416Bank0_9160, 2);
-	INI_PRINT(ar5416BB_RfGain_9160, 3);
-	INI_PRINT(ar5416Bank1_9160, 2);
-	INI_PRINT(ar5416Bank2_9160, 2);
-	INI_PRINT(ar5416Bank3_9160, 3);
-	INI_PRINT(ar5416Bank6_9160, 3);
-	INI_PRINT(ar5416Bank6TPC_9160, 3);
-	INI_PRINT(ar5416Bank7_9160, 2);
-	INI_PRINT(ar5416Addac_9160, 2);
-	INI_PRINT(ar5416Addac_9160_1_1, 2);
+	INI_PRINT(ar5416Modes_9100);
+	INI_PRINT(ar5416Common_9100);
+	INI_PRINT(ar5416Bank0_9100);
+	INI_PRINT(ar5416BB_RfGain_9100);
+	INI_PRINT(ar5416Bank1_9100);
+	INI_PRINT(ar5416Bank2_9100);
+	INI_PRINT(ar5416Bank3_9100);
+	INI_PRINT(ar5416Bank6_9100);
+	INI_PRINT(ar5416Bank6TPC_9100);
+	INI_PRINT(ar5416Bank7_9100);
+	INI_PRINT(ar5416Addac_9100);
+	INI_PRINT(ar5416Modes_9160);
+	INI_PRINT(ar5416Common_9160);
+	INI_PRINT(ar5416Bank0_9160);
+	INI_PRINT(ar5416BB_RfGain_9160);
+	INI_PRINT(ar5416Bank1_9160);
+	INI_PRINT(ar5416Bank2_9160);
+	INI_PRINT(ar5416Bank3_9160);
+	INI_PRINT(ar5416Bank6_9160);
+	INI_PRINT(ar5416Bank6TPC_9160);
+	INI_PRINT(ar5416Bank7_9160);
+	INI_PRINT(ar5416Addac_9160);
+	INI_PRINT(ar5416Addac_9160_1_1);
 }
 
 static void ar9002_hw_print_initvals(void)
 {
 	u64 chksum;
 
-	INI_PRINT(ar9280Modes_9280_2, 6);
-	INI_PRINT(ar9280Common_9280_2, 2);
-	INI_PRINT(ar9280Modes_fast_clock_9280_2, 3);
-	INI_PRINT(ar9280Modes_backoff_23db_rxgain_9280_2, 6);
-	INI_PRINT(ar9280Modes_original_rxgain_9280_2, 6);
-	INI_PRINT(ar9280Modes_backoff_13db_rxgain_9280_2, 6);
-	INI_PRINT(ar9280Modes_high_power_tx_gain_9280_2, 6);
-	INI_PRINT(ar9280Modes_original_tx_gain_9280_2, 6);
-	INI_PRINT(ar9280PciePhy_clkreq_off_L1_9280, 2);
-	INI_PRINT(ar9280PciePhy_clkreq_always_on_L1_9280, 2);
-	INI_PRINT(ar9285PciePhy_clkreq_always_on_L1_9285, 2);
-	INI_PRINT(ar9285PciePhy_clkreq_off_L1_9285, 2);
-	INI_PRINT(ar9285Modes_9285_1_2, 6);
-	INI_PRINT(ar9285Common_9285_1_2, 2);
-	INI_PRINT(ar9285Modes_high_power_tx_gain_9285_1_2, 6);
-	INI_PRINT(ar9285Modes_original_tx_gain_9285_1_2, 6);
-	INI_PRINT(ar9285Modes_XE2_0_normal_power, 6);
-	INI_PRINT(ar9285Modes_XE2_0_high_power, 6);
-	INI_PRINT(ar9285PciePhy_clkreq_always_on_L1_9285_1_2, 2);
-	INI_PRINT(ar9285PciePhy_clkreq_off_L1_9285_1_2, 2);
-	INI_PRINT(ar9287Modes_9287_1_1, 6);
-	INI_PRINT(ar9287Common_9287_1_1, 2);
-	INI_PRINT(ar9287Common_normal_cck_fir_coeff_9287_1_1, 2);
-	INI_PRINT(ar9287Common_japan_2484_cck_fir_coeff_9287_1_1, 2);
-	INI_PRINT(ar9287Modes_tx_gain_9287_1_1, 6);
-	INI_PRINT(ar9287Modes_rx_gain_9287_1_1, 6);
-	INI_PRINT(ar9287PciePhy_clkreq_always_on_L1_9287_1_1, 2);
-	INI_PRINT(ar9287PciePhy_clkreq_off_L1_9287_1_1, 2);
-	INI_PRINT(ar9271Modes_9271, 6);
-	INI_PRINT(ar9271Common_9271, 2);
-	INI_PRINT(ar9271Common_normal_cck_fir_coeff_9271, 2);
-	INI_PRINT(ar9271Common_japan_2484_cck_fir_coeff_9271, 2);
-	INI_PRINT(ar9271Modes_9271_1_0_only, 6);
-	INI_PRINT(ar9271Modes_9271_ANI_reg, 6);
-	INI_PRINT(ar9271Modes_normal_power_tx_gain_9271, 6);
-	INI_PRINT(ar9271Modes_high_power_tx_gain_9271, 6);
+	INI_PRINT(ar9280Modes_9280_2);
+	INI_PRINT(ar9280Common_9280_2);
+	INI_PRINT(ar9280Modes_fast_clock_9280_2);
+	INI_PRINT(ar9280Modes_backoff_23db_rxgain_9280_2);
+	INI_PRINT(ar9280Modes_original_rxgain_9280_2);
+	INI_PRINT(ar9280Modes_backoff_13db_rxgain_9280_2);
+	INI_PRINT(ar9280Modes_high_power_tx_gain_9280_2);
+	INI_PRINT(ar9280Modes_original_tx_gain_9280_2);
+	INI_PRINT(ar9280PciePhy_clkreq_off_L1_9280);
+	INI_PRINT(ar9280PciePhy_clkreq_always_on_L1_9280);
+	INI_PRINT(ar9285PciePhy_clkreq_always_on_L1_9285);
+	INI_PRINT(ar9285PciePhy_clkreq_off_L1_9285);
+	INI_PRINT(ar9285Modes_9285_1_2);
+	INI_PRINT(ar9285Common_9285_1_2);
+	INI_PRINT(ar9285Modes_high_power_tx_gain_9285_1_2);
+	INI_PRINT(ar9285Modes_original_tx_gain_9285_1_2);
+	INI_PRINT(ar9285Modes_XE2_0_normal_power);
+	INI_PRINT(ar9285Modes_XE2_0_high_power);
+	INI_PRINT(ar9285PciePhy_clkreq_always_on_L1_9285_1_2);
+	INI_PRINT(ar9285PciePhy_clkreq_off_L1_9285_1_2);
+	INI_PRINT(ar9287Modes_9287_1_1);
+	INI_PRINT(ar9287Common_9287_1_1);
+	INI_PRINT(ar9287Common_normal_cck_fir_coeff_9287_1_1);
+	INI_PRINT(ar9287Common_japan_2484_cck_fir_coeff_9287_1_1);
+	INI_PRINT(ar9287Modes_tx_gain_9287_1_1);
+	INI_PRINT(ar9287Modes_rx_gain_9287_1_1);
+	INI_PRINT(ar9287PciePhy_clkreq_always_on_L1_9287_1_1);
+	INI_PRINT(ar9287PciePhy_clkreq_off_L1_9287_1_1);
+	INI_PRINT(ar9271Modes_9271);
+	INI_PRINT(ar9271Common_9271);
+	INI_PRINT(ar9271Common_normal_cck_fir_coeff_9271);
+	INI_PRINT(ar9271Common_japan_2484_cck_fir_coeff_9271);
+	INI_PRINT(ar9271Modes_9271_1_0_only);
+	INI_PRINT(ar9271Modes_9271_ANI_reg);
+	INI_PRINT(ar9271Modes_normal_power_tx_gain_9271);
+	INI_PRINT(ar9271Modes_high_power_tx_gain_9271);
 }
 
 static void ar9003_2p2_hw_print_initvals(void)
 {
 	u64 chksum;
 
-	INI_PRINT(ar9300_2p2_radio_postamble, 5);
-	INI_PRINT(ar9300Modes_lowest_ob_db_tx_gain_table_2p2, 5);
-	INI_PRINT(ar9300Modes_fast_clock_2p2, 3);
-	INI_PRINT(ar9300_2p2_radio_core, 2);
-	INI_PRINT(ar9300Common_rx_gain_table_merlin_2p2, 2);
-	INI_PRINT(ar9300_2p2_mac_postamble, 5);
-	INI_PRINT(ar9300_2p2_soc_postamble, 5);
-	INI_PRINT(ar9200_merlin_2p2_radio_core, 2);
-	INI_PRINT(ar9300_2p2_baseband_postamble, 5);
-	INI_PRINT(ar9300_2p2_baseband_core, 2);
-	INI_PRINT(ar9300Modes_high_power_tx_gain_table_2p2, 5);
-	INI_PRINT(ar9300Modes_high_ob_db_tx_gain_table_2p2, 5);
-	INI_PRINT(ar9300Common_rx_gain_table_2p2, 2);
-	INI_PRINT(ar9300Modes_low_ob_db_tx_gain_table_2p2, 5);
-	INI_PRINT(ar9300_2p2_mac_core, 2);
-	INI_PRINT(ar9300Common_wo_xlna_rx_gain_table_2p2, 2);
-	INI_PRINT(ar9300_2p2_soc_preamble, 2);
-	INI_PRINT(ar9300PciePhy_pll_on_clkreq_disable_L1_2p2, 2);
-	INI_PRINT(ar9300PciePhy_clkreq_enable_L1_2p2, 2);
-	INI_PRINT(ar9300PciePhy_clkreq_disable_L1_2p2, 2);
+	INI_PRINT(ar9300_2p2_radio_postamble);
+	INI_PRINT(ar9300Modes_lowest_ob_db_tx_gain_table_2p2);
+	INI_PRINT(ar9300Modes_fast_clock_2p2);
+	INI_PRINT(ar9300_2p2_radio_core);
+	INI_PRINT(ar9300Common_rx_gain_table_merlin_2p2);
+	INI_PRINT(ar9300_2p2_mac_postamble);
+	INI_PRINT(ar9300_2p2_soc_postamble);
+	INI_PRINT(ar9200_merlin_2p2_radio_core);
+	INI_PRINT(ar9300_2p2_baseband_postamble);
+	INI_PRINT(ar9300_2p2_baseband_core);
+	INI_PRINT(ar9300Modes_high_power_tx_gain_table_2p2);
+	INI_PRINT(ar9300Modes_high_ob_db_tx_gain_table_2p2);
+	INI_PRINT(ar9300Common_rx_gain_table_2p2);
+	INI_PRINT(ar9300Modes_low_ob_db_tx_gain_table_2p2);
+	INI_PRINT(ar9300_2p2_mac_core);
+	INI_PRINT(ar9300Common_wo_xlna_rx_gain_table_2p2);
+	INI_PRINT(ar9300_2p2_soc_preamble);
+	INI_PRINT(ar9300PciePhy_pll_on_clkreq_disable_L1_2p2);
+	INI_PRINT(ar9300PciePhy_clkreq_enable_L1_2p2);
+	INI_PRINT(ar9300PciePhy_clkreq_disable_L1_2p2);
 }
 
 static void usage()
