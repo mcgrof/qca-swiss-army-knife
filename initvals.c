@@ -181,6 +181,34 @@ typedef long long unsigned int u64;
 
 #include "ar9485.ini"
 
+#define ar9300Modes_fast_clock_ar9580_1p0			ar9580_1p0_modes_fast_clock
+#define ar9300_ar9580_1p0_baseband_postamble_emulation		ar9580_1p0_baseband_postamble_emulation
+#define ar9300_ar9580_1p0_radio_postamble			ar9580_1p0_radio_postamble
+#define ar9300_ar9580_1p0_baseband_core				ar9580_1p0_baseband_core
+#define ar9300_ar9580_1p0_mac_postamble				ar9580_1p0_mac_postamble
+#define ar9300Modes_low_ob_db_tx_gain_table_ar9580_1p0		ar9580_1p0_low_ob_db_tx_gain_table
+#define ar9300Modes_high_power_tx_gain_table_ar9580_1p0		ar9580_1p0_high_power_tx_gain_table
+#define ar9300Modes_lowest_ob_db_tx_gain_table_ar9580_1p0	ar9580_1p0_lowest_ob_db_tx_gain_table
+#define ar9300_ar9580_1p0_baseband_core_txfir_coeff_japan_2484	ar9580_1p0_baseband_core_txfir_coeff_japan_2484
+#define ar9300_ar9580_1p0_mac_postamble_emulation		ar9580_1p0_mac_postamble_emulation
+#define ar9300_ar9580_1p0_tx_gain_table_baseband_postamble_emulation ar9580_1p0_tx_gain_table_baseband_postamble_emulation
+#define ar9300_ar9580_1p0_mac_core				ar9580_1p0_mac_core
+#define ar9300Modes_mixed_ob_db_tx_gain_table_ar9580_1p0	ar9580_1p0_mixed_ob_db_tx_gain_table
+#define ar9300_ar9580_1p0_mac_core_emulation			ar9580_1p0_mac_core_emulation
+#define ar9300Common_wo_xlna_rx_gain_table_ar9580_1p0		ar9580_1p0_wo_xlna_rx_gain_table
+#define ar9300_ar9580_1p0_soc_postamble				ar9580_1p0_soc_postamble
+#define ar9300Modes_high_ob_db_tx_gain_table_ar9580_1p0		ar9580_1p0_high_ob_db_tx_gain_table
+#define ar9300_ar9580_1p0_soc_preamble				ar9580_1p0_soc_preamble
+#define ar9300Common_rx_gain_table_ar9580_1p0			ar9580_1p0_rx_gain_table
+#define ar9300_ar9580_1p0_radio_core				ar9580_1p0_radio_core
+#define ar9300_ar9580_1p0_baseband_core_emulation		ar9580_1p0_baseband_core_emulation
+#define ar9300_ar9580_1p0_baseband_postamble			ar9580_1p0_baseband_postamble
+#define ar9300PciePhy_clkreq_enable_L1_ar9580_1p0		ar9580_1p0_pcie_phy_clkreq_enable_L1
+#define ar9300PciePhy_clkreq_disable_L1_ar9580_1p0		ar9580_1p0_pcie_phy_clkreq_disable_L1
+#define ar9300PciePhy_pll_on_clkreq_disable_L1_ar9580_1p0	ar9580_1p0_pcie_phy_pll_on_clkreq
+
+#include "ar9580.ini"
+
 #endif /* ATHEROS */
 
 #define INI_PRINT(_array) do { \
@@ -446,6 +474,37 @@ static void ar9485_hw_print_initvals(bool check)
 	INI_PRINT(ar9485_1_0_mac_core);
 }
 
+static void ar9580_1p0_hw_print_initvals(bool check)
+{
+	u64 chksum;
+
+	INI_PRINT(ar9580_1p0_modes_fast_clock);
+	INI_PRINT(ar9580_1p0_baseband_postamble_emulation);
+	INI_PRINT(ar9580_1p0_radio_postamble);
+	INI_PRINT(ar9580_1p0_baseband_core);
+	INI_PRINT(ar9580_1p0_mac_postamble);
+	INI_PRINT(ar9580_1p0_low_ob_db_tx_gain_table);
+	INI_PRINT(ar9580_1p0_high_power_tx_gain_table);
+	INI_PRINT(ar9580_1p0_lowest_ob_db_tx_gain_table);
+	INI_PRINT(ar9580_1p0_baseband_core_txfir_coeff_japan_2484);
+	INI_PRINT(ar9580_1p0_mac_postamble_emulation);
+	INI_PRINT(ar9580_1p0_tx_gain_table_baseband_postamble_emulation);
+	INI_PRINT(ar9580_1p0_mac_core);
+	INI_PRINT(ar9580_1p0_mixed_ob_db_tx_gain_table);
+	INI_PRINT(ar9580_1p0_mac_core_emulation);
+	INI_PRINT(ar9580_1p0_wo_xlna_rx_gain_table);
+	INI_PRINT(ar9580_1p0_soc_postamble);
+	INI_PRINT(ar9580_1p0_high_ob_db_tx_gain_table);
+	INI_PRINT(ar9580_1p0_soc_preamble);
+	INI_PRINT(ar9580_1p0_rx_gain_table);
+	INI_PRINT(ar9580_1p0_radio_core);
+	INI_PRINT(ar9580_1p0_baseband_core_emulation);
+	INI_PRINT(ar9580_1p0_baseband_postamble);
+	INI_PRINT(ar9580_1p0_pcie_phy_clkreq_enable_L1);
+	INI_PRINT(ar9580_1p0_pcie_phy_clkreq_disable_L1);
+	INI_PRINT(ar9580_1p0_pcie_phy_pll_on_clkreq);
+}
+
 static void usage()
 {
 	printf("Usage: initvals [-w] [-f ar5008 | ar9001 | ar9002 | ar9003-2p2 | ar9485]\n");
@@ -484,6 +543,17 @@ print_initvals_family(char *family, bool check)
 		ar9485_hw_print_initvals(check);
 		if (!check)
 			printf("#endif /* INITVALS_9485_H */\n");
+	} else if (strncmp(family, "ar9580-1p0", 10) == 0) {
+		if (!check) {
+			printf("#ifndef INITVALS_9580_1P0_H\n");
+			printf("#define INITVALS_9580_1P0_H\n");
+			printf("\n");
+			printf("/* AR9580 1.0 */\n");
+			printf("\n");
+		}
+		ar9580_1p0_hw_print_initvals(false);
+		if (!check)
+			printf("#endif /* INITVALS_9580_1P0_H */\n");
 	}
 }
 
@@ -500,6 +570,7 @@ int main(int argc, void *argv[])
 			ar9002_hw_print_initvals(false);
 			ar9003_2p2_hw_print_initvals(false);
 			ar9485_hw_print_initvals(false);
+			ar9580_1p0_hw_print_initvals(false);
 
 			return 0;
 		}
@@ -527,6 +598,7 @@ int main(int argc, void *argv[])
 	ar9002_hw_print_initvals(true);
 	ar9003_2p2_hw_print_initvals(true);
 	ar9485_hw_print_initvals(true);
+	ar9580_1p0_hw_print_initvals(true);
 
 	return 0;
 }
