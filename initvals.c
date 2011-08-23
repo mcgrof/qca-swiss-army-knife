@@ -541,7 +541,7 @@ print_initvals_family(char *family, bool check)
 			printf("/* AR9580 1.0 */\n");
 			printf("\n");
 		}
-		ar9580_1p0_hw_print_initvals(false);
+		ar9580_1p0_hw_print_initvals(check);
 		if (!check)
 			printf("#endif /* INITVALS_9580_1P0_H */\n");
 	}
