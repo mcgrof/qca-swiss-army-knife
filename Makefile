@@ -16,7 +16,8 @@ ATH9K_DEPS += \
 	ar5008_initvals.h 	\
 	ar9001_initvals.h	\
 	ar9002_initvals.h 	\
-	ar9003_2p2_initvals.h
+	ar9003_2p2_initvals.h	\
+	ar9580_1p0_initvals.h
 
 initvals: $(ATH9K_DEPS) $(ATHEROS_DEPS) initvals.c
 	gcc $(CFLAGS) -o $@ $@.c
