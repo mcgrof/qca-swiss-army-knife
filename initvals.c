@@ -215,7 +215,19 @@ typedef long long unsigned int u64;
 	} else { \
 		printf("static const u32 "#_array"[][%ld] = {\n", ARRAY_SIZE((_array)[0])); \
 		ath9k_hw_print_initval((const u32 *) _array, \
-				       ARRAY_SIZE(_array), ARRAY_SIZE((_array)[0])); \
+				       ARRAY_SIZE(_array), ARRAY_SIZE((_array)[0]), false); \
+	} \
+    } while (0)
+
+#define INI_PRINT_ONEDIM(_array) do { \
+	if (check) { \
+		chksum = ath9k_hw_check_initval((const u32 *) &_array,\
+						ARRAY_SIZE(_array), 1); \
+		printf("0x%016llx        "#_array"\n", chksum); \
+	} else { \
+		printf("static const u32 "#_array"[] = {\n"); \
+		ath9k_hw_print_initval((const u32 *) _array, \
+				       ARRAY_SIZE(_array), 1, true); \
 	} \
     } while (0)
 
@@ -254,7 +266,7 @@ static u32 ath9k_patch_initval(u32 idx, u32 val)
 	return val;
 }
 
-static void ath9k_hw_print_initval(const u32 *array, u32 rows, u32 columns)
+static void ath9k_hw_print_initval(const u32 *array, u32 rows, u32 columns, bool onedim)
 {
 	u32 chksum, col, row;
 
@@ -286,7 +298,7 @@ static void ath9k_hw_print_initval(const u32 *array, u32 rows, u32 columns)
 			u32 idx;
 			u32 val;
 			if (!col)
-				printf("\t{");
+				printf("\t%s", onedim ? "" : "{");
 			val = array[row * columns + col];
 			if (col > 0) {
 				idx = array[row * columns];
@@ -296,7 +308,7 @@ static void ath9k_hw_print_initval(const u32 *array, u32 rows, u32 columns)
 			if (col + 1 < columns)
 				printf(", ");
 		}
-		printf("},\n");
+		printf("%s,\n", onedim ? "" : "}");
 	}
 	printf("};\n\n");
 }
