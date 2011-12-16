@@ -9,7 +9,8 @@ ATHEROS_DEPS += \
 	ar9287.ini		\
 	ar9287_1_1.ini		\
 	ar9271.ini		\
-	ar9300_osprey22.ini
+	ar9300_osprey22.ini	\
+	ar9330_11.ini
 endif
 
 ATH9K_DEPS += \
@@ -17,6 +18,7 @@ ATH9K_DEPS += \
 	ar9001_initvals.h	\
 	ar9002_initvals.h 	\
 	ar9003_2p2_initvals.h	\
+	ar9330_1p1_initvals.h	\
 	ar9580_1p0_initvals.h
 
 initvals: $(ATH9K_DEPS) $(ATHEROS_DEPS) initvals.c
