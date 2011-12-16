@@ -22,6 +22,7 @@ typedef long long unsigned int u64;
 #include "ar9002_initvals.h"
 #include "ar9003_2p2_initvals.h"
 #include "ar9485_initvals.h"
+#include "ar9580_1p0_initvals.h"
 
 #else
 
