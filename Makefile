@@ -1,5 +1,8 @@
+CFLAGS=
+
+LOCAL_CFLAGS=$(CFLAGS)
 ifdef ATHEROS
-CFLAGS += -DATHEROS
+LOCAL_CFLAGS += -DATHEROS
 
 ATHEROS_DEPS += \
 	ar9280.ini		\
@@ -25,7 +28,7 @@ ATH9K_DEPS += \
 	ar9580_1p0_initvals.h
 
 initvals: $(ATH9K_DEPS) $(ATHEROS_DEPS) initvals.c
-	gcc $(CFLAGS) -o $@ $@.c
+	gcc $(LOCAL_CFLAGS) -o $@ $@.c
 
 all: initvals
 
