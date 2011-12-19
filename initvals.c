@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <string.h>
 
 typedef uint32_t u32;
 typedef long long unsigned int u64;
