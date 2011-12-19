@@ -649,7 +649,7 @@ print_initvals_family(char *family, bool check)
 			printf("#ifndef INITVALS_9485_H\n");
 			printf("#define INITVALS_9485_H\n");
 			printf("\n");
-			printf("/* AR9003 2.2 */\n");
+			printf("/* AR9485 1.0 */\n");
 			printf("\n");
 		}
 		ar9485_hw_print_initvals(check);
