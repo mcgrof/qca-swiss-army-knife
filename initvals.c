@@ -669,7 +669,7 @@ print_initvals_family(char *family, bool check)
 	}
 }
 
-int main(int argc, void *argv[])
+int main(int argc, char *argv[])
 {
 
 	if (argc > 1) {
