@@ -601,7 +601,7 @@ static void ar9580_1p0_hw_print_initvals(bool check)
 
 static void usage()
 {
-	printf("Usage: initvals [-w] [-f ar5008 | ar9001 | ar9002 | ar9003-2p2 | ar9300-1p1 | ar9300-1p2 | ar9485 | ar9580-1p0 ]\n");
+	printf("Usage: initvals [-w] [-f ar5008 | ar9001 | ar9002 | ar9003-2p2 | ar9330-1p1 | ar9330-1p2 | ar9485 | ar9580-1p0 ]\n");
 }
 
 print_initvals_family(char *family, bool check)
