@@ -312,7 +312,7 @@ static u32 ath9k_patch_initval(u32 idx, u32 val)
 
 static void ath9k_hw_print_initval(const u32 *array, u32 rows, u32 columns, bool onedim)
 {
-	u32 chksum, col, row;
+	u32 col, row;
 
 	/*
 	 * This checksum stuff is designed for columns <= 8),
