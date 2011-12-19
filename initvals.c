@@ -257,7 +257,7 @@ typedef long long unsigned int u64;
 						ARRAY_SIZE(_array), ARRAY_SIZE((_array)[0])); \
 		printf("0x%016llx        "#_array"\n", chksum); \
 	} else { \
-		printf("static const u32 "#_array"[][%ld] = {\n", ARRAY_SIZE((_array)[0])); \
+		printf("static const u32 "#_array"[][%d] = {\n", (int) ARRAY_SIZE((_array)[0])); \
 		ath9k_hw_print_initval((const u32 *) _array, \
 				       ARRAY_SIZE(_array), ARRAY_SIZE((_array)[0]), false); \
 	} \
