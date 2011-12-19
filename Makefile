@@ -21,6 +21,7 @@ ATH9K_DEPS += \
 	ar9003_2p2_initvals.h	\
 	ar9330_1p1_initvals.h	\
 	ar9330_1p2_initvals.h	\
+	ar9485_initvals.h	\
 	ar9580_1p0_initvals.h
 
 initvals: $(ATH9K_DEPS) $(ATHEROS_DEPS) initvals.c
