@@ -27,8 +27,10 @@ ATH9K_DEPS += \
 	ar9485_initvals.h	\
 	ar9580_1p0_initvals.h
 
-initvals: $(ATH9K_DEPS) $(ATHEROS_DEPS) initvals.c
-	gcc $(LOCAL_CFLAGS) -o $@ $@.c
+SOURCES:=initvals.c sha1.c
+
+initvals: $(ATH9K_DEPS) $(ATHEROS_DEPS) $(SOURCES)
+	gcc $(LOCAL_CFLAGS) -o $@ $(SOURCES)
 
 all: initvals
 

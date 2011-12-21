@@ -8,6 +8,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
+#include "sha1.h"
 
 typedef uint32_t u32;
 typedef long long unsigned int u64;
@@ -254,10 +255,10 @@ typedef long long unsigned int u64;
 
 #define INI_PRINT(_array) do { \
 	if (check) { \
-		u64 chksum; \
-		chksum = ath9k_hw_check_initval((const u32 *) &_array,\
+		char *sha1sum; \
+		sha1sum = ath9k_hw_check_initval((const u32 *) &_array,\
 						ARRAY_SIZE(_array), ARRAY_SIZE((_array)[0])); \
-		printf("0x%016llx        "#_array"\n", chksum); \
+		printf("%s        "#_array"\n", sha1sum); \
 	} else { \
 		printf("static const u32 "#_array"[][%d] = {\n", (int) ARRAY_SIZE((_array)[0])); \
 		ath9k_hw_print_initval((const u32 *) _array, \
@@ -267,10 +268,10 @@ typedef long long unsigned int u64;
 
 #define INI_PRINT_ONEDIM(_array) do { \
 	if (check) { \
-		u64 chksum; \
-		chksum = ath9k_hw_check_initval((const u32 *) &_array,\
+		char *sha1sum; \
+		sha1sum = ath9k_hw_check_initval((const u32 *) &_array,\
 						ARRAY_SIZE(_array), 1); \
-		printf("0x%016llx        "#_array"\n", chksum); \
+		printf("%s        "#_array"\n", sha1sum); \
 	} else { \
 		printf("static const u32 "#_array"[] = {\n"); \
 		ath9k_hw_print_initval((const u32 *) _array, \
@@ -360,33 +361,35 @@ static void ath9k_hw_print_initval(const u32 *array, u32 rows, u32 columns, bool
 	printf("};\n\n");
 }
 
-static u64 ath9k_hw_check_initval(const u32 *array, u32 rows, u32 columns)
+static char *ath9k_hw_check_initval(const u32 *array, u32 rows, u32 columns)
 {
-	u32 chksum = 0, col, row;
+	SHA1_CTX ctx;
+	unsigned char digest[SHA1_DIGEST_SIZE];
+	static char buf[64];
+	u32 col, row;
 
-	/*
-	 * This checksum stuff is designed for columns <= 8),
-	 * and spreads the checksum over 64 bits but since currently
-	 * the initval max column size is 6 we only use the first 48
-	 * bits.
-	 */
-	if (columns > 6)
-		return 0;
-
+	SHA1_Init(&ctx);
 	for (row = 0; row < rows; row++) {
 		for (col = 0; col < columns; col++) {
-			/*
-			 * To ensure that swaps of values on the same column yield
-			 * different checksums we use the row and column position to
-			 * mix the checksum.
-			 */
-			u32 uniq_row_col_pos = (row + 11) * (col + 17);
-			u32 uniq_val_pos = array[row * columns + col] + (97 * uniq_row_col_pos);
-			chksum ^= (uniq_val_pos << (8 * col));
+			unsigned char sha1_buf[4];
+			u32 val;
+
+			val = array[row * columns + col];
+
+			sha1_buf[0] = (val >> 24) & 0xff;
+			sha1_buf[1] = (val >> 16) & 0xff;
+			sha1_buf[2] = (val >> 8) & 0xff;
+			sha1_buf[3] = val & 0xff;
+			SHA1_Update(&ctx, sha1_buf, sizeof(sha1_buf));
 		}
 	}
 
-	return chksum;
+	SHA1_Final(&ctx, digest);
+	for (col = 0; col < SHA1_DIGEST_SIZE; col++)
+		sprintf(&buf[col * 2], "%02x", digest[col]);
+	buf[col * 2] = '\0';
+
+	return buf;
 }
 
 static void ar5008_hw_print_initvals(bool check)

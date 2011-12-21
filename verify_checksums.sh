@@ -27,7 +27,7 @@ verify_family_checksum()
 	[ "$sum_hal" == "$sum_ath9k" ] && res="pass" || res="fail"
 	printf "%-14s %-40s %s\n" "$family" "$sum_hal" "$res"
 	[ "$res" == "fail" ] && \
-		diff -Nurw "$CSUM_DIR/${family}_hal.txt" "$CSUM_DIR/${family}_ath9k.txt" | grep '^+0'
+		diff -Nurw "$CSUM_DIR/${family}_hal.txt" "$CSUM_DIR/${family}_ath9k.txt" | grep '^+[0-9a-f]'
 }
 
 FAMILIES="$@"
