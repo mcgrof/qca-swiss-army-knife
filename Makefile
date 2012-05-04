@@ -5,6 +5,9 @@ ifdef ATHEROS
 LOCAL_CFLAGS += -DATHEROS
 
 ATHEROS_DEPS += \
+	ar5416.ini		\
+	ar5416_howl.ini		\
+	ar5416_sowl.ini		\
 	ar9280.ini		\
 	ar9280_merlin2.ini	\
 	ar9285.ini		\
@@ -14,7 +17,9 @@ ATHEROS_DEPS += \
 	ar9271.ini		\
 	ar9300_osprey22.ini	\
 	ar9330_11.ini		\
-	ar9330_12.ini
+	ar9330_12.ini		\
+	ar9485.ini		\
+	ar9580.ini
 endif
 
 ATH9K_DEPS += \
