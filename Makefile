@@ -19,7 +19,8 @@ ATHEROS_DEPS += \
 	ar9330_11.ini		\
 	ar9330_12.ini		\
 	ar9485.ini		\
-	ar9580.ini
+	ar9580.ini		\
+	ar9300_jupiter20.ini
 endif
 
 ATH9K_DEPS += \
@@ -30,7 +31,8 @@ ATH9K_DEPS += \
 	ar9330_1p1_initvals.h	\
 	ar9330_1p2_initvals.h	\
 	ar9485_initvals.h	\
-	ar9580_1p0_initvals.h
+	ar9580_1p0_initvals.h   \
+	ar9462_2p0_initvals.h
 
 SOURCES:=initvals.c sha1.c
 

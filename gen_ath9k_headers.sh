@@ -13,7 +13,8 @@ gen_ath9k_header()
 	ar9330-1p1|\
 	ar9330-1p2|\
 	ar9485|\
-	ar9580-1p0)
+	ar9580-1p0|\
+	ar9462-2p0)
 		ath9k_hdr="$(echo $family | tr '-' '_')_initvals.h"
 		;;
 	*)
@@ -27,7 +28,7 @@ gen_ath9k_header()
 }
 
 FAMILIES="$@"
-[ -z "$FAMILIES" ] && FAMILIES="ar5008 ar9001 ar9002 ar9003-2p2 ar9330-1p1 ar9330-1p2 ar9485 ar9580-1p0"
+[ -z "$FAMILIES" ] && FAMILIES="ar5008 ar9001 ar9002 ar9003-2p2 ar9330-1p1 ar9330-1p2 ar9485 ar9580-1p0 ar9462-2p0"
 
 make clean all ATHEROS=1 >/dev/null
 

@@ -252,6 +252,28 @@ typedef long long unsigned int u64;
 
 #include "ar9580.ini"
 
+#define ar9300Modes_fast_clock_jupiter_2p0			ar9462_modes_fast_clock_2p0
+#define ar9300_PciePhy_clkreq_enable_L1_jupiter_2p0		ar9462_pciephy_clkreq_enable_L1_2p0
+#define ar9300_PciePhy_clkreq_disable_L1_jupiter_2p0		ar9462_pciephy_clkreq_disable_L1_2p0
+#define ar9300_jupiter_2p0_baseband_postamble			ar9462_2p0_baseband_postamble
+#define ar9300Common_rx_gain_table_jupiter_2p0			ar9462_common_rx_gain_table_2p0
+#define ar9300_PciePhy_pll_on_clkreq_disable_L1_jupiter_2p0	ar9462_pciephy_pll_on_clkreq_disable_L1_2p0
+#define ar9300_jupiter_2p0_radio_postamble_sys2ant		ar9462_2p0_radio_postamble_sys2ant
+#define ar9300Common_wo_xlna_rx_gain_table_jupiter_2p0		ar9462_common_wo_xlna_rx_gain_table_2p0
+#define ar9300_jupiter_2p0_baseband_core_txfir_coeff_japan_2484 ar9462_2p0_baseband_core_txfir_coeff_japan_2484
+#define ar9300Modes_low_ob_db_tx_gain_table_jupiter_2p0		ar9462_modes_low_ob_db_tx_gain_table_2p0
+#define ar9300_jupiter_2p0_soc_postamble			ar9462_2p0_soc_postamble
+#define ar9300_jupiter_2p0_baseband_core			ar9462_2p0_baseband_core
+#define ar9300_jupiter_2p0_radio_postamble			ar9462_2p0_radio_postamble
+#define ar9300Modes_high_ob_db_tx_gain_table_jupiter_2p0	ar9462_modes_high_ob_db_tx_gain_table_2p0
+#define ar9300_jupiter_2p0_radio_core				ar9462_2p0_radio_core
+#define ar9300_jupiter_2p0_soc_preamble				ar9462_2p0_soc_preamble
+#define ar9300_jupiter_2p0_mac_core				ar9462_2p0_mac_core
+#define ar9300_jupiter_2p0_mac_postamble			ar9462_2p0_mac_postamble
+#define ar9300Common_mixed_rx_gain_table_jupiter_2p0		ar9462_common_mixed_rx_gain_table_2p0
+
+#include "ar9300_jupiter20.ini"
+
 #endif /* ATHEROS */
 
 #define INI_PRINT(_array) do { \
@@ -590,6 +612,29 @@ static void ar9580_1p0_hw_print_initvals(bool check)
 	INI_PRINT(ar9580_1p0_pcie_phy_pll_on_clkreq);
 }
 
+static void ar9462_2p0_hw_print_initvals(bool check)
+{
+	INI_PRINT(ar9462_modes_fast_clock_2p0);
+	INI_PRINT(ar9462_pciephy_clkreq_enable_L1_2p0);
+	INI_PRINT(ar9462_2p0_baseband_postamble);
+	INI_PRINT(ar9462_common_rx_gain_table_2p0);
+	INI_PRINT(ar9462_pciephy_clkreq_disable_L1_2p0);
+	INI_PRINT(ar9462_pciephy_pll_on_clkreq_disable_L1_2p0);
+	INI_PRINT(ar9462_2p0_radio_postamble_sys2ant);
+	INI_PRINT(ar9462_common_wo_xlna_rx_gain_table_2p0);
+	INI_PRINT(ar9462_2p0_baseband_core_txfir_coeff_japan_2484);
+	INI_PRINT(ar9462_modes_low_ob_db_tx_gain_table_2p0);
+	INI_PRINT(ar9462_2p0_soc_postamble);
+	INI_PRINT(ar9462_2p0_baseband_core);
+	INI_PRINT(ar9462_2p0_radio_postamble);
+	INI_PRINT(ar9462_modes_high_ob_db_tx_gain_table_2p0);
+	INI_PRINT(ar9462_2p0_radio_core);
+	INI_PRINT(ar9462_2p0_soc_preamble);
+	INI_PRINT(ar9462_2p0_mac_core);
+	INI_PRINT(ar9462_2p0_mac_postamble);
+	INI_PRINT(ar9462_common_mixed_rx_gain_table_2p0);
+}
+
 static void usage()
 {
 	printf("Usage: initvals [-w] [-f ar5008 | ar9001 | ar9002 | ar9003-2p2 | ar9330-1p1 | ar9330-1p2 | ar9485 | ar9580-1p0 ]\n");
@@ -657,6 +702,17 @@ static void print_initvals_family(char *family, bool check)
 		ar9580_1p0_hw_print_initvals(check);
 		if (!check)
 			printf("#endif /* INITVALS_9580_1P0_H */\n");
+	} else if (strncmp(family, "ar9462-2p0", 10) == 0) {
+		if (!check) {
+			printf("#ifndef INITVALS_9462_2P0_H\n");
+			printf("#define INITVALS_9462_2P0_H\n");
+			printf("\n");
+			printf("/* AR9462 2.0 */\n");
+			printf("\n");
+		}
+		ar9462_2p0_hw_print_initvals(check);
+		if (!check)
+			printf("#endif /* INITVALS_9462_2P0_H */\n");
 	}
 }
 
@@ -676,6 +732,7 @@ int main(int argc, char *argv[])
 			ar9330_1p2_hw_print_initvals(false);
 			ar9485_hw_print_initvals(false);
 			ar9580_1p0_hw_print_initvals(false);
+			ar9462_2p0_hw_print_initvals(false);
 
 			return 0;
 		}
@@ -706,6 +763,7 @@ int main(int argc, char *argv[])
 	ar9330_1p2_hw_print_initvals(true);
 	ar9485_hw_print_initvals(true);
 	ar9580_1p0_hw_print_initvals(true);
+	ar9462_2p0_hw_print_initvals(true);
 
 	return 0;
 }
