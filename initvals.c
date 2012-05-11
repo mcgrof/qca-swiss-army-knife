@@ -284,7 +284,7 @@ typedef long long unsigned int u64;
 		printf("%s        "#_array"\n", sha1sum); \
 	} else { \
 		printf("static const u32 "#_array"[][%d] = {\n", (int) ARRAY_SIZE((_array)[0])); \
-		ath9k_hw_print_initval((const u32 *) _array, \
+		ath9k_hw_print_initval(#_array, (const u32 *) _array, \
 				       ARRAY_SIZE(_array), ARRAY_SIZE((_array)[0]), false); \
 	} \
     } while (0)
@@ -297,7 +297,7 @@ typedef long long unsigned int u64;
 		printf("%s        "#_array"\n", sha1sum); \
 	} else { \
 		printf("static const u32 "#_array"[] = {\n"); \
-		ath9k_hw_print_initval((const u32 *) _array, \
+		ath9k_hw_print_initval(#_array, (const u32 *) _array, \
 				       ARRAY_SIZE(_array), 1, true); \
 	} \
     } while (0)
@@ -337,7 +337,7 @@ static u32 ath9k_patch_initval(u32 idx, u32 val)
 	return val;
 }
 
-static void ath9k_hw_print_initval(const u32 *array, u32 rows, u32 columns, bool onedim)
+static void ath9k_hw_print_initval(const char *name, const u32 *array, u32 rows, u32 columns, bool onedim)
 {
 	u32 col, row;
 
@@ -355,7 +355,10 @@ static void ath9k_hw_print_initval(const u32 *array, u32 rows, u32 columns, bool
 		printf("\t/* Addr      5G_HT20     5G_HT40     2G_HT40     2G_HT20   */\n");
 		break;
 	case 3:
-		printf("\t/* Addr      5G_HT20     5G_HT40   */\n");
+		if (strstr(name, "fast_clock"))
+			printf("\t/* Addr      5G_HT20     5G_HT40   */\n");
+		else
+			printf("\t/* Addr      5G          2G        */\n");
 		break;
 	case 2:
 		printf("\t/* Addr      allmodes  */\n");
