@@ -23,21 +23,32 @@ ATHEROS_DEPS += \
 	ar9300_jupiter20.ini
 endif
 
-ATH9K_DEPS += \
-	ar5008_initvals.h 	\
-	ar9001_initvals.h	\
-	ar9002_initvals.h 	\
-	ar9003_2p2_initvals.h	\
-	ar9330_1p1_initvals.h	\
-	ar9330_1p2_initvals.h	\
-	ar9485_initvals.h	\
-	ar9580_1p0_initvals.h   \
-	ar9462_2p0_initvals.h
+ATH9K_HEADERS = \
+	ar5008:ar5008_initvals.h		\
+	ar9001:ar9001_initvals.h		\
+	ar9002:ar9002_initvals.h		\
+	ar9003-2p2:ar9003_2p2_initvals.h	\
+	ar9330-1p1:ar9330_1p1_initvals.h	\
+	ar9330-1p2:ar9330_1p2_initvals.h	\
+	ar9485:ar9485_initvals.h		\
+	ar9580-1p0:ar9580_1p0_initvals.h \
+	ar9462-2p0:ar9462_2p0_initvals.h
+
+ATH9K_DEPS := $(foreach header,$(ATH9K_HEADERS),$(word 2,$(subst :, ,$(header))))
 
 SOURCES:=initvals.c sha1.c
 
 initvals: $(ATH9K_DEPS) $(ATHEROS_DEPS) $(SOURCES)
 	gcc $(LOCAL_CFLAGS) -o $@ $(SOURCES)
+
+define refresh_command
+	./initvals -w -f $(word 1,$(subst :, ,$(1))) > $(word 2,$(subst :, ,$(1)))
+
+endef
+
+refresh: initvals
+	$(foreach header,$(ATH9K_HEADERS),$(call refresh_command,$(header)))
+	./initvals > checksums.txt
 
 all: initvals
 
