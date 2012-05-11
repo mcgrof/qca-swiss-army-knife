@@ -303,7 +303,8 @@ typedef long long unsigned int u64;
 static void print_license(void)
 {
 	printf("/*\n");
-	printf(" * Copyright (c) 2011 Atheros Communications Inc.\n");
+	printf(" * Copyright (c) 2010-2011 Atheros Communications Inc.\n");
+	printf(" * Copyright (c) 2011-2012 Qualcomm Atheros Inc.\n");
 	printf(" *\n");
 	printf(" * Permission to use, copy, modify, and/or distribute this software for any\n");
 	printf(" * purpose with or without fee is hereby granted, provided that the above\n");
