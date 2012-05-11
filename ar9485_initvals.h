@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2010 Atheros Communications Inc.
+ * Copyright (c) 2010-2011 Atheros Communications Inc.
+ * Copyright (c) 2011-2012 Qualcomm Atheros Inc.
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -17,7 +18,7 @@
 #ifndef INITVALS_9485_H
 #define INITVALS_9485_H
 
-/* AR9003 2.2 */
+/* AR9485 1.0 */
 
 static const u32 ar9485Common_1_0[][2] = {
 	/* Addr      allmodes  */
