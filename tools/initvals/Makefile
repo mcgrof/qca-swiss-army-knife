@@ -36,7 +36,9 @@ ATH9K_HEADERS = \
 	ar9580-1p0:ar9580_1p0_initvals.h \
 	ar9462-2p0:ar9462_2p0_initvals.h
 
+ifndef ATHEROS
 ATH9K_DEPS := $(foreach header,$(ATH9K_HEADERS),$(word 2,$(subst :, ,$(header))))
+endif
 
 SOURCES:=initvals.c sha1.c
 
