@@ -182,8 +182,6 @@ typedef long long unsigned int u64;
 #define ar9331_hornet1_1_mac_core				ar9331_1p1_mac_core
 #define ar9331_common_rx_gain_hornet1_1				ar9331_common_rx_gain_1p1
 #define ar9331_common_tx_gain_offset1_1				ar9331_common_tx_gain_offset1_1
-#define ar9331_hornet1_1_chansel_xtal_25M			ar9331_1p1_chansel_xtal_25M
-#define ar9331_hornet1_1_chansel_xtal_40M			ar9331_1p1_chansel_xtal_40M
 
 #include "ar9330_11.ini"
 
@@ -571,8 +569,6 @@ static void ar9330_1p1_hw_print_initvals(bool check)
 	INI_PRINT(ar9331_1p1_mac_core);
 	INI_PRINT(ar9331_common_rx_gain_1p1);
 	INI_PRINT(ar9331_common_tx_gain_offset1_1);
-	INI_PRINT_ONEDIM(ar9331_1p1_chansel_xtal_25M);
-	INI_PRINT_ONEDIM(ar9331_1p1_chansel_xtal_40M);
 }
 
 static void ar9330_1p2_hw_print_initvals(bool check)

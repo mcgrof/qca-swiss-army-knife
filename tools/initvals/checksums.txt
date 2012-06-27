@@ -105,8 +105,6 @@ d087ef736d2c833de38586e754e5c5f13d7f9e36        ar9331_1p1_xtal_40M
 b7bd4501d52be3219578b47403dc7cde8178d2f9        ar9331_1p1_mac_core
 02971c3916cfe4f9824e5a507a5c3adf69be7758        ar9331_common_rx_gain_1p1
 f13c11b888039936f5a60f568190b1df2e723c4b        ar9331_common_tx_gain_offset1_1
-4682d993fc0b89591c2ef476b55af3e27f6cdb34        ar9331_1p1_chansel_xtal_25M
-3bec9cfe03c51231af72939dcf613f8c2ce7e290        ar9331_1p1_chansel_xtal_40M
 653f09d30828a40e227a420f251a21361379887e        ar9331_modes_lowest_ob_db_tx_gain_1p2
 a424400c9b4871bd42cd7730b32a23a0ed5fc808        ar9331_1p2_baseband_postamble
 653f09d30828a40e227a420f251a21361379887e        ar9331_modes_high_ob_db_tx_gain_1p2

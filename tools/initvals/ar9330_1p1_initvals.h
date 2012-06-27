@@ -1111,38 +1111,4 @@ static const u32 ar9331_common_tx_gain_offset1_1[][1] = {
 	{0x00000000},
 };
 
-static const u32 ar9331_1p1_chansel_xtal_25M[] = {
-	0x0101479e,
-	0x0101d027,
-	0x010258af,
-	0x0102e138,
-	0x010369c0,
-	0x0103f249,
-	0x01047ad1,
-	0x0105035a,
-	0x01058be2,
-	0x0106146b,
-	0x01069cf3,
-	0x0107257c,
-	0x0107ae04,
-	0x0108f5b2,
-};
-
-static const u32 ar9331_1p1_chansel_xtal_40M[] = {
-	0x00a0ccbe,
-	0x00a12213,
-	0x00a17769,
-	0x00a1ccbe,
-	0x00a22213,
-	0x00a27769,
-	0x00a2ccbe,
-	0x00a32213,
-	0x00a37769,
-	0x00a3ccbe,
-	0x00a42213,
-	0x00a47769,
-	0x00a4ccbe,
-	0x00a5998b,
-};
-
 #endif /* INITVALS_9330_1P1_H */
