@@ -25,6 +25,7 @@ typedef long long unsigned int u64;
 #include "ar9003_2p2_initvals.h"
 #include "ar9330_1p1_initvals.h"
 #include "ar9330_1p2_initvals.h"
+#include "ar9340_initvals.h"
 #include "ar9485_initvals.h"
 #include "ar9580_1p0_initvals.h"
 #include "ar9462_2p0_initvals.h"
@@ -273,6 +274,27 @@ typedef long long unsigned int u64;
 #define ar9300Common_mixed_rx_gain_table_jupiter_2p0		ar9462_common_mixed_rx_gain_table_2p0
 
 #include "ar9300_jupiter20.ini"
+
+#define ar9340_wasp_1p0_radio_postamble				ar9340_1p0_radio_postamble
+#define ar9340Modes_lowest_ob_db_tx_gain_table_wasp_1p0		ar9340Modes_lowest_ob_db_tx_gain_table_1p0
+#define ar9340Modes_fast_clock_wasp_1p0				ar9340Modes_fast_clock_1p0
+#define ar9340_wasp_1p0_radio_core				ar9340_1p0_radio_core
+#define ar9340_wasp_1p0_radio_core_40M				ar9340_1p0_radio_core_40M
+#define ar9340_wasp_1p0_mac_postamble				ar9340_1p0_mac_postamble
+#define ar9340_wasp_1p0_soc_postamble				ar9340_1p0_soc_postamble
+#define ar9340_wasp_1p0_baseband_postamble			ar9340_1p0_baseband_postamble
+#define ar9340_wasp_1p0_baseband_core				ar9340_1p0_baseband_core
+#define ar9340Modes_high_power_tx_gain_table_wasp_1p0		ar9340Modes_high_power_tx_gain_table_1p0
+#define ar9340Modes_high_ob_db_tx_gain_table_wasp_1p0		ar9340Modes_high_ob_db_tx_gain_table_1p0
+#define ar9340_modes_ub124_tx_gain_table_wasp_1p0		ar9340Modes_ub124_tx_gain_table_1p0
+#define ar9340Common_rx_gain_table_wasp_1p0			ar9340Common_rx_gain_table_1p0
+#define ar9340Modes_low_ob_db_tx_gain_table_wasp_1p0		ar9340Modes_low_ob_db_tx_gain_table_1p0
+#define ar9340Modes_mixed_ob_db_tx_gain_table_wasp_1p0		ar9340Modes_mixed_ob_db_tx_gain_table_1p0
+#define ar9340_wasp_1p0_mac_core				ar9340_1p0_mac_core
+#define ar9340Common_wo_xlna_rx_gain_table_wasp_1p0		ar9340Common_wo_xlna_rx_gain_table_1p0
+#define ar9340_wasp_1p0_soc_preamble				ar9340_1p0_soc_preamble
+
+#include "ar9340.ini"
 
 #endif /* ATHEROS */
 
@@ -573,6 +595,28 @@ static void ar9330_1p2_hw_print_initvals(bool check)
 	INI_PRINT(ar9331_common_rx_gain_1p2);
 }
 
+static void ar9340_hw_print_initvals(bool check)
+{
+	INI_PRINT(ar9340_1p0_radio_postamble);
+	INI_PRINT(ar9340Modes_lowest_ob_db_tx_gain_table_1p0);
+	INI_PRINT(ar9340Modes_fast_clock_1p0);
+	INI_PRINT(ar9340_1p0_radio_core);
+	INI_PRINT(ar9340_1p0_radio_core_40M);
+	INI_PRINT(ar9340_1p0_mac_postamble);
+	INI_PRINT(ar9340_1p0_soc_postamble);
+	INI_PRINT(ar9340_1p0_baseband_postamble);
+	INI_PRINT(ar9340_1p0_baseband_core);
+	INI_PRINT(ar9340Modes_high_power_tx_gain_table_1p0);
+	INI_PRINT(ar9340Modes_high_ob_db_tx_gain_table_1p0);
+	INI_PRINT(ar9340Modes_ub124_tx_gain_table_1p0);
+	INI_PRINT(ar9340Common_rx_gain_table_1p0);
+	INI_PRINT(ar9340Modes_low_ob_db_tx_gain_table_1p0);
+	INI_PRINT(ar9340Modes_mixed_ob_db_tx_gain_table_1p0);
+	INI_PRINT(ar9340_1p0_mac_core);
+	INI_PRINT(ar9340Common_wo_xlna_rx_gain_table_1p0);
+	INI_PRINT(ar9340_1p0_soc_preamble);
+}
+
 static void ar9485_hw_print_initvals(bool check)
 {
 	INI_PRINT(ar9485Common_1_0);
@@ -689,6 +733,15 @@ static void print_initvals_family(char *family, bool check)
 		ar9330_1p2_hw_print_initvals(check);
 		if (!check)
 			printf("#endif /* INITVALS_9330_1P2_H */\n");
+	} else if (strncmp(family, "ar9340", 10) == 0) {
+		if (!check) {
+			printf("#ifndef INITVALS_9340_H\n");
+			printf("#define INITVALS_9340_H\n");
+			printf("\n");
+		}
+		ar9340_hw_print_initvals(check);
+		if (!check)
+			printf("#endif /* INITVALS_9340_1P0_H */\n");
 	} else if (strncmp(family, "ar9485", 6) == 0) {
 		if (!check) {
 			printf("#ifndef INITVALS_9485_H\n");
@@ -739,6 +792,7 @@ int main(int argc, char *argv[])
 			ar9003_2p2_hw_print_initvals(false);
 			ar9330_1p1_hw_print_initvals(false);
 			ar9330_1p2_hw_print_initvals(false);
+			ar9340_hw_print_initvals(false);
 			ar9485_hw_print_initvals(false);
 			ar9580_1p0_hw_print_initvals(false);
 			ar9462_2p0_hw_print_initvals(false);
@@ -770,6 +824,7 @@ int main(int argc, char *argv[])
 	ar9003_2p2_hw_print_initvals(true);
 	ar9330_1p1_hw_print_initvals(true);
 	ar9330_1p2_hw_print_initvals(true);
+	ar9340_hw_print_initvals(true);
 	ar9485_hw_print_initvals(true);
 	ar9580_1p0_hw_print_initvals(true);
 	ar9462_2p0_hw_print_initvals(true);

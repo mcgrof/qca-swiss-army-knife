@@ -18,6 +18,7 @@ ATHEROS_DEPS += \
 	ar9300_osprey22.ini	\
 	ar9330_11.ini		\
 	ar9330_12.ini		\
+	ar9340.ini		\
 	ar9485.ini		\
 	ar9580.ini		\
 	ar9300_jupiter20.ini
@@ -30,6 +31,7 @@ ATH9K_HEADERS = \
 	ar9003-2p2:ar9003_2p2_initvals.h	\
 	ar9330-1p1:ar9330_1p1_initvals.h	\
 	ar9330-1p2:ar9330_1p2_initvals.h	\
+	ar9340:ar9340_initvals.h	\
 	ar9485:ar9485_initvals.h		\
 	ar9580-1p0:ar9580_1p0_initvals.h \
 	ar9462-2p0:ar9462_2p0_initvals.h
