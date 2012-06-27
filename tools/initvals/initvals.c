@@ -296,6 +296,22 @@ typedef long long unsigned int u64;
 
 #endif /* ATHEROS */
 
+#define INI_PRINT_DUP(_array, _ref) do { \
+	if (check) { \
+		char *sha1sum; \
+		sha1sum = ath9k_hw_check_initval((const u32 *) &_array,\
+						ARRAY_SIZE(_array), ARRAY_SIZE((_array)[0])); \
+		printf("%s        "#_array"\n", sha1sum); \
+	} else { \
+		if (sizeof(_ref) == sizeof(_array) && !memcmp(&_ref, &_array, sizeof(_ref))) { \
+			printf("#define " #_array " " #_ref "\n\n"); \
+			break; \
+		} \
+		ath9k_hw_print_initval(#_array, (const u32 *) _array, \
+				       ARRAY_SIZE(_array), ARRAY_SIZE((_array)[0]), false); \
+	} \
+    } while (0)
+
 #define INI_PRINT(_array) do { \
 	if (check) { \
 		char *sha1sum; \
