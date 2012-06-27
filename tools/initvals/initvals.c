@@ -146,10 +146,8 @@ typedef long long unsigned int u64;
 #define ar9300_modes_lowest_ob_db_tx_gain_table_osprey_2p2	ar9300Modes_lowest_ob_db_tx_gain_table_2p2
 #define ar9300Modes_fast_clock_osprey_2p2			ar9300Modes_fast_clock_2p2
 #define ar9300_osprey_2p2_radio_core				ar9300_2p2_radio_core
-#define ar9300Common_rx_gain_table_merlin_2p2			ar9300Common_rx_gain_table_merlin_2p2
 #define ar9300_osprey_2p2_mac_postamble				ar9300_2p2_mac_postamble
 #define ar9300_osprey_2p2_soc_postamble				ar9300_2p2_soc_postamble
-#define ar9200_merlin_2p2_radio_core				ar9200_merlin_2p2_radio_core
 #define ar9300_osprey_2p2_baseband_postamble			ar9300_2p2_baseband_postamble
 #define ar9300_osprey_2p2_baseband_core				ar9300_2p2_baseband_core
 #define ar9300Modes_high_power_tx_gain_table_osprey_2p2		ar9300Modes_high_power_tx_gain_table_2p2
@@ -205,28 +203,27 @@ typedef long long unsigned int u64;
 
 #include "ar9330_12.ini"
 
-#define ar9485Common_poseidon1_0				ar9485Common_1_0
-#define ar9485_poseidon1_0_mac_postamble			ar9485_1_0_mac_postamble
-#define ar9485_poseidon1_0_pcie_phy_pll_on_clkreq_disable_L1	ar9485_1_0_pcie_phy_pll_on_clkreq_disable_L1
-#define ar9485Common_wo_xlna_rx_gain_poseidon1_0		ar9485Common_wo_xlna_rx_gain_1_0
-#define ar9485Modes_high_power_tx_gain_poseidon1_0		ar9485Modes_high_power_tx_gain_1_0
-#define ar9485_poseidon1_0					ar9485_1_0
-#define ar9485_poseidon1_0_radio_core				ar9485_1_0_radio_core
-#define ar9485Modes_lowest_ob_db_tx_gain_poseidon1_0		ar9485Modes_lowest_ob_db_tx_gain_1_0
-#define ar9485_poseidon1_0_baseband_core			ar9485_1_0_baseband_core
-#define ar9485Modes_high_ob_db_tx_gain_poseidon1_0		ar9485Modes_high_ob_db_tx_gain_1_0
-#define ar9485Common_rx_gain_poseidon1_0			ar9485Common_rx_gain_1_0
-#define ar9485_poseidon1_0_pcie_phy_clkreq_enable_L1		ar9485_1_0_pcie_phy_clkreq_enable_L1
-#define ar9485_fast_clock_poseidon1_0_baseband_postamble	ar9485_fast_clock_1_0_baseband_postamble
-#define ar9485_poseidon1_0_soc_preamble				ar9485_1_0_soc_preamble
-#define ar9485_poseidon1_0_baseband_postamble			ar9485_1_0_baseband_postamble
-#define ar9485_poseidon1_0_pcie_phy_pll_on_clkreq_enable_L1	ar9485_1_0_pcie_phy_pll_on_clkreq_enable_L1
-#define ar9485Modes_low_ob_db_tx_gain_poseidon1_0		ar9485Modes_low_ob_db_tx_gain_1_0
-#define ar9485_poseidon1_0_pcie_phy_clkreq_disable_L1		ar9485_1_0_pcie_phy_clkreq_disable_L1
-#define ar9485_poseidon1_0_radio_postamble			ar9485_1_0_radio_postamble
-#define ar9485_poseidon1_0_mac_core				ar9485_1_0_mac_core
+#define ar9485_poseidon1_1_mac_postamble			ar9485_1_1_mac_postamble
+#define ar9485_poseidon1_1_pcie_phy_pll_on_clkreq_disable_L1	ar9485_1_1_pcie_phy_pll_on_clkreq_disable_L1
+#define ar9485_common_wo_xlna_rx_gain_poseidon1_1		ar9485Common_wo_xlna_rx_gain_1_1
+#define ar9485_modes_high_power_tx_gain_poseidon1_1		ar9485Modes_high_power_tx_gain_1_1
+#define ar9485_poseidon1_1					ar9485_1_1
+#define ar9485_poseidon1_1_radio_core				ar9485_1_1_radio_core
+#define ar9485_modes_lowest_ob_db_tx_gain_poseidon1_1		ar9485_modes_lowest_ob_db_tx_gain_1_1
+#define ar9485_poseidon1_1_baseband_core			ar9485_1_1_baseband_core
+#define ar9485_modes_high_ob_db_tx_gain_poseidon1_1		ar9485Modes_high_ob_db_tx_gain_1_1
+#define ar9485_common_rx_gain_poseidon1_1			ar9485_common_rx_gain_1_1
+#define ar9485_poseidon1_1_pcie_phy_clkreq_enable_L1		ar9485_1_1_pcie_phy_clkreq_enable_L1
+#define ar9485_fast_clock_poseidon1_1_baseband_postamble	ar9485_fast_clock_1_1_baseband_postamble
+#define ar9485_poseidon1_1_soc_preamble				ar9485_1_1_soc_preamble
+#define ar9485_poseidon1_1_baseband_postamble			ar9485_1_1_baseband_postamble
+#define ar9485_poseidon1_1_pcie_phy_pll_on_clkreq_enable_L1	ar9485_1_1_pcie_phy_pll_on_clkreq_enable_L1
+#define ar9485_modes_low_ob_db_tx_gain_poseidon1_1		ar9485Modes_low_ob_db_tx_gain_1_1
+#define ar9485_poseidon1_1_pcie_phy_clkreq_disable_L1		ar9485_1_1_pcie_phy_clkreq_disable_L1
+#define ar9485_poseidon1_1_radio_postamble			ar9485_1_1_radio_postamble
+#define ar9485_poseidon1_1_mac_core				ar9485_1_1_mac_core
 
-#include "ar9485.ini"
+#include "ar9485_1_1.ini"
 
 #define ar9300Modes_fast_clock_ar9580_1p0			ar9580_1p0_modes_fast_clock
 #define ar9300_ar9580_1p0_radio_postamble			ar9580_1p0_radio_postamble
@@ -548,10 +545,8 @@ static void ar9003_2p2_hw_print_initvals(bool check)
 	INI_PRINT(ar9300Modes_lowest_ob_db_tx_gain_table_2p2);
 	INI_PRINT(ar9300Modes_fast_clock_2p2);
 	INI_PRINT(ar9300_2p2_radio_core);
-	INI_PRINT(ar9300Common_rx_gain_table_merlin_2p2);
 	INI_PRINT(ar9300_2p2_mac_postamble);
 	INI_PRINT(ar9300_2p2_soc_postamble);
-	INI_PRINT(ar9200_merlin_2p2_radio_core);
 	INI_PRINT(ar9300_2p2_baseband_postamble);
 	INI_PRINT(ar9300_2p2_baseband_core);
 	INI_PRINT(ar9300Modes_high_power_tx_gain_table_2p2);
@@ -628,7 +623,7 @@ static void ar9330_1p2_hw_print_initvals(bool check)
 		      ar9331_common_wo_xlna_rx_gain_1p1);
 
 	INI_PRINT_DUP(ar9331_common_rx_gain_1p2,
-		      ar9485Common_rx_gain_1_0);
+		      ar9485_common_rx_gain_1_1);
 }
 
 static void ar9340_hw_print_initvals(bool check)
@@ -655,26 +650,25 @@ static void ar9340_hw_print_initvals(bool check)
 
 static void ar9485_hw_print_initvals(bool check)
 {
-	INI_PRINT(ar9485Common_1_0);
-	INI_PRINT(ar9485_1_0_mac_postamble);
-	INI_PRINT(ar9485_1_0_pcie_phy_pll_on_clkreq_disable_L1);
-	INI_PRINT(ar9485Common_wo_xlna_rx_gain_1_0);
-	INI_PRINT(ar9485Modes_high_power_tx_gain_1_0);
-	INI_PRINT(ar9485_1_0);
-	INI_PRINT(ar9485_1_0_radio_core);
-	INI_PRINT(ar9485Modes_lowest_ob_db_tx_gain_1_0);
-	INI_PRINT(ar9485_1_0_baseband_core);
-	INI_PRINT(ar9485Modes_high_ob_db_tx_gain_1_0);
-	INI_PRINT(ar9485Common_rx_gain_1_0);
-	INI_PRINT(ar9485_1_0_pcie_phy_pll_on_clkreq_enable_L1);
-	INI_PRINT(ar9485_1_0_pcie_phy_clkreq_enable_L1);
-	INI_PRINT(ar9485_1_0_soc_preamble);
-	INI_PRINT(ar9485_fast_clock_1_0_baseband_postamble);
-	INI_PRINT(ar9485_1_0_baseband_postamble);
-	INI_PRINT(ar9485Modes_low_ob_db_tx_gain_1_0);
-	INI_PRINT(ar9485_1_0_pcie_phy_clkreq_disable_L1);
-	INI_PRINT(ar9485_1_0_radio_postamble);
-	INI_PRINT(ar9485_1_0_mac_core);
+	INI_PRINT(ar9485_1_1_mac_postamble);
+	INI_PRINT(ar9485_1_1_pcie_phy_pll_on_clkreq_disable_L1);
+	INI_PRINT(ar9485Common_wo_xlna_rx_gain_1_1);
+	INI_PRINT(ar9485Modes_high_power_tx_gain_1_1);
+	INI_PRINT(ar9485_1_1);
+	INI_PRINT(ar9485_1_1_radio_core);
+	INI_PRINT(ar9485_modes_lowest_ob_db_tx_gain_1_1);
+	INI_PRINT(ar9485_1_1_baseband_core);
+	INI_PRINT(ar9485Modes_high_ob_db_tx_gain_1_1);
+	INI_PRINT(ar9485_common_rx_gain_1_1);
+	INI_PRINT(ar9485_1_1_pcie_phy_pll_on_clkreq_enable_L1);
+	INI_PRINT(ar9485_1_1_pcie_phy_clkreq_enable_L1);
+	INI_PRINT(ar9485_1_1_soc_preamble);
+	INI_PRINT(ar9485_fast_clock_1_1_baseband_postamble);
+	INI_PRINT(ar9485_1_1_baseband_postamble);
+	INI_PRINT(ar9485Modes_low_ob_db_tx_gain_1_1);
+	INI_PRINT(ar9485_1_1_pcie_phy_clkreq_disable_L1);
+	INI_PRINT(ar9485_1_1_radio_postamble);
+	INI_PRINT(ar9485_1_1_mac_core);
 }
 
 static void ar9580_1p0_hw_print_initvals(bool check)
