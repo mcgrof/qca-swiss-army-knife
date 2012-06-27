@@ -572,14 +572,16 @@ static void ar9330_1p1_hw_print_initvals(bool check)
 	INI_PRINT(ar9331_modes_lowest_ob_db_tx_gain_1p1);
 	INI_PRINT(ar9331_modes_high_ob_db_tx_gain_1p1);
 	INI_PRINT(ar9331_modes_low_ob_db_tx_gain_1p1);
-	INI_PRINT(ar9331_1p1_baseband_core_txfir_coeff_japan_2484);
+	INI_PRINT_DUP(ar9331_1p1_baseband_core_txfir_coeff_japan_2484,
+		      ar9462_2p0_baseband_core_txfir_coeff_japan_2484);
 	INI_PRINT(ar9331_1p1_xtal_25M);
 	INI_PRINT(ar9331_1p1_radio_core);
 	INI_PRINT(ar9331_1p1_soc_postamble);
 	INI_PRINT(ar9331_common_wo_xlna_rx_gain_1p1);
 	INI_PRINT(ar9331_1p1_baseband_core);
 	INI_PRINT(ar9331_modes_high_power_tx_gain_1p1);
-	INI_PRINT(ar9331_1p1_mac_postamble);
+	INI_PRINT_DUP(ar9331_1p1_mac_postamble,
+		      ar9300_2p2_mac_postamble);
 	INI_PRINT(ar9331_1p1_soc_preamble);
 	INI_PRINT(ar9331_1p1_xtal_40M);
 	INI_PRINT(ar9331_1p1_mac_core);
@@ -589,22 +591,44 @@ static void ar9330_1p1_hw_print_initvals(bool check)
 
 static void ar9330_1p2_hw_print_initvals(bool check)
 {
-	INI_PRINT(ar9331_modes_lowest_ob_db_tx_gain_1p2);
-	INI_PRINT(ar9331_1p2_baseband_postamble);
 	INI_PRINT(ar9331_modes_high_ob_db_tx_gain_1p2);
-	INI_PRINT(ar9331_modes_low_ob_db_tx_gain_1p2);
-	INI_PRINT(ar9331_1p2_baseband_core_txfir_coeff_japan_2484);
-	INI_PRINT(ar9331_1p2_xtal_25M);
+	INI_PRINT_DUP(ar9331_modes_high_power_tx_gain_1p2,
+		      ar9331_modes_high_ob_db_tx_gain_1p2);
+	INI_PRINT_DUP(ar9331_modes_low_ob_db_tx_gain_1p2,
+		      ar9331_modes_high_power_tx_gain_1p2);
+	INI_PRINT_DUP(ar9331_modes_lowest_ob_db_tx_gain_1p2,
+		      ar9331_modes_low_ob_db_tx_gain_1p2);
+
+	INI_PRINT_DUP(ar9331_1p2_baseband_postamble,
+		      ar9331_1p1_baseband_postamble);
+
 	INI_PRINT(ar9331_1p2_radio_core);
-	INI_PRINT(ar9331_1p2_soc_postamble);
-	INI_PRINT(ar9331_common_wo_xlna_rx_gain_1p2);
-	INI_PRINT(ar9331_1p2_baseband_core);
-	INI_PRINT(ar9331_modes_high_power_tx_gain_1p2);
-	INI_PRINT(ar9331_1p2_mac_postamble);
-	INI_PRINT(ar9331_1p2_soc_preamble);
-	INI_PRINT(ar9331_1p2_xtal_40M);
-	INI_PRINT(ar9331_1p2_mac_core);
-	INI_PRINT(ar9331_common_rx_gain_1p2);
+	INI_PRINT_DUP(ar9331_1p2_baseband_core_txfir_coeff_japan_2484,
+		      ar9331_1p1_baseband_core_txfir_coeff_japan_2484);
+
+	INI_PRINT_DUP(ar9331_1p2_xtal_25M, ar9331_1p1_xtal_25M);
+	INI_PRINT_DUP(ar9331_1p2_xtal_40M, ar9331_1p1_xtal_40M);
+
+	INI_PRINT_DUP(ar9331_1p2_baseband_core,
+		      ar9331_1p1_baseband_core);
+
+	INI_PRINT_DUP(ar9331_1p2_soc_postamble,
+		      ar9331_1p1_soc_postamble);
+
+	INI_PRINT_DUP(ar9331_1p2_mac_postamble,
+		      ar9331_1p1_mac_postamble);
+
+	INI_PRINT_DUP(ar9331_1p2_soc_preamble,
+		      ar9331_1p1_soc_preamble);
+
+	INI_PRINT_DUP(ar9331_1p2_mac_core,
+		      ar9331_1p1_mac_core);
+
+	INI_PRINT_DUP(ar9331_common_wo_xlna_rx_gain_1p2,
+		      ar9331_common_wo_xlna_rx_gain_1p1);
+
+	INI_PRINT_DUP(ar9331_common_rx_gain_1p2,
+		      ar9485Common_rx_gain_1_0);
 }
 
 static void ar9340_hw_print_initvals(bool check)
