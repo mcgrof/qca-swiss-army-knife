@@ -650,22 +650,28 @@ static void ar9340_hw_print_initvals(bool check)
 
 static void ar9485_hw_print_initvals(bool check)
 {
-	INI_PRINT(ar9485_1_1_mac_postamble);
+	INI_PRINT_DUP(ar9485_1_1_mac_postamble,
+		      ar9300_2p2_mac_postamble);
 	INI_PRINT(ar9485_1_1_pcie_phy_pll_on_clkreq_disable_L1);
 	INI_PRINT(ar9485Common_wo_xlna_rx_gain_1_1);
+
 	INI_PRINT(ar9485Modes_high_power_tx_gain_1_1);
+	INI_PRINT_DUP(ar9485Modes_high_ob_db_tx_gain_1_1,
+		      ar9485Modes_high_power_tx_gain_1_1);
+	INI_PRINT_DUP(ar9485Modes_low_ob_db_tx_gain_1_1,
+		      ar9485Modes_high_ob_db_tx_gain_1_1);
+	INI_PRINT_DUP(ar9485_modes_lowest_ob_db_tx_gain_1_1,
+		      ar9485Modes_low_ob_db_tx_gain_1_1);
+
 	INI_PRINT(ar9485_1_1);
 	INI_PRINT(ar9485_1_1_radio_core);
-	INI_PRINT(ar9485_modes_lowest_ob_db_tx_gain_1_1);
 	INI_PRINT(ar9485_1_1_baseband_core);
-	INI_PRINT(ar9485Modes_high_ob_db_tx_gain_1_1);
 	INI_PRINT(ar9485_common_rx_gain_1_1);
 	INI_PRINT(ar9485_1_1_pcie_phy_pll_on_clkreq_enable_L1);
 	INI_PRINT(ar9485_1_1_pcie_phy_clkreq_enable_L1);
 	INI_PRINT(ar9485_1_1_soc_preamble);
 	INI_PRINT(ar9485_fast_clock_1_1_baseband_postamble);
 	INI_PRINT(ar9485_1_1_baseband_postamble);
-	INI_PRINT(ar9485Modes_low_ob_db_tx_gain_1_1);
 	INI_PRINT(ar9485_1_1_pcie_phy_clkreq_disable_L1);
 	INI_PRINT(ar9485_1_1_radio_postamble);
 	INI_PRINT(ar9485_1_1_mac_core);
