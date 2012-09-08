@@ -21,7 +21,8 @@ ATHEROS_DEPS += \
 	ar9340.ini		\
 	ar9485.ini		\
 	ar9580.ini		\
-	ar9300_jupiter20.ini
+	ar9300_jupiter20.ini	\
+	ar9300_aphrodite10.ini
 endif
 
 ATH9K_HEADERS = \
@@ -34,7 +35,8 @@ ATH9K_HEADERS = \
 	ar9340:ar9340_initvals.h	\
 	ar9485:ar9485_initvals.h		\
 	ar9580-1p0:ar9580_1p0_initvals.h \
-	ar9462-2p0:ar9462_2p0_initvals.h
+	ar9462-2p0:ar9462_2p0_initvals.h	\
+	ar9565-1p0:ar9565_1p0_initvals.h
 
 ifndef ATHEROS
 ATH9K_DEPS := $(foreach header,$(ATH9K_HEADERS),$(word 2,$(subst :, ,$(header))))

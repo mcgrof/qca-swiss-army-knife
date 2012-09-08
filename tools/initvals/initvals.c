@@ -29,6 +29,7 @@ typedef long long unsigned int u64;
 #include "ar9485_initvals.h"
 #include "ar9580_1p0_initvals.h"
 #include "ar9462_2p0_initvals.h"
+#include "ar9565_1p0_initvals.h"
 
 #else
 
@@ -288,6 +289,36 @@ typedef long long unsigned int u64;
 #define ar9340_wasp_1p0_mac_core				ar9340_1p0_mac_core
 #define ar9340Common_wo_xlna_rx_gain_table_wasp_1p0		ar9340Common_wo_xlna_rx_gain_table_1p0
 #define ar9340_wasp_1p0_soc_preamble				ar9340_1p0_soc_preamble
+
+#include "ar9300_aphrodite10.ini"
+
+#define ar9565_1p0_tx_gain_table_baseband_postamble_emulation	ar956X_aphrodite_1p0_tx_gain_table_baseband_postamble_emulation
+#define ar9565_1p0_baseband_core				ar956X_aphrodite_1p0_baseband_core
+#define ar9565_1p0_modes_fast_clock				ar956XModes_fast_clock_aphrodite_1p0
+#define ar9565_1p0_common_wo_xlna_rx_gain_table			ar956XCommon_wo_xlna_rx_gain_table_aphrodite_1p0
+#define ar9565_1p0_mac_core_emulation				ar956X_aphrodite_1p0_mac_core_emulation
+#define ar9565_1p0_modes_low_ob_db_tx_gain_table		ar956XModes_low_ob_db_tx_gain_table_aphrodite_1p0
+#define ar9565_1p0_Modes_lowest_ob_db_tx_gain_table		ar956XModes_lowest_ob_db_tx_gain_table_aphrodite_1p0
+#define ar9565_1p0_mac_core					ar956X_aphrodite_1p0_mac_core
+#define ar9565_1p0_baseband_core_txfir_coeff_japan_2484		ar956X_aphrodite_1p0_baseband_core_txfir_coeff_japan_2484
+#define ar9565_1p0_mac_postamble_emulation			ar956X_aphrodite_1p0_mac_postamble_emulation
+#define ar9565_1p0_glb_wlan_bt					ar956X_glb_wlan_bt_aphrodite_1p0
+#define ar9565_1p0_pciephy_clkreq_enable_L1			ar956X_PciePhy_clkreq_enable_L1_aphrodite_1p0
+#define ar9565_1p0_modes_high_power_tx_gain_table		ar956XModes_high_power_tx_gain_table_aphrodite_1p0
+#define ar9565_1p0_modes_high_ob_db_tx_gain_table		ar956XModes_high_ob_db_tx_gain_table_aphrodite_1p0
+#define ar9200_9280_2p0_9565_radio_core				ar9200_merlin_2p0_aphrodite_radio_core
+#define ar9565_1p0_Common_rx_gain_table_9280_2p0		ar956XCommon_rx_gain_table_merlin_2p0
+#define ar9565_1p0_PciePhy_clkreq_disable_L1			ar956X_PciePhy_clkreq_disable_L1_aphrodite_1p0
+#define ar9565_1p0_baseband_core_emulation			ar956X_aphrodite_1p0_baseband_core_emulation
+#define ar9565_1p0_soc_preamble					ar956X_aphrodite_1p0_soc_preamble
+#define ar9565_1p0_soc_postamble				ar956X_aphrodite_1p0_soc_postamble
+#define ar9565_1p0_mac_postamble				ar956X_aphrodite_1p0_mac_postamble
+#define ar9565_1p0_radio_postamble				ar956X_aphrodite_1p0_radio_postamble
+#define ar9565_1p0_Common_rx_gain_table				ar956XCommon_rx_gain_table_aphrodite_1p0
+#define ar9565_1p0_pciephy_pll_on_clkreq_disable_L1		ar956X_PciePhy_pll_on_clkreq_disable_L1_aphrodite_1p0
+#define ar9565_1p0_baseband_postamble_emulation			ar956X_aphrodite_1p0_baseband_postamble_emulation
+#define ar9565_1p0_radio_core					ar956X_aphrodite_1p0_radio_core
+#define ar9565_1p0_baseband_postamble				ar956X_aphrodite_1p0_baseband_postamble
 
 #include "ar9340.ini"
 
@@ -737,9 +768,31 @@ static void ar9462_2p0_hw_print_initvals(bool check)
 	INI_PRINT(ar9462_common_mixed_rx_gain_table_2p0);
 }
 
+static void ar9565_1p0_hw_print_initvals(bool check)
+{
+	INI_PRINT(ar9565_1p0_mac_core);
+	INI_PRINT(ar9565_1p0_mac_postamble);
+	INI_PRINT(ar9565_1p0_baseband_core);
+	INI_PRINT(ar9565_1p0_baseband_postamble);
+	INI_PRINT(ar9565_1p0_radio_core);
+	INI_PRINT(ar9565_1p0_radio_postamble);
+	INI_PRINT(ar9565_1p0_soc_preamble);
+	INI_PRINT(ar9565_1p0_soc_postamble);
+	INI_PRINT(ar9565_1p0_Common_rx_gain_table);
+	INI_PRINT(ar9565_1p0_Modes_lowest_ob_db_tx_gain_table);
+	INI_PRINT(ar9565_1p0_pciephy_pll_on_clkreq_disable_L1);
+	INI_PRINT(ar9565_1p0_modes_fast_clock);
+	INI_PRINT(ar9565_1p0_common_wo_xlna_rx_gain_table);
+	INI_PRINT(ar9565_1p0_modes_low_ob_db_tx_gain_table);
+	INI_PRINT(ar9565_1p0_modes_high_ob_db_tx_gain_table);
+	INI_PRINT(ar9565_1p0_modes_high_power_tx_gain_table);
+}
+
 static void usage()
 {
-	printf("Usage: initvals [-w] [-f ar5008 | ar9001 | ar9002 | ar9003-2p2 | ar9330-1p1 | ar9330-1p2 | ar9485 | ar9580-1p0 ]\n");
+	printf("Usage: initvals [-w] "
+	       "[-f ar5008 | ar9001 | ar9002 | "
+	       "ar9003-2p2 | ar9330-1p1 | ar9330-1p2 | ar9485 | ar9580-1p0 | ar9565-1p0 ]\n");
 }
 
 static void print_initvals_family(char *family, bool check)
@@ -824,6 +877,17 @@ static void print_initvals_family(char *family, bool check)
 		ar9462_2p0_hw_print_initvals(check);
 		if (!check)
 			printf("#endif /* INITVALS_9462_2P0_H */\n");
+	} else if (strncmp(family, "ar9565-1p0", 10) == 0) {
+		if (!check) {
+			printf("#ifndef INITVALS_9565_1P0_H\n");
+			printf("#define INITVALS_9565_1P0_H\n");
+			printf("\n");
+			printf("/* AR9565 1.0 */\n");
+			printf("\n");
+		}
+		ar9565_1p0_hw_print_initvals(check);
+		if (!check)
+			printf("#endif /* INITVALS_9565_1P0_H */\n");
 	}
 }
 
