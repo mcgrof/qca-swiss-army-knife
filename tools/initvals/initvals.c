@@ -223,6 +223,7 @@ typedef long long unsigned int u64;
 #define ar9485_poseidon1_1_pcie_phy_clkreq_disable_L1		ar9485_1_1_pcie_phy_clkreq_disable_L1
 #define ar9485_poseidon1_1_radio_postamble			ar9485_1_1_radio_postamble
 #define ar9485_poseidon1_1_mac_core				ar9485_1_1_mac_core
+#define ar9485_poseidon1_1_baseband_core_txfir_coeff_japan_2484 ar9485_1_1_baseband_core_txfir_coeff_japan_2484
 
 #include "ar9485_1_1.ini"
 
@@ -710,6 +711,9 @@ static void ar9485_hw_print_initvals(bool check)
 	INI_PRINT(ar9485_1_1_pcie_phy_clkreq_disable_L1);
 	INI_PRINT(ar9485_1_1_radio_postamble);
 	INI_PRINT(ar9485_1_1_mac_core);
+
+	INI_PRINT_DUP(ar9485_1_1_baseband_core_txfir_coeff_japan_2484,
+		      ar9462_2p0_baseband_core_txfir_coeff_japan_2484);
 }
 
 static void ar9580_1p0_hw_print_initvals(bool check)
