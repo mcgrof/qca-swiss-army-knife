@@ -316,7 +316,7 @@ typedef long long unsigned int u64;
 #define ar9565_1p0_mac_postamble				ar956X_aphrodite_1p0_mac_postamble
 #define ar9565_1p0_radio_postamble				ar956X_aphrodite_1p0_radio_postamble
 #define ar9565_1p0_Common_rx_gain_table				ar956XCommon_rx_gain_table_aphrodite_1p0
-#define ar9565_1p0_pciephy_pll_on_clkreq_disable_L1		ar956X_PciePhy_pll_on_clkreq_disable_L1_aphrodite_1p0
+#define ar9565_1p0_pciephy_clkreq_disable_L1			ar956X_PciePhy_pll_on_clkreq_disable_L1_aphrodite_1p0
 #define ar9565_1p0_baseband_postamble_emulation			ar956X_aphrodite_1p0_baseband_postamble_emulation
 #define ar9565_1p0_radio_core					ar956X_aphrodite_1p0_radio_core
 #define ar9565_1p0_baseband_postamble				ar956X_aphrodite_1p0_baseband_postamble
@@ -784,7 +784,7 @@ static void ar9565_1p0_hw_print_initvals(bool check)
 	INI_PRINT(ar9565_1p0_soc_postamble);
 	INI_PRINT(ar9565_1p0_Common_rx_gain_table);
 	INI_PRINT(ar9565_1p0_Modes_lowest_ob_db_tx_gain_table);
-	INI_PRINT(ar9565_1p0_pciephy_pll_on_clkreq_disable_L1);
+	INI_PRINT(ar9565_1p0_pciephy_clkreq_disable_L1);
 	INI_PRINT(ar9565_1p0_modes_fast_clock);
 	INI_PRINT(ar9565_1p0_common_wo_xlna_rx_gain_table);
 	INI_PRINT(ar9565_1p0_modes_low_ob_db_tx_gain_table);
