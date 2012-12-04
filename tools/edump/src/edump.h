@@ -33,6 +33,7 @@
 #include "eep_def.h"
 #include "eep_4k.h"
 #include "eep_9287.h"
+#include "eep_9003.h"
 
 #if __BYTE_ORDER == __BIG_ENDIAN
 #define REG_READ(_reg) \
@@ -61,6 +62,12 @@ typedef int bool;
 #define AR9285_DEVID_PCIE       0x002b
 #define AR9287_DEVID_PCI        0x002d
 #define AR9287_DEVID_PCIE       0x002e
+#define AR9300_DEVID_PCIE       0x0030
+#define AR9485_DEVID_PCIE       0x0032
+#define AR9580_DEVID_PCIE       0x0033
+#define AR9462_DEVID_PCIE       0x0034
+#define AR9565_DEVID_PCIE       0x0036
+#define AR1111_DEVID_PCIE       0x0037
 
 #define AR_SREV                 0x4020
 #define AR_SREV_ID              0x000000FF
@@ -80,6 +87,13 @@ typedef int bool;
 #define AR_SREV_VERSION_9280            0x80
 #define AR_SREV_VERSION_9285            0xC0
 #define AR_SREV_VERSION_9287            0x180
+#define AR_SREV_VERSION_9300            0x1c0
+#define AR_SREV_VERSION_9330            0x200
+#define AR_SREV_VERSION_9485            0x240
+#define AR_SREV_VERSION_9462            0x280
+#define AR_SREV_VERSION_9565            0x2c0
+#define AR_SREV_VERSION_9340            0x300
+#define AR_SREV_VERSION_9550            0x400
 
 #define AR_SREV_9280_20_OR_LATER(edump) \
 	(((edump)->macVersion >= AR_SREV_VERSION_9280))
@@ -87,6 +101,20 @@ typedef int bool;
 	(((edump)->macVersion == AR_SREV_VERSION_9285))
 #define AR_SREV_9287(_ah) \
 	(((edump)->macVersion == AR_SREV_VERSION_9287))
+#define AR_SREV_9300_20_OR_LATER(edump) \
+	(((edump)->macVersion >= AR_SREV_VERSION_9300))
+#define AR_SREV_9485(edump) \
+	(((edump)->macVersion == AR_SREV_VERSION_9485))
+#define AR_SREV_9330(edump) \
+	(((edump)->macVersion == AR_SREV_VERSION_9330))
+#define AR_SREV_9340(edump) \
+	(((edump)->macVersion == AR_SREV_VERSION_9340))
+#define AR_SREV_9462(edump) \
+	(((edump)->macVersion == AR_SREV_VERSION_9462))
+#define AR_SREV_9550(edump) \
+	(((edump)->macVersion == AR_SREV_VERSION_9550))
+#define AR_SREV_9565(edump) \
+	(((edump)->macVersion == AR_SREV_VERSION_9565))
 
 #define AH_WAIT_TIMEOUT 100000 /* (us) */
 #define AH_TIME_QUANTUM 10
@@ -114,6 +142,7 @@ struct edump {
 		struct ar5416_eeprom_def def;
 		struct ar5416_eeprom_4k map4k;
 		struct ar9287_eeprom map9287;
+		struct ar9300_eeprom eep_93k;
 	} eeprom;
 };
 
@@ -130,7 +159,10 @@ struct eeprom_ops {
 extern struct eeprom_ops eep_def_ops;
 extern struct eeprom_ops eep_4k_ops;
 extern struct eeprom_ops eep_9287_ops;
+extern struct eeprom_ops eep_9003_ops;
 
 bool pci_eeprom_read(struct edump *edump, uint32_t off, uint16_t *data);
+bool hw_wait(struct edump *edump, uint32_t reg, uint32_t mask,
+	     uint32_t val, uint32_t timeout);
 
 #endif /* EDUMP_H */

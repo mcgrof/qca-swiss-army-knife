@@ -30,7 +30,9 @@
 #define AR5416_EEPROM_S         2
 #define AR5416_EEPROM_OFFSET    0x2000
 
-#define AR_EEPROM_STATUS_DATA                    0x407c
+#define AR_EEPROM_STATUS_DATA             (AR_SREV_9340(edump) ? 0x40c8 : \
+					   (AR_SREV_9300_20_OR_LATER(edump) ? \
+					    0x4084 : 0x407c))
 #define AR_EEPROM_STATUS_DATA_VAL                0x0000ffff
 #define AR_EEPROM_STATUS_DATA_VAL_S              0
 #define AR_EEPROM_STATUS_DATA_BUSY               0x00010000
@@ -66,6 +68,7 @@ enum eep_map {
 	EEP_MAP_DEFAULT = 0x0,
 	EEP_MAP_4K,
 	EEP_MAP_9287,
+	EEP_MAP_9003,
 	EEP_MAP_MAX
 };
 

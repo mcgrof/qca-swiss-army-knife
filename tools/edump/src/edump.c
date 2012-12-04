@@ -70,6 +70,13 @@ static struct {
 	{ AR_SREV_VERSION_9280,		"9280" },
 	{ AR_SREV_VERSION_9285,		"9285" },
 	{ AR_SREV_VERSION_9287,         "9287" },
+	{ AR_SREV_VERSION_9300,         "9300" },
+	{ AR_SREV_VERSION_9330,         "9330" },
+	{ AR_SREV_VERSION_9485,         "9485" },
+	{ AR_SREV_VERSION_9462,         "9462" },
+	{ AR_SREV_VERSION_9565,         "9565" },
+	{ AR_SREV_VERSION_9340,         "9340" },
+	{ AR_SREV_VERSION_9550,         "9550" },
 };
 
 static const char *
@@ -98,7 +105,13 @@ static int is_supported_chipset(struct pci_device *pdev)
 	    (pdev->device_id != AR9280_DEVID_PCIE) &&
 	    (pdev->device_id != AR9285_DEVID_PCIE) &&
 	    (pdev->device_id != AR9287_DEVID_PCI) &&
-	    (pdev->device_id != AR9287_DEVID_PCIE)) {
+	    (pdev->device_id != AR9287_DEVID_PCIE) &&
+	    (pdev->device_id != AR9300_DEVID_PCIE) &&
+	    (pdev->device_id != AR9485_DEVID_PCIE) &&
+	    (pdev->device_id != AR9580_DEVID_PCIE) &&
+	    (pdev->device_id != AR9462_DEVID_PCIE) &&
+	    (pdev->device_id != AR9565_DEVID_PCIE) &&
+	    (pdev->device_id != AR1111_DEVID_PCIE)) {
 		fprintf(stderr, "Device ID: 0x%x not supported\n", pdev->device_id);
 		return 0;
 	}
@@ -211,7 +224,10 @@ bool pci_eeprom_read(struct edump *edump, uint32_t off, uint16_t *data)
 
 int register_eep_ops(struct edump *edump)
 {
-	if (AR_SREV_9287(edump)) {
+	if (AR_SREV_9300_20_OR_LATER(edump)) {
+		edump->eep_map = EEP_MAP_9003;
+		edump->eep_ops = &eep_9003_ops;
+	} else if (AR_SREV_9287(edump)) {
 		edump->eep_map = EEP_MAP_9287;
 		edump->eep_ops = &eep_9287_ops;
 	} else if (AR_SREV_9285(edump)) {
