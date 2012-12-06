@@ -846,7 +846,7 @@ static void print_initvals_family(char *family, bool check)
 		}
 		ar9340_hw_print_initvals(check);
 		if (!check)
-			printf("#endif /* INITVALS_9340_1P0_H */\n");
+			printf("#endif /* INITVALS_9340_H */\n");
 	} else if (strncmp(family, "ar9485", 6) == 0) {
 		if (!check) {
 			printf("#ifndef INITVALS_9485_H\n");

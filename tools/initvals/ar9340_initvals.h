@@ -1345,4 +1345,4 @@ static const u32 ar9340_1p0_soc_preamble[][2] = {
 	{0x00007038, 0x000004c2},
 };
 
-#endif /* INITVALS_9340_1P0_H */
+#endif /* INITVALS_9340_H */
