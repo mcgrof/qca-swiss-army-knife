@@ -654,8 +654,7 @@ static void ar9330_1p2_hw_print_initvals(bool check)
 	INI_PRINT_DUP(ar9331_common_wo_xlna_rx_gain_1p2,
 		      ar9331_common_wo_xlna_rx_gain_1p1);
 
-	INI_PRINT_DUP(ar9331_common_rx_gain_1p2,
-		      ar9485_common_rx_gain_1_1);
+	INI_PRINT(ar9331_common_rx_gain_1p2);
 }
 
 static void ar9340_hw_print_initvals(bool check)
