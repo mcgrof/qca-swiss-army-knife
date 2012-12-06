@@ -910,6 +910,7 @@ int main(int argc, char *argv[])
 			ar9330_1p2_hw_print_initvals(false);
 			ar9340_hw_print_initvals(false);
 			ar9485_hw_print_initvals(false);
+			ar9565_1p0_hw_print_initvals(false);
 			ar9580_1p0_hw_print_initvals(false);
 			ar9462_2p0_hw_print_initvals(false);
 
@@ -942,6 +943,7 @@ int main(int argc, char *argv[])
 	ar9330_1p2_hw_print_initvals(true);
 	ar9340_hw_print_initvals(true);
 	ar9485_hw_print_initvals(true);
+	ar9565_1p0_hw_print_initvals(true);
 	ar9580_1p0_hw_print_initvals(true);
 	ar9462_2p0_hw_print_initvals(true);
 
