@@ -31,7 +31,7 @@ verify_family_checksum()
 }
 
 FAMILIES="$@"
-[ -z "$FAMILIES" ] && FAMILIES="ar5008 ar9001 ar9002 ar9003-2p2 ar9330-1p1 ar9330-1p2 ar9485 ar9580-1p0"
+[ -z "$FAMILIES" ] && FAMILIES="ar5008 ar9001 ar9002 ar9003-2p2 ar9330-1p1 ar9330-1p2 ar9340 ar9462-1p0 ar9485 ar9565-1p0 ar9580-1p0"
 
 mkdir -p "$CSUM_DIR"
 for family in $FAMILIES; do
