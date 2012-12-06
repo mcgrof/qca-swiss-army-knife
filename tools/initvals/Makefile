@@ -20,6 +20,7 @@ ATHEROS_DEPS += \
 	ar9330_12.ini		\
 	ar9340.ini		\
 	ar9485.ini		\
+	ar955x.ini		\
 	ar9580.ini		\
 	ar9300_jupiter20.ini	\
 	ar9300_aphrodite10.ini
