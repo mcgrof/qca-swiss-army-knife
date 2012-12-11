@@ -443,16 +443,25 @@ static u32 ath9k_patch_initval(u32 idx, u32 val)
 	return val;
 }
 
+static u32 ath9k_get_p_columns(u32 columns, bool wide)
+{
+	u32 p_columns;
+
+	if (wide)
+		p_columns = columns;
+	else
+		p_columns = columns > 5 ? 5 : columns;
+
+	return p_columns;
+}
+
 static void ath9k_hw_print_initval(const char *name, const u32 *array, u32 rows,
 				   u32 columns, bool onedim, bool wide)
 {
 	u32 p_columns;
 	u32 col, row;
 
-	if (wide)
-		p_columns = columns;
-	else
-		p_columns = columns > 5 ? 5 : columns;
+	p_columns = ath9k_get_p_columns(columns, wide);
 
 	if (onedim)
 		printf("static const u32 %s[] = {\n", name);
@@ -508,10 +517,7 @@ static char *ath9k_hw_check_initval(const u32 *array, u32 rows, u32 columns,
 	u32 p_columns;
 	u32 col, row;
 
-	if (wide)
-		p_columns = columns;
-	else
-		p_columns = columns > 5 ? 5 : columns;
+	p_columns = ath9k_get_p_columns(columns, wide);
 
 	SHA1_Init(&ctx);
 	for (row = 0; row < rows; row++) {
