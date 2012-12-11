@@ -449,20 +449,10 @@ static void ath9k_hw_print_initval(const char *name, const u32 *array, u32 rows,
 	u32 p_columns;
 	u32 col, row;
 
-	if (wide) {
+	if (wide)
 		p_columns = columns;
-	} else {
+	else
 		p_columns = columns > 5 ? 5 : columns;
-
-		/*
-		* This checksum stuff is designed for columns <= 8),
-		* and spreads the checksum over 64 bits but since currently
-		* the initval max column size is 6 we only use the first 48
-		* bits.
-		*/
-		if (columns > 6)
-			return;
-	}
 
 	if (onedim)
 		printf("static const u32 %s[] = {\n", name);
