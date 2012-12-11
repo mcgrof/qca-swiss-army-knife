@@ -356,10 +356,10 @@ struct initval_family {
 #define INI_PRINT_DUP(_array, _ref) do { \
 	if (check) { \
 		char *sha1sum; \
-		sha1sum = ath9k_hw_check_initval((const u32 *) &_array,\
+		sha1sum = ath9k_hw_check_initval(#_array, \
+						(const u32 *) &_array,\
 						ARRAY_SIZE(_array), \
-						ARRAY_SIZE((_array)[0]), \
-						false); \
+						ARRAY_SIZE((_array)[0])); \
 		printf("%s        "#_array"\n", sha1sum); \
 	} else { \
 		if (sizeof(_ref) == sizeof(_array) && \
@@ -370,30 +370,26 @@ struct initval_family {
 		ath9k_hw_print_initval(#_array, (const u32 *) _array, \
 				       ARRAY_SIZE(_array), \
 				       ARRAY_SIZE((_array)[0]), \
-				       false, \
 				       false); \
 	} \
     } while (0)
 
-#define _INI_PRINT(_label, _array, _wide) do { \
+#define INI_PRINT(_array) do { \
 	if (check) { \
 		char *sha1sum; \
-		sha1sum = ath9k_hw_check_initval((const u32 *) &_array,\
+		sha1sum = ath9k_hw_check_initval(#_array, \
+						(const u32 *) &_array,\
 						ARRAY_SIZE(_array), \
-						ARRAY_SIZE((_array)[0]), \
-						_wide); \
-		printf("%s        " _label "\n", sha1sum); \
+						ARRAY_SIZE((_array)[0])); \
+		printf("%s        " #_array "\n", sha1sum); \
 	} else { \
-		ath9k_hw_print_initval((_label), (const u32 *) _array, \
+		ath9k_hw_print_initval(#_array, (const u32 *) _array, \
 				       ARRAY_SIZE(_array), \
 				       ARRAY_SIZE((_array)[0]), \
-				       false, \
-				       _wide); \
+				       false); \
 	} \
     } while (0)
 
-#define INI_PRINT(_array)	_INI_PRINT(#_array, _array, false)
-#define INI_PRINTW(_array)	_INI_PRINT(#_array, _array, true)
 
 #define INI_PRINT_ONEDIM(_array) do { \
 	if (check) { \
@@ -443,25 +439,26 @@ static u32 ath9k_patch_initval(u32 idx, u32 val)
 	return val;
 }
 
-static u32 ath9k_get_p_columns(u32 columns, bool wide)
+static u32 ath9k_get_p_columns(const char *name, u32 columns)
 {
-	u32 p_columns;
+	if (columns == 6 && strstr(name, "Modes")) {
+		/*
+		 * The last column contain values for Turbo mode.
+		 * Don't print that because it is not used in ath9k.
+		 */
+		return 5;
+	}
 
-	if (wide)
-		p_columns = columns;
-	else
-		p_columns = columns > 5 ? 5 : columns;
-
-	return p_columns;
+	return columns;
 }
 
 static void ath9k_hw_print_initval(const char *name, const u32 *array, u32 rows,
-				   u32 columns, bool onedim, bool wide)
+				   u32 columns, bool onedim)
 {
 	u32 p_columns;
 	u32 col, row;
 
-	p_columns = ath9k_get_p_columns(columns, wide);
+	p_columns = ath9k_get_p_columns(name, columns);
 
 	if (onedim)
 		printf("static const u32 %s[] = {\n", name);
@@ -508,8 +505,8 @@ static void ath9k_hw_print_initval(const char *name, const u32 *array, u32 rows,
 	printf("};\n\n");
 }
 
-static char *ath9k_hw_check_initval(const u32 *array, u32 rows, u32 columns,
-				    bool wide)
+static char *ath9k_hw_check_initval(const char *name, const u32 *array,
+				    u32 rows, u32 columns)
 {
 	SHA1_CTX ctx;
 	unsigned char digest[SHA1_DIGEST_SIZE];
@@ -517,7 +514,7 @@ static char *ath9k_hw_check_initval(const u32 *array, u32 rows, u32 columns,
 	u32 p_columns;
 	u32 col, row;
 
-	p_columns = ath9k_get_p_columns(columns, wide);
+	p_columns = ath9k_get_p_columns(name, columns);
 
 	SHA1_Init(&ctx);
 	for (row = 0; row < rows; row++) {
@@ -775,7 +772,7 @@ static void ar955x_1p0_hw_print_initvals(bool check)
 	INI_PRINT(ar955x_1p0_baseband_core_txfir_coeff_japan_2484);
 	INI_PRINT(ar955x_1p0_baseband_postamble);
 	INI_PRINT(ar955x_1p0_radio_core);
-	INI_PRINTW(ar955x_1p0_modes_xpa_tx_gain_table);
+	INI_PRINT(ar955x_1p0_modes_xpa_tx_gain_table);
 	INI_PRINT(ar955x_1p0_mac_core);
 	INI_PRINT(ar955x_1p0_common_rx_gain_table);
 	INI_PRINT(ar955x_1p0_baseband_core);
@@ -784,7 +781,7 @@ static void ar955x_1p0_hw_print_initvals(bool check)
 	INI_PRINT(ar955x_1p0_common_wo_xlna_rx_gain_bounds);
 	INI_PRINT(ar955x_1p0_mac_postamble);
 	INI_PRINT(ar955x_1p0_common_rx_gain_bounds);
-	INI_PRINTW(ar955x_1p0_modes_no_xpa_tx_gain_table);
+	INI_PRINT(ar955x_1p0_modes_no_xpa_tx_gain_table);
 	INI_PRINT(ar955x_1p0_soc_postamble);
 	INI_PRINT(ar955x_1p0_modes_fast_clock);
 }
