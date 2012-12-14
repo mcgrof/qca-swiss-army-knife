@@ -1,6 +1,7 @@
 CFLAGS=
+ATH9K_DIR=.
 
-LOCAL_CFLAGS=$(CFLAGS)
+LOCAL_CFLAGS=$(CFLAGS) -I"$(ATH9K_DIR)"
 ifdef ATHEROS
 LOCAL_CFLAGS += -DATHEROS
 
@@ -41,7 +42,7 @@ ATH9K_HEADERS = \
 	ar9565-1p0:ar9565_1p0_initvals.h
 
 ifndef ATHEROS
-ATH9K_DEPS := $(foreach header,$(ATH9K_HEADERS),$(word 2,$(subst :, ,$(header))))
+ATH9K_DEPS := $(foreach header,$(ATH9K_HEADERS),$(word 2,$(subst :, $(ATH9K_DIR)/,$(header))))
 endif
 
 SOURCES:=initvals.c sha1.c
@@ -50,7 +51,7 @@ initvals: $(ATH9K_DEPS) $(ATHEROS_DEPS) $(SOURCES)
 	gcc $(LOCAL_CFLAGS) -o $@ $(SOURCES)
 
 define refresh_command
-	./initvals -w -f $(word 1,$(subst :, ,$(1))) > $(word 2,$(subst :, ,$(1)))
+	./initvals -w -f $(word 1,$(subst :, ,$(1))) > $(word 2,$(subst :, $(ATH9K_DIR)/,$(1)))
 
 endef
 

@@ -27,18 +27,18 @@ struct initval_family {
  */
 #ifndef ATHEROS
 
-#include "ar5008_initvals.h"
-#include "ar9001_initvals.h"
-#include "ar9002_initvals.h"
-#include "ar9003_2p2_initvals.h"
-#include "ar9330_1p1_initvals.h"
-#include "ar9330_1p2_initvals.h"
-#include "ar9340_initvals.h"
-#include "ar9485_initvals.h"
-#include "ar955x_1p0_initvals.h"
-#include "ar9580_1p0_initvals.h"
-#include "ar9462_2p0_initvals.h"
-#include "ar9565_1p0_initvals.h"
+#include <ar5008_initvals.h>
+#include <ar9001_initvals.h>
+#include <ar9002_initvals.h>
+#include <ar9003_2p2_initvals.h>
+#include <ar9330_1p1_initvals.h>
+#include <ar9330_1p2_initvals.h>
+#include <ar9340_initvals.h>
+#include <ar9485_initvals.h>
+#include <ar955x_1p0_initvals.h>
+#include <ar9580_1p0_initvals.h>
+#include <ar9462_2p0_initvals.h>
+#include <ar9565_1p0_initvals.h>
 
 #else
 

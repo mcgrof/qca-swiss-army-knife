@@ -8,6 +8,7 @@ get_family_checksum()
 	local flag
 
 	[ "$suffix" == "hal" ] && flag="ATHEROS=1"
+	[ -n "$ATH9K_DIR" ] && flag="$flag ATH9K_DIR=$ATH9K_DIR"
 
 	make clean all $flag >/dev/null
 	./initvals -f $family > "$CSUM_DIR/${family}_$suffix.txt"
