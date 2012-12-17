@@ -29,7 +29,34 @@ struct initval_family {
 
 #include <ar5008_initvals.h>
 #include <ar9001_initvals.h>
+
+#define ar5416Bank0_9100					ar5416Bank0
+#define ar5416Bank1_9100					ar5416Bank1
+#define ar5416Bank2_9100					ar5416Bank2
+#define ar5416Bank3_9100					ar5416Bank3
+#define ar5416Bank7_9100					ar5416Bank7
+#define ar5416BB_RfGain_9100					ar5416BB_RfGain
+
+#define ar5416Bank0_9160					ar5416Bank0
+#define ar5416Bank1_9160					ar5416Bank1
+#define ar5416Bank2_9160					ar5416Bank2
+#define ar5416Bank3_9160					ar5416Bank3
+#define ar5416Bank6_9160					ar5416Bank6
+#define ar5416Bank6TPC_9160					ar5416Bank6TPC_9100
+#define ar5416Bank7_9160					ar5416Bank7
+#define ar5416BB_RfGain_9160					ar5416BB_RfGain
+
 #include <ar9002_initvals.h>
+
+#define ar9285PciePhy_clkreq_always_on_L1_9285			ar9280PciePhy_clkreq_always_on_L1_9280
+#define ar9285PciePhy_clkreq_off_L1_9285			ar9280PciePhy_clkreq_off_L1_9280
+#define ar9285PciePhy_clkreq_always_on_L1_9285_1_2		ar9280PciePhy_clkreq_always_on_L1_9280
+#define ar9285PciePhy_clkreq_off_L1_9285_1_2			ar9280PciePhy_clkreq_off_L1_9280
+#define ar9287PciePhy_clkreq_always_on_L1_9287_1_1		ar9280PciePhy_clkreq_always_on_L1_9280
+#define ar9287PciePhy_clkreq_off_L1_9287_1_1			ar9280PciePhy_clkreq_off_L1_9280
+#define ar9271Common_normal_cck_fir_coeff_9271			ar9287Common_normal_cck_fir_coeff_9287_1_1
+#define ar9271Common_japan_2484_cck_fir_coeff_9271		ar9287Common_japan_2484_cck_fir_coeff_9287_1_1
+
 #include <ar9003_2p2_initvals.h>
 #include <ar9330_1p1_initvals.h>
 #include <ar9330_1p2_initvals.h>
@@ -374,6 +401,36 @@ struct initval_family {
 	} \
     } while (0)
 
+/*
+ * For some duplicated initval arrays, ath9k directly
+ * uses the reference array instead of adding a define.
+ * Show a warning message if the given array is not a
+ * dupe of the referenced one.
+ */
+#define INI_PRINT_DUP2(_array, _ref) do { \
+	if (check) { \
+		char *sha1sum; \
+		sha1sum = ath9k_hw_check_initval(#_array, \
+						(const u32 *) &_array,\
+						ARRAY_SIZE(_array), \
+						ARRAY_SIZE((_array)[0])); \
+		printf("%s        "#_array"\n", sha1sum); \
+	} else { \
+		if (sizeof(_ref) != sizeof(_array) || \
+		    memcmp(&_ref, &_array, sizeof(_ref))) { \
+			printf("#warning " #_array " is not a dupe of " #_ref "\n\n"); \
+			break; \
+		} \
+	} \
+    } while (0)
+
+/*
+ * Some initval arrays are inlined in the ath9k
+ * sources. Keep the symbol, but don't do anything
+ * with the array,
+ */
+#define INI_PRINT_INLINE(_array) do { } while (0)
+
 #define INI_PRINT(_array) do { \
 	if (check) { \
 		char *sha1sum; \
@@ -559,25 +616,25 @@ static void ar9001_hw_print_initvals(bool check)
 {
 	INI_PRINT(ar5416Modes_9100);
 	INI_PRINT(ar5416Common_9100);
-	INI_PRINT(ar5416Bank0_9100);
-	INI_PRINT(ar5416BB_RfGain_9100);
-	INI_PRINT(ar5416Bank1_9100);
-	INI_PRINT(ar5416Bank2_9100);
-	INI_PRINT(ar5416Bank3_9100);
+	INI_PRINT_DUP2(ar5416Bank0_9100, ar5416Bank0);
+	INI_PRINT_DUP2(ar5416BB_RfGain_9100,  ar5416BB_RfGain);
+	INI_PRINT_DUP2(ar5416Bank1_9100, ar5416Bank1);
+	INI_PRINT_DUP2(ar5416Bank2_9100, ar5416Bank2);
+	INI_PRINT_DUP2(ar5416Bank3_9100, ar5416Bank3);
 	INI_PRINT(ar5416Bank6_9100);
 	INI_PRINT(ar5416Bank6TPC_9100);
-	INI_PRINT(ar5416Bank7_9100);
+	INI_PRINT_DUP2(ar5416Bank7_9100, ar5416Bank7);
 	INI_PRINT(ar5416Addac_9100);
 	INI_PRINT(ar5416Modes_9160);
 	INI_PRINT(ar5416Common_9160);
-	INI_PRINT(ar5416Bank0_9160);
-	INI_PRINT(ar5416BB_RfGain_9160);
-	INI_PRINT(ar5416Bank1_9160);
-	INI_PRINT(ar5416Bank2_9160);
-	INI_PRINT(ar5416Bank3_9160);
-	INI_PRINT(ar5416Bank6_9160);
-	INI_PRINT(ar5416Bank6TPC_9160);
-	INI_PRINT(ar5416Bank7_9160);
+	INI_PRINT_DUP2(ar5416Bank0_9160, ar5416Bank0);
+	INI_PRINT_DUP2(ar5416BB_RfGain_9160, ar5416BB_RfGain);
+	INI_PRINT_DUP2(ar5416Bank1_9160, ar5416Bank1);
+	INI_PRINT_DUP2(ar5416Bank2_9160, ar5416Bank2);
+	INI_PRINT_DUP2(ar5416Bank3_9160, ar5416Bank3);
+	INI_PRINT_DUP2(ar5416Bank6_9160, ar5416Bank6);
+	INI_PRINT_DUP2(ar5416Bank6TPC_9160, ar5416Bank6TPC_9100);
+	INI_PRINT_DUP2(ar5416Bank7_9160, ar5416Bank7);
 	INI_PRINT(ar5416Addac_9160);
 	INI_PRINT(ar5416Addac_9160_1_1);
 }
@@ -594,7 +651,9 @@ static void ar9002_hw_print_initvals(bool check)
 	INI_PRINT(ar9280Modes_original_tx_gain_9280_2);
 	INI_PRINT(ar9280PciePhy_clkreq_off_L1_9280);
 	INI_PRINT(ar9280PciePhy_clkreq_always_on_L1_9280);
-	INI_PRINT(ar9285PciePhy_clkreq_always_on_L1_9285);
+
+	INI_PRINT_DUP2(ar9285PciePhy_clkreq_always_on_L1_9285,
+		      ar9280PciePhy_clkreq_always_on_L1_9280);
 	INI_PRINT(ar9285PciePhy_clkreq_off_L1_9285);
 	INI_PRINT(ar9285Modes_9285_1_2);
 	INI_PRINT(ar9285Common_9285_1_2);
@@ -602,21 +661,29 @@ static void ar9002_hw_print_initvals(bool check)
 	INI_PRINT(ar9285Modes_original_tx_gain_9285_1_2);
 	INI_PRINT(ar9285Modes_XE2_0_normal_power);
 	INI_PRINT(ar9285Modes_XE2_0_high_power);
-	INI_PRINT(ar9285PciePhy_clkreq_always_on_L1_9285_1_2);
-	INI_PRINT(ar9285PciePhy_clkreq_off_L1_9285_1_2);
+	INI_PRINT_DUP2(ar9285PciePhy_clkreq_always_on_L1_9285_1_2,
+		      ar9280PciePhy_clkreq_always_on_L1_9280);
+	INI_PRINT_DUP2(ar9285PciePhy_clkreq_off_L1_9285_1_2,
+		      ar9280PciePhy_clkreq_off_L1_9280);
+
 	INI_PRINT(ar9287Modes_9287_1_1);
 	INI_PRINT(ar9287Common_9287_1_1);
 	INI_PRINT(ar9287Common_normal_cck_fir_coeff_9287_1_1);
 	INI_PRINT(ar9287Common_japan_2484_cck_fir_coeff_9287_1_1);
 	INI_PRINT(ar9287Modes_tx_gain_9287_1_1);
 	INI_PRINT(ar9287Modes_rx_gain_9287_1_1);
-	INI_PRINT(ar9287PciePhy_clkreq_always_on_L1_9287_1_1);
-	INI_PRINT(ar9287PciePhy_clkreq_off_L1_9287_1_1);
+	INI_PRINT_DUP2(ar9287PciePhy_clkreq_always_on_L1_9287_1_1,
+		      ar9280PciePhy_clkreq_always_on_L1_9280);
+	INI_PRINT_DUP2(ar9287PciePhy_clkreq_off_L1_9287_1_1,
+		      ar9280PciePhy_clkreq_off_L1_9280);
+
 	INI_PRINT(ar9271Modes_9271);
 	INI_PRINT(ar9271Common_9271);
-	INI_PRINT(ar9271Common_normal_cck_fir_coeff_9271);
-	INI_PRINT(ar9271Common_japan_2484_cck_fir_coeff_9271);
-	INI_PRINT(ar9271Modes_9271_1_0_only);
+	INI_PRINT_DUP2(ar9271Common_normal_cck_fir_coeff_9271,
+		      ar9287Common_normal_cck_fir_coeff_9287_1_1);
+	INI_PRINT_DUP2(ar9271Common_japan_2484_cck_fir_coeff_9271,
+		      ar9287Common_japan_2484_cck_fir_coeff_9287_1_1);
+	INI_PRINT_INLINE(ar9271Modes_9271_1_0_only);
 	INI_PRINT(ar9271Modes_9271_ANI_reg);
 	INI_PRINT(ar9271Modes_normal_power_tx_gain_9271);
 	INI_PRINT(ar9271Modes_high_power_tx_gain_9271);
