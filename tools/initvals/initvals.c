@@ -654,7 +654,8 @@ static void ar9002_hw_print_initvals(bool check)
 
 	INI_PRINT_DUP2(ar9285PciePhy_clkreq_always_on_L1_9285,
 		      ar9280PciePhy_clkreq_always_on_L1_9280);
-	INI_PRINT(ar9285PciePhy_clkreq_off_L1_9285);
+	INI_PRINT_DUP2(ar9285PciePhy_clkreq_off_L1_9285,
+		       ar9280PciePhy_clkreq_off_L1_9280);
 	INI_PRINT(ar9285Modes_9285_1_2);
 	INI_PRINT(ar9285Common_9285_1_2);
 	INI_PRINT(ar9285Modes_high_power_tx_gain_9285_1_2);
