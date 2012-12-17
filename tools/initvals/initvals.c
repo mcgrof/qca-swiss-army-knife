@@ -126,7 +126,7 @@ struct initval_family {
 #define ar9280Modes_mixed_power_tx_gain_merlin2			ar9280Modes_mixed_power_tx_gain_9280_2
 #define ar9280PciePhy_clkreq_off_L1_merlin			ar9280PciePhy_clkreq_off_L1_9280
 #define ar9280PciePhy_clkreq_always_on_L1_merlin		ar9280PciePhy_clkreq_always_on_L1_9280
-#define ar9280PciePhy_AWOW_merlin				ar9280PciePhy_AWOW_9280
+#define ar9280PciePhy_AWOW_merlin				ar9280PciePhy_awow
 
 #include "ar9280_merlin2.ini"
 
@@ -651,6 +651,7 @@ static void ar9002_hw_print_initvals(bool check)
 	INI_PRINT(ar9280Modes_original_tx_gain_9280_2);
 	INI_PRINT(ar9280PciePhy_clkreq_off_L1_9280);
 	INI_PRINT(ar9280PciePhy_clkreq_always_on_L1_9280);
+	INI_PRINT(ar9280PciePhy_awow);
 
 	INI_PRINT_DUP2(ar9285PciePhy_clkreq_always_on_L1_9285,
 		      ar9280PciePhy_clkreq_always_on_L1_9280);

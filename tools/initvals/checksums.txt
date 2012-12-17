@@ -42,6 +42,7 @@ aa88585259661a6a85cd78ca2c86cee13286d124        ar9280Common_9280_2
 67dab1c3ca3ebe1bb4997f0e076bded4496b5b0c        ar9280Modes_original_tx_gain_9280_2
 706b82bcdcf19a094a02eed21ed64dbd1f3a85b0        ar9280PciePhy_clkreq_off_L1_9280
 a6621033d7308f8c85f3bfcd84265c261cfe1ea1        ar9280PciePhy_clkreq_always_on_L1_9280
+a6621033d7308f8c85f3bfcd84265c261cfe1ea1        ar9280PciePhy_awow
 a6621033d7308f8c85f3bfcd84265c261cfe1ea1        ar9285PciePhy_clkreq_always_on_L1_9285
 706b82bcdcf19a094a02eed21ed64dbd1f3a85b0        ar9285PciePhy_clkreq_off_L1_9285
 f668583c3777247a8fc7e316555270a94852ddb1        ar9285Modes_9285_1_2
