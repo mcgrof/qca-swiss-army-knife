@@ -112,9 +112,6 @@ struct initval_family {
 
 #include "ar5416_sowl.ini"
 
-
-#include "ar9280.ini"
-
 #define ar9280Modes_merlin2					ar9280Modes_9280_2
 #define ar9280Common_merlin2					ar9280Common_9280_2
 #define ar9280Modes_fast_clock_merlin2				ar9280Modes_fast_clock_9280_2
@@ -147,10 +144,6 @@ struct initval_family {
 #define ar9285Modes_Elijah2_0_high_power			ar9285Modes_XE2_0_high_power
 
 #include "ar9285_v1_2.ini"
-
-#define ar9287PciePhy_AWOW_kiwi1_0				ar9287PciePhy_AWOW_9287_1_0
-
-#include "ar9287.ini"
 
 #define ar9287Modes_kiwi1_1					ar9287Modes_9287_1_1
 #define ar9287Common_kiwi1_1					ar9287Common_9287_1_1

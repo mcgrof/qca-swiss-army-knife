@@ -9,18 +9,15 @@ ATHEROS_DEPS += \
 	ar5416.ini		\
 	ar5416_howl.ini		\
 	ar5416_sowl.ini		\
-	ar9280.ini		\
 	ar9280_merlin2.ini	\
 	ar9285.ini		\
 	ar9285_v1_2.ini		\
-	ar9287.ini		\
 	ar9287_1_1.ini		\
 	ar9271.ini		\
 	ar9300_osprey22.ini	\
 	ar9330_11.ini		\
 	ar9330_12.ini		\
 	ar9340.ini		\
-	ar9485.ini		\
 	ar955x.ini		\
 	ar9580.ini		\
 	ar9300_jupiter20.ini	\
