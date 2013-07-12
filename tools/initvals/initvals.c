@@ -317,6 +317,7 @@ struct initval_family {
 #define ar9300_jupiter_2p0_mac_core				ar9462_2p0_mac_core
 #define ar9300_jupiter_2p0_mac_postamble			ar9462_2p0_mac_postamble
 #define ar9300Common_mixed_rx_gain_table_jupiter_2p0		ar9462_common_mixed_rx_gain_table_2p0
+#define ar9300_jupiter_2p0_baseband_postamble_5g_xlna		ar9462_2p0_baseband_postamble_5g_xlna
 
 #include "ar9300_jupiter20.ini"
 
@@ -902,6 +903,7 @@ static void ar9462_2p0_hw_print_initvals(bool check)
 	INI_PRINT(ar9462_2p0_mac_core);
 	INI_PRINT(ar9462_2p0_mac_postamble);
 	INI_PRINT(ar9462_common_mixed_rx_gain_table_2p0);
+	INI_PRINT(ar9462_2p0_baseband_postamble_5g_xlna);
 }
 
 static void ar9565_1p0_hw_print_initvals(bool check)
