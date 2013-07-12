@@ -312,6 +312,7 @@ struct initval_family {
 #define ar9300_jupiter_2p0_soc_postamble			ar9462_2p0_soc_postamble
 #define ar9300_jupiter_2p0_baseband_core			ar9462_2p0_baseband_core
 #define ar9300_jupiter_2p0_radio_postamble			ar9462_2p0_radio_postamble
+#define ar9300Modes_mix_ob_db_tx_gain_table_jupiter_2p0         ar9462_modes_mix_ob_db_tx_gain_table_2p0
 #define ar9300Modes_high_ob_db_tx_gain_table_jupiter_2p0	ar9462_modes_high_ob_db_tx_gain_table_2p0
 #define ar9300_jupiter_2p0_radio_core				ar9462_2p0_radio_core
 #define ar9300_jupiter_2p0_soc_preamble				ar9462_2p0_soc_preamble
@@ -925,6 +926,7 @@ static void ar9462_2p0_hw_print_initvals(bool check)
 	INI_PRINT(ar9462_2p0_soc_postamble);
 	INI_PRINT(ar9462_2p0_baseband_core);
 	INI_PRINT(ar9462_2p0_radio_postamble);
+	INI_PRINT(ar9462_modes_mix_ob_db_tx_gain_table_2p0);
 	INI_PRINT(ar9462_modes_high_ob_db_tx_gain_table_2p0);
 	INI_PRINT(ar9462_2p0_radio_core);
 	INI_PRINT(ar9462_2p0_soc_preamble);
