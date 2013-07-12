@@ -157,6 +157,7 @@ fd98d0361e085b102131c2dc07c601e0a7ccdd13        ar9462_2p0_radio_core
 c8dc777b012068116cd5282aade8eb460f397d20        ar9462_2p0_mac_postamble
 72675fd0f308e6f31502e283119e12469d262f40        ar9462_common_mixed_rx_gain_table_2p0
 185f0537e40b74dcc4db33c7e111c1bfe79f3104        ar9462_2p0_baseband_postamble_5g_xlna
+72675fd0f308e6f31502e283119e12469d262f40        ar9462_2p0_5g_xlna_only_rxgain
 c8dc777b012068116cd5282aade8eb460f397d20        ar9485_1_1_mac_postamble
 5d20e4848b97566ad55e0e95458463d622ee5480        ar9485_1_1_pcie_phy_pll_on_clkreq_disable_L1
 d9a90632a00a7b417154173b947dfffdeab23e51        ar9485Common_wo_xlna_rx_gain_1_1
