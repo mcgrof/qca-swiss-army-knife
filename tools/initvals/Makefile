@@ -21,6 +21,7 @@ ATHEROS_DEPS += \
 	ar955x.ini		\
 	ar9580.ini		\
 	ar9300_jupiter20.ini	\
+	ar9300_jupiter21.ini	\
 	ar9300_aphrodite10.ini
 endif
 
@@ -36,6 +37,7 @@ ATH9K_HEADERS = \
 	ar955x-1p0:ar955x_1p0_initvals.h	\
 	ar9580-1p0:ar9580_1p0_initvals.h \
 	ar9462-2p0:ar9462_2p0_initvals.h	\
+	ar9462-2p1:ar9462_2p1_initvals.h	\
 	ar9565-1p0:ar9565_1p0_initvals.h
 
 ifndef ATHEROS

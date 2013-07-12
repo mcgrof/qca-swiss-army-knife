@@ -65,6 +65,7 @@ struct initval_family {
 #include <ar955x_1p0_initvals.h>
 #include <ar9580_1p0_initvals.h>
 #include <ar9462_2p0_initvals.h>
+#include <ar9462_2p1_initvals.h>
 #include <ar9565_1p0_initvals.h>
 
 #else
@@ -323,6 +324,30 @@ struct initval_family {
 #define ar9300_jupiter_2p0_baseband_postamble_mix_rxgain	ar9462_2p0_baseband_postamble_mix_rxgain
 
 #include "ar9300_jupiter20.ini"
+
+#define ar9300_jupiter_2p1_mac_core                             ar9462_2p1_mac_core
+#define ar9300_jupiter_2p1_mac_postamble                        ar9462_2p1_mac_postamble
+#define ar9300_jupiter_2p1_baseband_core                        ar9462_2p1_baseband_core
+#define ar9300_jupiter_2p1_baseband_postamble                   ar9462_2p1_baseband_postamble
+#define ar9300_jupiter_2p1_radio_core                           ar9462_2p1_radio_core
+#define ar9300_jupiter_2p1_radio_postamble                      ar9462_2p1_radio_postamble
+#define ar9300_jupiter_2p1_soc_preamble                         ar9462_2p1_soc_preamble
+#define ar9300_jupiter_2p1_soc_postamble                        ar9462_2p1_soc_postamble
+#define ar9300_jupiter_2p1_radio_postamble_sys2ant              ar9462_2p1_radio_postamble_sys2ant
+#define ar9300Common_rx_gain_table_jupiter_2p1                  ar9462_2p1_common_rx_gain
+#define ar9300Common_mixed_rx_gain_table_jupiter_2p1            ar9462_2p1_common_mixed_rx_gain
+#define ar9300_jupiter_2p1_baseband_core_mix_rxgain             ar9462_2p1_baseband_core_mix_rxgain
+#define ar9300_jupiter_2p1_baseband_postamble_mix_rxgain        ar9462_2p1_baseband_postamble_mix_rxgain
+#define ar9300_jupiter_2p1_baseband_postamble_5g_xlna           ar9462_2p1_baseband_postamble_5g_xlna
+#define ar9300Common_wo_xlna_rx_gain_table_jupiter_2p1          ar9462_2p1_common_wo_xlna_rx_gain
+#define ar9300Common_5g_xlna_only_rx_gain_table_jupiter_2p1     ar9462_2p1_common_5g_xlna_only_rx_gain
+#define ar9300Modes_low_ob_db_tx_gain_table_jupiter_2p1         ar9462_2p1_modes_low_ob_db_tx_gain
+#define ar9300Modes_high_ob_db_tx_gain_table_jupiter_2p1        ar9462_2p1_modes_high_ob_db_tx_gain
+#define ar9300Modes_mix_ob_db_tx_gain_table_jupiter_2p1         ar9462_2p1_modes_mix_ob_db_tx_gain
+#define ar9300Modes_fast_clock_jupiter_2p1                      ar9462_2p1_modes_fast_clock
+#define ar9300_jupiter_2p1_baseband_core_txfir_coeff_japan_2484 ar9462_2p1_baseband_core_txfir_coeff_japan_2484
+
+#include "ar9300_jupiter21.ini"
 
 #define ar9340_wasp_1p0_radio_postamble				ar9340_1p0_radio_postamble
 #define ar9340Modes_lowest_ob_db_tx_gain_table_wasp_1p0		ar9340Modes_lowest_ob_db_tx_gain_table_1p0
@@ -912,6 +937,31 @@ static void ar9462_2p0_hw_print_initvals(bool check)
 	INI_PRINT(ar9462_2p0_baseband_postamble_mix_rxgain);
 }
 
+static void ar9462_2p1_hw_print_initvals(bool check)
+{
+	INI_PRINT(ar9462_2p1_mac_core);
+	INI_PRINT(ar9462_2p1_mac_postamble);
+	INI_PRINT(ar9462_2p1_baseband_core);
+	INI_PRINT(ar9462_2p1_baseband_postamble);
+	INI_PRINT(ar9462_2p1_radio_core);
+	INI_PRINT(ar9462_2p1_radio_postamble);
+	INI_PRINT(ar9462_2p1_soc_preamble);
+	INI_PRINT(ar9462_2p1_soc_postamble);
+	INI_PRINT(ar9462_2p1_radio_postamble_sys2ant);
+	INI_PRINT(ar9462_2p1_common_rx_gain);
+	INI_PRINT(ar9462_2p1_common_mixed_rx_gain);
+	INI_PRINT(ar9462_2p1_baseband_core_mix_rxgain);
+	INI_PRINT(ar9462_2p1_baseband_postamble_mix_rxgain);
+	INI_PRINT(ar9462_2p1_baseband_postamble_5g_xlna);
+	INI_PRINT(ar9462_2p1_common_wo_xlna_rx_gain);
+	INI_PRINT(ar9462_2p1_common_5g_xlna_only_rx_gain);
+	INI_PRINT(ar9462_2p1_modes_low_ob_db_tx_gain);
+	INI_PRINT(ar9462_2p1_modes_high_ob_db_tx_gain);
+	INI_PRINT(ar9462_2p1_modes_mix_ob_db_tx_gain);
+	INI_PRINT(ar9462_2p1_modes_fast_clock);
+	INI_PRINT(ar9462_2p1_baseband_core_txfir_coeff_japan_2484);
+}
+
 static void ar9565_1p0_hw_print_initvals(bool check)
 {
 	INI_PRINT(ar9565_1p0_mac_core);
@@ -948,6 +998,7 @@ struct initval_family families[] = {
 	FAM("ar9330-1p2", "9330_1P2", NULL        , ar9330_1p2_hw_print_initvals),
 	FAM("ar9340"    , "9340"    , NULL        , ar9340_hw_print_initvals),
 	FAM("ar9462-2p0", "9462_2P0", "AR9462 2.0", ar9462_2p0_hw_print_initvals),
+	FAM("ar9462-2p1", "9462_2P1", "AR9462 2.1", ar9462_2p1_hw_print_initvals),
 	FAM("ar9485"    , "9485"    , "AR9485 1.1", ar9485_hw_print_initvals),
 	FAM("ar955x-1p0", "955X_1P0", "AR955X 1.0", ar955x_1p0_hw_print_initvals),
 	FAM("ar9565-1p0", "9565_1P0", "AR9565 1.0", ar9565_1p0_hw_print_initvals),
