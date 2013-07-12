@@ -139,7 +139,7 @@ ca6088034f339ea8f106f7f034d34baafec0c0ca        ar9340Modes_high_ob_db_tx_gain_t
 1b9f617ab8c10ec0760e81fe61d469692f2acc29        ar9340_1p0_soc_preamble
 d9efd1c575ac43d60c310d717c59617a5323c111        ar9462_modes_fast_clock_2p0
 222ed8213d3ffb0d12cf4c7019bdfd874e45c7d7        ar9462_pciephy_clkreq_enable_L1_2p0
-efb4c74c657dbc49ab80dd1d42a5b8e6ff0c3651        ar9462_2p0_baseband_postamble
+d7a2102c22264c288fa3d9de27e5ae84b8f3812e        ar9462_2p0_baseband_postamble
 d0f7aff1a1ab7e6f6bbda0da067714459341ce5f        ar9462_common_rx_gain_table_2p0
 2fbe90336971cd66f0264c0cc57605c2de069d5f        ar9462_pciephy_clkreq_disable_L1_2p0
 a3173672141a2ac797e660228d41a609f9ab2c4c        ar9462_pciephy_pll_on_clkreq_disable_L1_2p0
